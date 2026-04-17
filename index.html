@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<!--
+  ============================================================
+  BOCADITOS DEL CORAZÓN — Landing page
+  ============================================================
+
+  CÓMO PERSONALIZAR ESTE ARCHIVO
+  ------------------------------
+  1) Cambiar el número de WhatsApp
+     - Busca la constante "WHATSAPP_NUMBER" en el <script> al final
+       del <body> y reemplaza el valor por tu número (formato
+       internacional sin "+" ni espacios, ej: 56912345678).
+     - Todos los botones CTA construyen el enlace dinámicamente.
+
+  2) Cambiar los precios
+     - Busca el comentario "PRECIOS" dentro de la sección <section id="planes">.
+     - Edita los <span data-price="..."> de cada plan.
+
+  3) Reemplazar los testimonios
+     - Busca "[EDITAR: testimonio real aquí]" (tres apariciones).
+     - Cambia el texto, el nombre y la ciudad por testimonios reales.
+
+  4) Cambiar la imagen del hero
+     - Busca el comentario "HERO_IMAGE".
+     - Reemplaza el atributo src por tu propia imagen (idealmente ~1200px
+       de ancho, formato jpg/webp, optimizada).
+
+  DECISIONES DE DISEÑO
+  --------------------
+  - Se usan iconos Lucide en las tarjetas de dolor para mantener la estética
+    cálida sin decoración con emojis (regla del sistema de diseño).
+  - El toggle de planes en móvil permite saltar entre las 3 tarjetas.
+  - El scroll del header se detecta con IntersectionObserver para bajar uso
+    de CPU y respetar prefers-reduced-motion.
+  ============================================================
+-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="120 recetas para bebés de 6 a 24 meses, diseñadas por nutricionistas pediátricos. Texturas por edad, planificador semanal y guía de alérgenos. Sin estrés." />
+  <meta name="theme-color" content="#FAF6F0" />
+  <meta property="og:title" content="Bocaditos del Corazón — 120 recetas para tu bebé" />
+  <meta property="og:description" content="Comida real para bebés de 6 a 24 meses. Respaldado por nutricionistas pediátricos." />
+  <meta property="og:type" content="website" />
+  <title>Bocaditos del Corazón — 120 recetas para bebés de 6 a 24 meses</title>
+
+  <!-- Fonts: preconnect + preload -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="preload"
+    as="style"
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <noscript>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+    />
+  </noscript>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            terracotta: { DEFAULT: '#C66B4A', dark: '#A85636' },
+            olive: '#6B7F5C',
+            mustard: '#F4B860',
+            cream: '#FAF6F0',
+            card: '#F0E8DC',
+            charcoal: '#2D2A26',
+            soft: '#6B6660',
+          },
+          fontFamily: {
+            display: ['Fraunces', 'Georgia', 'serif'],
+            body: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          borderRadius: { xl2: '14px' },
+          boxShadow: {
+            soft: '0 4px 20px -6px rgba(45, 42, 38, 0.08)',
+            card: '0 2px 12px -4px rgba(45, 42, 38, 0.06)',
+            hero: '0 24px 60px -30px rgba(45, 42, 38, 0.35)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root { color-scheme: light; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: #FAF6F0; color: #2D2A26; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, .font-display { font-family: 'Fraunces', Georgia, serif; letter-spacing: -0.01em; }
+
+    /* Focus rings */
+    :where(a, button, [role="button"], summary):focus-visible {
+      outline: 3px solid #C66B4A;
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+
+    /* FAQ accordion panel */
+    .faq-panel {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s ease;
+    }
+    .faq-item[open] .faq-panel { max-height: 400px; }
+    .faq-item[open] .faq-chevron { transform: rotate(180deg); }
+    .faq-chevron { transition: transform 0.25s ease; }
+
+    /* Plan toggle (mobile pills) */
+    .plan-pill[aria-pressed="true"] {
+      background: #C66B4A;
+      color: #FAF6F0;
+    }
+
+    /* Check bullets */
+    .check-bullet::before {
+      content: "";
+      flex: 0 0 1.25rem;
+      height: 1.25rem;
+      margin-top: 0.15rem;
+      background-color: #6B7F5C;
+      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/contain no-repeat;
+              mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/contain no-repeat;
+    }
+
+    /* Header states */
+    .site-header { transition: background-color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
+    .site-header.scrolled { background-color: rgba(250, 246, 240, 0.95); backdrop-filter: saturate(120%) blur(8px); border-color: rgba(45, 42, 38, 0.08); box-shadow: 0 1px 0 rgba(45, 42, 38, 0.04); }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+
+    /* Hide plans on mobile based on toggle */
+    @media (max-width: 767px) {
+      .plan-card { display: none; }
+      .plan-card.is-active { display: flex; }
+    }
+  </style>
+</head>
+
+<body class="bg-cream text-charcoal font-body">
+
+  <!-- Skip link -->
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-terracotta focus:text-cream focus:px-4 focus:py-2 focus:rounded-[14px]">Saltar al contenido</a>
+
+  <!-- =============== HEADER =============== -->
+  <header class="site-header fixed top-0 inset-x-0 z-40 border-b border-transparent">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+      <a href="#top" class="font-display text-terracotta text-xl sm:text-[22px] font-semibold tracking-tight" aria-label="Bocaditos del Corazón — inicio">
+        Bocaditos del Corazón
+      </a>
+      <a
+        href="#planes"
+        class="inline-flex items-center gap-2 bg-terracotta hover:bg-terracotta-dark text-cream text-sm sm:text-base font-medium px-4 sm:px-5 py-2.5 rounded-[14px] shadow-soft transition-colors"
+      >
+        Quiero el combo
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- =============== HERO =============== -->
+    <section id="top" class="pt-28 sm:pt-32 pb-12 sm:pb-20">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div>
+          <span class="inline-block bg-card text-soft text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
+            Para mamás de bebés 6 a 24 meses
+          </span>
+          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold mt-5 leading-[1.05]">
+            ¿Y hoy qué le doy de comer?
+          </h1>
+          <p class="mt-5 text-base sm:text-lg text-soft leading-relaxed max-w-xl">
+            120 recetas diseñadas por nutricionistas pediátricos. Texturas por edad, ingredientes que ya tienes en casa, y un planificador semanal que te saca el "qué cocino" de la cabeza.
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
+            <a
+              href="#planes"
+              class="inline-flex justify-center items-center gap-2 bg-terracotta hover:bg-terracotta-dark text-cream text-base font-semibold px-7 py-4 rounded-[14px] shadow-soft transition-colors"
+            >
+              Quiero el combo
+              <span aria-hidden="true">→</span>
+            </a>
+            <a
+              href="#muestra"
+              class="inline-flex justify-center items-center gap-2 text-olive hover:text-charcoal font-medium underline underline-offset-4 decoration-olive/40 hover:decoration-charcoal transition-colors"
+            >
+              Ver muestra gratis (3 recetas)
+            </a>
+          </div>
+          <p class="mt-7 text-sm text-soft flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span class="text-mustard text-base" aria-hidden="true">★</span>
+            <span><strong class="text-charcoal font-semibold">4.8/5</strong></span>
+            <span aria-hidden="true">·</span>
+            <span>+5.000 mamás</span>
+            <span aria-hidden="true">·</span>
+            <span>Garantía 7 días</span>
+          </p>
+        </div>
+
+        <div class="relative">
+          <!-- HERO_IMAGE: reemplaza la URL por tu propia imagen -->
+          <img
+            src="https://images.unsplash.com/photo-1547592180-85f173990554?w=1000&q=80&auto=format&fit=crop"
+            alt="Mamá alimentando a su bebé con comida casera en una mesa de madera"
+            class="w-full h-[340px] sm:h-[440px] lg:h-[520px] object-cover rounded-[14px] shadow-hero"
+            loading="eager"
+            fetchpriority="high"
+            width="1000"
+            height="600"
+          />
+          <div class="hidden sm:flex absolute -bottom-5 -left-5 bg-cream rounded-[14px] shadow-soft p-4 items-center gap-3 max-w-[240px]">
+            <div class="w-10 h-10 rounded-full bg-olive/15 text-olive flex items-center justify-center">
+              <i data-lucide="leaf" class="w-5 h-5" aria-hidden="true"></i>
+            </div>
+            <p class="text-sm text-charcoal leading-snug">
+              Respaldado por nutricionistas pediátricos
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== PAIN VALIDATION =============== -->
+    <section class="py-12 sm:py-16 bg-card/60">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <h2 class="font-display text-3xl sm:text-4xl font-semibold text-center">¿Te suena familiar?</h2>
+
+        <div class="mt-10 sm:mt-12 grid md:grid-cols-3 gap-5 sm:gap-6">
+          <article class="bg-cream rounded-[14px] p-6 sm:p-7 shadow-card">
+            <div class="w-11 h-11 rounded-[12px] bg-terracotta/10 text-terracotta flex items-center justify-center">
+              <i data-lucide="utensils" class="w-5 h-5" aria-hidden="true"></i>
+            </div>
+            <p class="mt-5 text-base sm:text-lg leading-relaxed">
+              Cocinas lo mismo cada semana porque ya no sabes qué inventar.
+            </p>
+          </article>
+
+          <article class="bg-cream rounded-[14px] p-6 sm:p-7 shadow-card">
+            <div class="w-11 h-11 rounded-[12px] bg-mustard/20 text-charcoal flex items-center justify-center">
+              <i data-lucide="alert-circle" class="w-5 h-5" aria-hidden="true"></i>
+            </div>
+            <p class="mt-5 text-base sm:text-lg leading-relaxed">
+              Te da miedo introducir un alimento nuevo: ¿y si es alérgico?
+            </p>
+          </article>
+
+          <article class="bg-cream rounded-[14px] p-6 sm:p-7 shadow-card">
+            <div class="w-11 h-11 rounded-[12px] bg-olive/15 text-olive flex items-center justify-center">
+              <i data-lucide="shopping-cart" class="w-5 h-5" aria-hidden="true"></i>
+            </div>
+            <p class="mt-5 text-base sm:text-lg leading-relaxed">
+              Vas al super sin lista, compras de más, y botas comida que sobra.
+            </p>
+          </article>
+        </div>
+
+        <p class="mt-10 sm:mt-12 text-center text-lg sm:text-xl text-charcoal font-display font-medium">
+          No es flojera. Es agotamiento mental. Y tiene solución.
+        </p>
+      </div>
+    </section>
+
+    <!-- =============== PRODUCT REVEAL =============== -->
+    <section id="muestra" class="py-14 sm:py-20">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div class="order-2 lg:order-1">
+          <img
+            src="https://images.unsplash.com/photo-1576021182211-9ea8dced3690?w=900&q=80&auto=format&fit=crop"
+            alt="Tazones de comida para bebé con puré de zanahoria y palta sobre mesa de madera"
+            class="w-full h-[380px] sm:h-[480px] object-cover rounded-[14px] shadow-hero"
+            loading="lazy"
+            width="900"
+            height="600"
+          />
+        </div>
+
+        <div class="order-1 lg:order-2">
+          <span class="inline-block bg-olive/15 text-olive text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
+            Qué incluye
+          </span>
+          <h2 class="font-display text-3xl sm:text-4xl font-semibold mt-5 leading-tight">
+            Todo lo que necesitas para darle comida real, sin estrés.
+          </h2>
+          <p class="mt-4 text-soft leading-relaxed">
+            Pensado para que lo sigas a tu ritmo, con ingredientes que ya tienes en casa.
+          </p>
+
+          <ul class="mt-7 grid sm:grid-cols-2 gap-x-6 gap-y-3.5">
+            <li class="check-bullet flex gap-3 text-[15px] leading-snug">120 recetas organizadas por edad (6–8m, 9–12m, 12–24m)</li>
+            <li class="check-bullet flex gap-3 text-[15px] leading-snug">Texturas progresivas: papilla → puré con grumos → trozos</li>
+            <li class="check-bullet flex gap-3 text-[15px] leading-snug">Lista de alérgenos comunes y método de introducción segura</li>
+            <li class="check-bullet flex gap-3 text-[15px] leading-snug">Ingredientes que ya tienes en casa</li>
+            <li class="check-bullet flex gap-3 text-[15px] leading-snug">Planificador semanal imprimible</li>
+            <li class="check-bullet flex gap-3 text-[15px] leading-snug">Lista de compras automática</li>
+            <li class="check-bullet flex gap-3 text-[15px] leading-snug">Buscador por ingrediente</li>
+            <li class="check-bullet flex gap-3 text-[15px] leading-snug">Acceso de por vida + actualizaciones gratuitas</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== HOW IT WORKS =============== -->
+    <section class="py-12 sm:py-16 bg-card/60">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8">
+        <h2 class="font-display text-3xl sm:text-4xl font-semibold text-center">Así de simple</h2>
+
+        <ol class="mt-10 sm:mt-14 grid md:grid-cols-3 gap-6 sm:gap-8">
+          <li class="bg-cream rounded-[14px] p-6 sm:p-7 shadow-card">
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-terracotta text-cream font-display font-semibold text-lg" aria-hidden="true">1</span>
+            <h3 class="font-display text-xl font-semibold mt-4">Eliges tu plan y pagas por WhatsApp</h3>
+            <p class="mt-2 text-soft leading-relaxed text-[15px]">Te guiamos paso a paso, en minutos.</p>
+          </li>
+          <li class="bg-cream rounded-[14px] p-6 sm:p-7 shadow-card">
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-terracotta text-cream font-display font-semibold text-lg" aria-hidden="true">2</span>
+            <h3 class="font-display text-xl font-semibold mt-4">Recibes tu acceso al instante</h3>
+            <p class="mt-2 text-soft leading-relaxed text-[15px]">Descárgalo en el celular, tablet o computador.</p>
+          </li>
+          <li class="bg-cream rounded-[14px] p-6 sm:p-7 shadow-card">
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-terracotta text-cream font-display font-semibold text-lg" aria-hidden="true">3</span>
+            <h3 class="font-display text-xl font-semibold mt-4">Cocinas tranquila</h3>
+            <p class="mt-2 text-soft leading-relaxed text-[15px]">Abres la receta del día y listo.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- =============== PRICING =============== -->
+    <section id="planes" class="py-14 sm:py-20">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="text-center max-w-2xl mx-auto">
+          <span class="inline-block bg-mustard/20 text-charcoal text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
+            Planes pensados para ti
+          </span>
+          <h2 class="font-display text-3xl sm:text-4xl font-semibold mt-5">Elige el plan que mejor te acompaña</h2>
+          <p class="mt-3 text-soft leading-relaxed">Paga una vez o acompáñate por más tiempo. Sin renovaciones automáticas.</p>
+        </div>
+
+        <!-- Plan toggle (mobile only) -->
+        <div class="mt-8 md:hidden flex items-center gap-2 bg-card p-1.5 rounded-full" role="tablist" aria-label="Ver planes">
+          <button type="button" class="plan-pill flex-1 text-sm font-medium px-3 py-2 rounded-full text-charcoal transition-colors" aria-pressed="false" data-plan="solo">Solo Ebook</button>
+          <button type="button" class="plan-pill flex-1 text-sm font-medium px-3 py-2 rounded-full text-charcoal transition-colors" aria-pressed="true" data-plan="combo">Combo</button>
+          <button type="button" class="plan-pill flex-1 text-sm font-medium px-3 py-2 rounded-full text-charcoal transition-colors" aria-pressed="false" data-plan="anual">Anual</button>
+        </div>
+
+        <!-- PRECIOS: edita los valores dentro de data-price y del texto visible -->
+        <div class="mt-8 sm:mt-12 grid md:grid-cols-3 gap-5 sm:gap-6 items-stretch">
+
+          <!-- Plan: Solo Ebook -->
+          <article class="plan-card flex flex-col bg-card rounded-[14px] p-6 sm:p-7 shadow-card" data-plan="solo">
+            <h3 class="font-display text-xl font-semibold">Solo Ebook</h3>
+            <p class="mt-1 text-soft text-sm">Ideal si solo quieres las recetas.</p>
+            <div class="mt-5">
+              <span class="font-display text-4xl font-semibold" data-price="9990">CLP $9.990</span>
+              <p class="text-soft text-sm mt-1">Pago único · acceso de por vida</p>
+            </div>
+            <ul class="mt-6 space-y-2.5 text-[15px] leading-snug">
+              <li class="check-bullet flex gap-3">Ebook con las 120 recetas</li>
+              <li class="check-bullet flex gap-3">Guía de alérgenos</li>
+              <li class="check-bullet flex gap-3">Actualizaciones gratuitas</li>
+              <li class="check-bullet flex gap-3">Formato PDF descargable</li>
+            </ul>
+            <a
+              href="#"
+              data-wa="solo"
+              class="mt-7 inline-flex justify-center items-center gap-2 bg-cream hover:bg-white text-charcoal text-base font-semibold px-5 py-3.5 rounded-[14px] border border-charcoal/10 transition-colors"
+            >
+              Llevar el ebook
+            </a>
+          </article>
+
+          <!-- Plan: COMBO (hero) -->
+          <article class="plan-card is-active relative flex flex-col bg-cream rounded-[14px] p-6 sm:p-8 shadow-hero border-2 border-terracotta" data-plan="combo">
+            <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-terracotta text-cream text-xs font-semibold tracking-wide uppercase px-3 py-1 rounded-full shadow-soft">
+              Más elegido
+            </span>
+            <h3 class="font-display text-xl font-semibold">Combo</h3>
+            <p class="mt-1 text-soft text-sm">Ebook + comunidad por 3 meses.</p>
+            <div class="mt-5">
+              <span class="font-display text-4xl font-semibold text-terracotta" data-price="14990">CLP $14.990</span>
+              <p class="text-soft text-sm mt-1">Pago único · sin renovación automática</p>
+            </div>
+            <ul class="mt-6 space-y-2.5 text-[15px] leading-snug">
+              <li class="check-bullet flex gap-3">Todo lo del plan Solo Ebook</li>
+              <li class="check-bullet flex gap-3">3 meses de suscripción Premium</li>
+              <li class="check-bullet flex gap-3">Biblioteca completa con videos cortos</li>
+              <li class="check-bullet flex gap-3">Planificador semanal interactivo</li>
+              <li class="check-bullet flex gap-3">Comunidad privada en WhatsApp</li>
+            </ul>
+            <a
+              href="#"
+              data-wa="combo"
+              class="mt-7 inline-flex justify-center items-center gap-2 bg-terracotta hover:bg-terracotta-dark text-cream text-base font-semibold px-5 py-3.5 rounded-[14px] shadow-soft transition-colors"
+            >
+              Quiero el combo
+              <span aria-hidden="true">→</span>
+            </a>
+          </article>
+
+          <!-- Plan: Anual Premium -->
+          <article class="plan-card flex flex-col bg-card rounded-[14px] p-6 sm:p-7 shadow-card" data-plan="anual">
+            <h3 class="font-display text-xl font-semibold">Anual Premium</h3>
+            <p class="mt-1 text-soft text-sm">Acompañamiento completo por 12 meses.</p>
+            <div class="mt-5">
+              <span class="font-display text-4xl font-semibold" data-price="39990">CLP $39.990</span>
+              <p class="text-soft text-sm mt-1">Pago único · 12 meses de acceso</p>
+            </div>
+            <ul class="mt-6 space-y-2.5 text-[15px] leading-snug">
+              <li class="check-bullet flex gap-3">Todo lo del Combo</li>
+              <li class="check-bullet flex gap-3">12 meses de Premium</li>
+              <li class="check-bullet flex gap-3">Nuevas recetas cada mes</li>
+              <li class="check-bullet flex gap-3">Sesiones en vivo con nutricionistas</li>
+              <li class="check-bullet flex gap-3">Soporte prioritario por WhatsApp</li>
+            </ul>
+            <a
+              href="#"
+              data-wa="anual"
+              class="mt-7 inline-flex justify-center items-center gap-2 bg-olive hover:bg-olive/90 text-cream text-base font-semibold px-5 py-3.5 rounded-[14px] shadow-soft transition-colors"
+            >
+              Acompáñame un año
+            </a>
+          </article>
+
+        </div>
+
+        <p class="mt-10 text-center text-sm sm:text-base text-soft flex items-center justify-center gap-2">
+          <i data-lucide="shield-check" class="w-4 h-4 text-olive" aria-hidden="true"></i>
+          <span>Garantía de 7 días. Si no te sirve, te devolvemos tu dinero. Sin preguntas.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- =============== TESTIMONIALS =============== -->
+    <section class="py-12 sm:py-16 bg-card/60">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <h2 class="font-display text-3xl sm:text-4xl font-semibold text-center">Lo que nos cuentan otras mamás</h2>
+
+        <div class="mt-10 sm:mt-12 grid md:grid-cols-3 gap-5 sm:gap-6">
+
+          <!-- [EDITAR: testimonio real aquí] -->
+          <article class="bg-cream rounded-[14px] p-6 sm:p-7 shadow-card flex flex-col">
+            <div class="flex gap-1 text-mustard" aria-label="5 de 5 estrellas">
+              <span aria-hidden="true">★★★★★</span>
+            </div>
+            <blockquote class="mt-4 text-[15px] leading-relaxed text-charcoal">
+              "Dejé de estresarme con las comidas de mi hijo. Ahora planifico el domingo y listo, toda la semana resuelta. Me devolvió horas de tranquilidad."
+            </blockquote>
+            <footer class="mt-5 text-sm text-soft">
+              <strong class="text-charcoal font-semibold">Carolina</strong>, Valparaíso
+            </footer>
+          </article>
+
+          <!-- [EDITAR: testimonio real aquí] -->
+          <article class="bg-cream rounded-[14px] p-6 sm:p-7 shadow-card flex flex-col">
+            <div class="flex gap-1 text-mustard" aria-label="5 de 5 estrellas">
+              <span aria-hidden="true">★★★★★</span>
+            </div>
+            <blockquote class="mt-4 text-[15px] leading-relaxed text-charcoal">
+              "Tenía terror de darle huevo por primera vez. La guía de alérgenos me dio la calma para probarlo con seguridad. Hoy lo come feliz."
+            </blockquote>
+            <footer class="mt-5 text-sm text-soft">
+              <strong class="text-charcoal font-semibold">Javiera</strong>, Santiago
+            </footer>
+          </article>
+
+          <!-- [EDITAR: testimonio real aquí] -->
+          <article class="bg-cream rounded-[14px] p-6 sm:p-7 shadow-card flex flex-col">
+            <div class="flex gap-1 text-mustard" aria-label="5 de 5 estrellas">
+              <span aria-hidden="true">★★★★★</span>
+            </div>
+            <blockquote class="mt-4 text-[15px] leading-relaxed text-charcoal">
+              "Las recetas son simples y usan lo que ya tengo en la cocina. Mi bebé de 10 meses ya prueba texturas nuevas sin problema."
+            </blockquote>
+            <footer class="mt-5 text-sm text-soft">
+              <strong class="text-charcoal font-semibold">Daniela</strong>, Concepción
+            </footer>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== FAQ =============== -->
+    <section class="py-14 sm:py-20">
+      <div class="max-w-3xl mx-auto px-5 sm:px-8">
+        <h2 class="font-display text-3xl sm:text-4xl font-semibold text-center">Preguntas frecuentes</h2>
+        <p class="mt-3 text-center text-soft">Si tienes otra duda, escríbenos por WhatsApp y te respondemos el mismo día.</p>
+
+        <div class="mt-10 space-y-3" id="faq">
+
+          <details class="faq-item bg-card rounded-[14px] border border-transparent open:border-charcoal/10">
+            <summary class="list-none cursor-pointer flex items-center justify-between gap-4 px-5 sm:px-6 py-4 sm:py-5" aria-expanded="false" aria-controls="faq-1">
+              <span class="font-display text-lg font-medium">¿Y si a mi bebé no le gustan las recetas?</span>
+              <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 flex-shrink-0 text-soft" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-panel" id="faq-1">
+              <p class="px-5 sm:px-6 pb-5 sm:pb-6 text-[15px] leading-relaxed text-soft">
+                Todos los bebés son distintos y es normal. Cada receta incluye variaciones de sabor y textura para que pruebes diferentes combinaciones. Además, tienes 7 días de garantía: si no les acomoda, te devolvemos tu dinero.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item bg-card rounded-[14px] border border-transparent open:border-charcoal/10">
+            <summary class="list-none cursor-pointer flex items-center justify-between gap-4 px-5 sm:px-6 py-4 sm:py-5" aria-expanded="false" aria-controls="faq-2">
+              <span class="font-display text-lg font-medium">¿Necesito ingredientes especiales o caros?</span>
+              <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 flex-shrink-0 text-soft" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-panel" id="faq-2">
+              <p class="px-5 sm:px-6 pb-5 sm:pb-6 text-[15px] leading-relaxed text-soft">
+                No. Las recetas están pensadas con ingredientes que encuentras en cualquier supermercado o feria. La mayoría usa menos de 6 ingredientes y aprovecha cosas que ya tienes en casa.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item bg-card rounded-[14px] border border-transparent open:border-charcoal/10">
+            <summary class="list-none cursor-pointer flex items-center justify-between gap-4 px-5 sm:px-6 py-4 sm:py-5" aria-expanded="false" aria-controls="faq-3">
+              <span class="font-display text-lg font-medium">¿Sirve si mi bebé tiene alergias o intolerancias?</span>
+              <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 flex-shrink-0 text-soft" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-panel" id="faq-3">
+              <p class="px-5 sm:px-6 pb-5 sm:pb-6 text-[15px] leading-relaxed text-soft">
+                Sí. Cada receta indica los alérgenos comunes (gluten, lácteos, huevo, frutos secos) y sugiere reemplazos seguros. Incluimos además una guía de introducción de alérgenos paso a paso, respaldada por nutricionistas pediátricos.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item bg-card rounded-[14px] border border-transparent open:border-charcoal/10">
+            <summary class="list-none cursor-pointer flex items-center justify-between gap-4 px-5 sm:px-6 py-4 sm:py-5" aria-expanded="false" aria-controls="faq-4">
+              <span class="font-display text-lg font-medium">¿Cómo recibo el ebook después de pagar?</span>
+              <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 flex-shrink-0 text-soft" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-panel" id="faq-4">
+              <p class="px-5 sm:px-6 pb-5 sm:pb-6 text-[15px] leading-relaxed text-soft">
+                Al instante. Apenas confirmamos tu pago por WhatsApp, recibes el acceso al ebook y al área de miembros (si elegiste Combo o Anual). Puedes descargarlo en tu celular, tablet o computador.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item bg-card rounded-[14px] border border-transparent open:border-charcoal/10">
+            <summary class="list-none cursor-pointer flex items-center justify-between gap-4 px-5 sm:px-6 py-4 sm:py-5" aria-expanded="false" aria-controls="faq-5">
+              <span class="font-display text-lg font-medium">¿Puedo cancelar la suscripción cuando quiera?</span>
+              <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 flex-shrink-0 text-soft" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-panel" id="faq-5">
+              <p class="px-5 sm:px-6 pb-5 sm:pb-6 text-[15px] leading-relaxed text-soft">
+                Por supuesto. Si tomaste el Combo o el plan Anual, puedes cancelar cuando quieras desde tu cuenta o escribiéndonos por WhatsApp. No hay letra chica ni renovaciones automáticas.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item bg-card rounded-[14px] border border-transparent open:border-charcoal/10">
+            <summary class="list-none cursor-pointer flex items-center justify-between gap-4 px-5 sm:px-6 py-4 sm:py-5" aria-expanded="false" aria-controls="faq-6">
+              <span class="font-display text-lg font-medium">¿Las recetas son aptas para BLW?</span>
+              <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 flex-shrink-0 text-soft" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-panel" id="faq-6">
+              <p class="px-5 sm:px-6 pb-5 sm:pb-6 text-[15px] leading-relaxed text-soft">
+                Muchas sí. A partir de los 9 meses incluimos recetas específicas de baby-led weaning con trozos seguros por edad. También tienes la versión en papilla de cada una, por si prefieres combinar métodos.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item bg-card rounded-[14px] border border-transparent open:border-charcoal/10">
+            <summary class="list-none cursor-pointer flex items-center justify-between gap-4 px-5 sm:px-6 py-4 sm:py-5" aria-expanded="false" aria-controls="faq-7">
+              <span class="font-display text-lg font-medium">¿Quién está detrás de Bocaditos del Corazón?</span>
+              <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 flex-shrink-0 text-soft" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-panel" id="faq-7">
+              <p class="px-5 sm:px-6 pb-5 sm:pb-6 text-[15px] leading-relaxed text-soft">
+                Somos un equipo pequeño de mamás, nutricionistas pediátricos y cocineros. Nos unimos porque nos cansamos de buscar recetas confiables en foros dispersos. Queríamos algo claro, seguro y hecho con cariño para familias reales.
+              </p>
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== FINAL CTA =============== -->
+    <section class="py-14 sm:py-20 bg-card/60">
+      <div class="max-w-3xl mx-auto px-5 sm:px-8 text-center">
+        <span class="inline-block bg-terracotta/10 text-terracotta text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
+          Empieza hoy
+        </span>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold mt-5 leading-tight">
+          Dale comida real, a tu ritmo.
+        </h2>
+        <p class="mt-4 text-soft leading-relaxed">
+          Ebook + 3 meses de comunidad y planificador semanal. <strong class="text-charcoal font-semibold" data-price="14990">CLP $14.990</strong>, pago único.
+        </p>
+
+        <a
+          href="#"
+          data-wa="combo"
+          class="mt-8 inline-flex justify-center items-center gap-2 bg-terracotta hover:bg-terracotta-dark text-cream text-base font-semibold px-7 py-4 rounded-[14px] shadow-soft transition-colors"
+        >
+          Quiero el combo
+          <span aria-hidden="true">→</span>
+        </a>
+
+        <p class="mt-6 text-sm text-soft flex items-center justify-center gap-2">
+          <i data-lucide="shield-check" class="w-4 h-4 text-olive" aria-hidden="true"></i>
+          <span>Garantía de 7 días. Si no te sirve, te devolvemos tu dinero. Sin preguntas.</span>
+        </p>
+
+        <p class="mt-10 text-soft italic font-display">
+          Hecho en Chile, con cariño, para todas las mamás de LATAM.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- =============== FOOTER =============== -->
+  <footer class="border-t border-charcoal/10 py-10 sm:py-12 bg-cream">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div>
+        <p class="font-display text-terracotta text-lg font-semibold">Bocaditos del Corazón</p>
+        <p class="mt-2 text-sm text-soft">
+          Escríbenos: <a href="mailto:hola@bocaditosdelcorazon.cl" class="underline underline-offset-2 hover:text-charcoal">hola@bocaditosdelcorazon.cl</a>
+        </p>
+        <p class="mt-1 text-sm text-soft">
+          WhatsApp: <a href="#" data-wa="info" class="underline underline-offset-2 hover:text-charcoal">+56 9 1234 5678</a>
+        </p>
+      </div>
+      <nav class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-soft">
+        <a href="https://instagram.com/b2cflow" target="_blank" rel="noopener noreferrer" class="hover:text-charcoal">Instagram @b2cflow</a>
+        <a href="#" class="hover:text-charcoal">Términos</a>
+        <a href="#" class="hover:text-charcoal">Privacidad</a>
+      </nav>
+    </div>
+    <p class="max-w-6xl mx-auto px-5 sm:px-8 mt-6 text-xs text-soft">© 2026 B2C Flow SpA. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- =============== ICONS (Lucide) =============== -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- =============== APP JS =============== -->
+  <script>
+    // Reemplaza este valor por tu número en formato internacional sin "+".
+    const WHATSAPP_NUMBER = '56912345678';
+
+    const PLAN_LABELS = {
+      solo:  'Solo Ebook (CLP $9.990)',
+      combo: 'Combo (CLP $14.990)',
+      anual: 'Anual Premium (CLP $39.990)',
+      info:  'ebook Bocaditos del Corazón',
+    };
+
+    function buildWaLink(plan) {
+      const label = PLAN_LABELS[plan] || PLAN_LABELS.info;
+      const text = `Hola, me interesa el ${label}`;
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    }
+
+    // Apply hrefs on every CTA
+    document.querySelectorAll('a[data-wa]').forEach((el) => {
+      const plan = el.getAttribute('data-wa');
+      el.href = buildWaLink(plan);
+      el.target = '_blank';
+      el.rel = 'noopener noreferrer';
+    });
+
+    // Render Lucide icons
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
+
+    // Sticky header solid-on-scroll
+    const header = document.querySelector('.site-header');
+    const onScroll = () => {
+      if (window.scrollY > 8) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    };
+    document.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // FAQ accordion — only one open at a time + aria sync
+    const faqRoot = document.getElementById('faq');
+    if (faqRoot) {
+      const items = faqRoot.querySelectorAll('.faq-item');
+      items.forEach((item) => {
+        const summary = item.querySelector('summary');
+        item.addEventListener('toggle', () => {
+          summary.setAttribute('aria-expanded', item.open ? 'true' : 'false');
+          if (item.open) {
+            items.forEach((other) => {
+              if (other !== item && other.open) other.open = false;
+            });
+          }
+        });
+      });
+    }
+
+    // Plan toggle (mobile)
+    const pills = document.querySelectorAll('.plan-pill');
+    const planCards = document.querySelectorAll('.plan-card');
+    pills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        const target = pill.getAttribute('data-plan');
+        pills.forEach((p) => p.setAttribute('aria-pressed', p === pill ? 'true' : 'false'));
+        planCards.forEach((card) => {
+          card.classList.toggle('is-active', card.getAttribute('data-plan') === target);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
