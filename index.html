@@ -39,7 +39,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="description" content="120 recetas para bebés de 6 a 24 meses, diseñadas por nutricionistas pediátricos. Texturas por edad, planificador semanal y guía de alérgenos. Sin estrés." />
-  <meta name="theme-color" content="#FAF6F0" />
+  <meta name="theme-color" content="#FFF8F2" />
   <meta property="og:title" content="Bocaditos del Corazón — 120 recetas para tu bebé" />
   <meta property="og:description" content="Comida real para bebés de 6 a 24 meses. Respaldado por nutricionistas pediátricos." />
   <meta property="og:type" content="website" />
@@ -68,13 +68,16 @@
       theme: {
         extend: {
           colors: {
-            terracotta: { DEFAULT: '#C66B4A', dark: '#A85636' },
-            olive: '#6B7F5C',
-            mustard: '#F4B860',
-            cream: '#FAF6F0',
-            card: '#F0E8DC',
-            charcoal: '#2D2A26',
-            soft: '#6B6660',
+            terracotta: { DEFAULT: '#F5A58F', dark: '#E8876E' },
+            olive: '#A8C9A0',
+            mustard: '#FFDD9A',
+            cream: '#FFF8F2',
+            card: '#FDE4D8',
+            charcoal: '#4A433D',
+            soft: '#8B827B',
+            lavender: '#E4D7F0',
+            mint: '#C8EADB',
+            blush: '#FBD4D4',
           },
           fontFamily: {
             display: ['Fraunces', 'Georgia', 'serif'],
@@ -94,14 +97,120 @@
   <style>
     :root { color-scheme: light; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', system-ui, sans-serif; background: #FAF6F0; color: #2D2A26; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #FFF8F2;
+      background-image:
+        radial-gradient(circle at 10% 0%, rgba(251, 212, 212, 0.45) 0%, transparent 40%),
+        radial-gradient(circle at 90% 15%, rgba(228, 215, 240, 0.4) 0%, transparent 42%),
+        radial-gradient(circle at 50% 100%, rgba(200, 234, 219, 0.35) 0%, transparent 55%);
+      background-attachment: fixed;
+      color: #4A433D;
+      -webkit-font-smoothing: antialiased;
+    }
     h1, h2, h3, .font-display { font-family: 'Fraunces', Georgia, serif; letter-spacing: -0.01em; }
 
     /* Focus rings */
     :where(a, button, [role="button"], summary):focus-visible {
-      outline: 3px solid #C66B4A;
+      outline: 3px solid #F5A58F;
       outline-offset: 3px;
       border-radius: 8px;
+    }
+
+    /* ========== ANIMATIONS ========== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+    @keyframes softPulse {
+      0%, 100% { transform: translate(-50%, 0) scale(1); box-shadow: 0 4px 18px -8px rgba(245, 165, 143, 0.55); }
+      50%      { transform: translate(-50%, 0) scale(1.04); box-shadow: 0 8px 24px -6px rgba(245, 165, 143, 0.75); }
+    }
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    @keyframes blobDrift {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33%      { transform: translate(10px, -12px) scale(1.05); }
+      66%      { transform: translate(-8px, 8px) scale(0.97); }
+    }
+
+    /* Reveal on scroll */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(.2,.7,.2,1), transform 0.7s cubic-bezier(.2,.7,.2,1);
+      will-change: opacity, transform;
+    }
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    [data-reveal-delay="1"].is-visible { transition-delay: 0.08s; }
+    [data-reveal-delay="2"].is-visible { transition-delay: 0.16s; }
+    [data-reveal-delay="3"].is-visible { transition-delay: 0.24s; }
+    [data-reveal-delay="4"].is-visible { transition-delay: 0.32s; }
+
+    /* Hero image floating + ring */
+    .hero-image-wrap { position: relative; }
+    .hero-image-wrap::before {
+      content: "";
+      position: absolute;
+      inset: -18px;
+      background: linear-gradient(135deg, #FBD4D4 0%, #E4D7F0 50%, #C8EADB 100%);
+      border-radius: 28px;
+      z-index: -1;
+      filter: blur(28px);
+      opacity: 0.7;
+      animation: blobDrift 10s ease-in-out infinite;
+    }
+    .hero-image {
+      animation: floatY 6s ease-in-out infinite;
+    }
+
+    /* Pulsing "Más elegido" badge */
+    .pulse-badge {
+      animation: softPulse 2.8s ease-in-out infinite;
+    }
+
+    /* Button micro-interactions */
+    .btn-primary, .btn-soft {
+      transition: transform 0.25s cubic-bezier(.2,.7,.2,1), box-shadow 0.25s ease, background-color 0.25s ease;
+    }
+    .btn-primary:hover, .btn-soft:hover {
+      transform: translateY(-2px);
+    }
+    .btn-primary:active, .btn-soft:active { transform: translateY(0); }
+
+    /* Card hover lift */
+    .lift {
+      transition: transform 0.3s cubic-bezier(.2,.7,.2,1), box-shadow 0.3s ease;
+    }
+    .lift:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px -20px rgba(74, 67, 61, 0.18);
+    }
+
+    /* Gallery image zoom */
+    .gallery-item { overflow: hidden; border-radius: 20px; position: relative; }
+    .gallery-item img {
+      transition: transform 0.8s cubic-bezier(.2,.7,.2,1), filter 0.5s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.06);
+      filter: saturate(1.08);
+    }
+    .gallery-item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(74, 67, 61, 0.28) 100%);
+      pointer-events: none;
     }
 
     /* FAQ accordion panel */
@@ -116,8 +225,8 @@
 
     /* Plan toggle (mobile pills) */
     .plan-pill[aria-pressed="true"] {
-      background: #C66B4A;
-      color: #FAF6F0;
+      background: #F5A58F;
+      color: #FFF8F2;
     }
 
     /* Check bullets */
@@ -126,14 +235,14 @@
       flex: 0 0 1.25rem;
       height: 1.25rem;
       margin-top: 0.15rem;
-      background-color: #6B7F5C;
+      background-color: #8FBF8A;
       -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/contain no-repeat;
               mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/contain no-repeat;
     }
 
     /* Header states */
     .site-header { transition: background-color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
-    .site-header.scrolled { background-color: rgba(250, 246, 240, 0.95); backdrop-filter: saturate(120%) blur(8px); border-color: rgba(45, 42, 38, 0.08); box-shadow: 0 1px 0 rgba(45, 42, 38, 0.04); }
+    .site-header.scrolled { background-color: rgba(255, 248, 242, 0.92); backdrop-filter: saturate(140%) blur(10px); border-color: rgba(74, 67, 61, 0.08); box-shadow: 0 1px 0 rgba(74, 67, 61, 0.04); }
 
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
@@ -166,7 +275,7 @@
       </a>
       <a
         href="#planes"
-        class="inline-flex items-center gap-2 bg-terracotta hover:bg-terracotta-dark text-cream text-sm sm:text-base font-medium px-4 sm:px-5 py-2.5 rounded-[14px] shadow-soft transition-colors"
+        class="inline-flex items-center gap-2 btn-primary bg-terracotta hover:bg-terracotta-dark text-cream text-sm sm:text-base font-medium px-4 sm:px-5 py-2.5 rounded-[14px] shadow-soft transition-colors"
       >
         Quiero el combo
         <span aria-hidden="true">→</span>
@@ -179,7 +288,7 @@
     <!-- =============== HERO =============== -->
     <section id="top" class="pt-28 sm:pt-32 pb-12 sm:pb-20">
       <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-        <div>
+        <div data-reveal>
           <span class="inline-block bg-card text-soft text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
             Para mamás de bebés 6 a 24 meses
           </span>
@@ -192,7 +301,7 @@
           <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
             <a
               href="#planes"
-              class="inline-flex justify-center items-center gap-2 bg-terracotta hover:bg-terracotta-dark text-cream text-base font-semibold px-7 py-4 rounded-[14px] shadow-soft transition-colors"
+              class="inline-flex justify-center items-center gap-2 btn-primary bg-terracotta hover:bg-terracotta-dark text-cream text-base font-semibold px-7 py-4 rounded-[14px] shadow-soft transition-colors"
             >
               Quiero el combo
               <span aria-hidden="true">→</span>
@@ -214,24 +323,28 @@
           </p>
         </div>
 
-        <div class="relative">
+        <div class="relative hero-image-wrap" data-reveal data-reveal-delay="2">
           <!-- HERO_IMAGE: reemplaza la URL por tu propia imagen -->
           <img
-            src="https://images.unsplash.com/photo-1547592180-85f173990554?w=1000&q=80&auto=format&fit=crop"
-            alt="Mamá alimentando a su bebé con comida casera en una mesa de madera"
-            class="w-full h-[340px] sm:h-[440px] lg:h-[520px] object-cover rounded-[14px] shadow-hero"
+            src="https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?w=1000&q=80&auto=format&fit=crop"
+            alt="Bebé feliz comiendo en su trona, sonriendo mientras prueba comida casera"
+            class="hero-image w-full h-[340px] sm:h-[440px] lg:h-[520px] object-cover rounded-[28px] shadow-hero"
             loading="eager"
             fetchpriority="high"
             width="1000"
             height="600"
           />
-          <div class="hidden sm:flex absolute -bottom-5 -left-5 bg-cream rounded-[14px] shadow-soft p-4 items-center gap-3 max-w-[240px]">
-            <div class="w-10 h-10 rounded-full bg-olive/15 text-olive flex items-center justify-center">
+          <div class="hidden sm:flex absolute -bottom-5 -left-5 bg-cream/95 backdrop-blur rounded-[18px] shadow-soft p-4 items-center gap-3 max-w-[240px] lift">
+            <div class="w-10 h-10 rounded-full bg-olive/40 text-charcoal flex items-center justify-center">
               <i data-lucide="leaf" class="w-5 h-5" aria-hidden="true"></i>
             </div>
             <p class="text-sm text-charcoal leading-snug">
               Respaldado por nutricionistas pediátricos
             </p>
+          </div>
+          <div class="hidden lg:flex absolute -top-5 -right-4 bg-cream/95 backdrop-blur rounded-full shadow-soft px-4 py-2 items-center gap-2 lift">
+            <span class="w-2 h-2 rounded-full bg-olive animate-pulse" aria-hidden="true"></span>
+            <span class="text-xs font-medium text-charcoal">+5.000 bebés felices</span>
           </div>
         </div>
       </div>
@@ -240,11 +353,11 @@
     <!-- =============== PAIN VALIDATION =============== -->
     <section class="py-12 sm:py-16 bg-card/60">
       <div class="max-w-6xl mx-auto px-5 sm:px-8">
-        <h2 class="font-display text-3xl sm:text-4xl font-semibold text-center">¿Te suena familiar?</h2>
+        <h2 class="font-display text-3xl sm:text-4xl font-semibold text-center" data-reveal>¿Te suena familiar?</h2>
 
         <div class="mt-10 sm:mt-12 grid md:grid-cols-3 gap-5 sm:gap-6">
-          <article class="bg-cream rounded-[14px] p-6 sm:p-7 shadow-card">
-            <div class="w-11 h-11 rounded-[12px] bg-terracotta/10 text-terracotta flex items-center justify-center">
+          <article class="lift bg-cream rounded-[14px] p-6 sm:p-7 shadow-card" data-reveal data-reveal-delay="1">
+            <div class="w-11 h-11 rounded-[12px] bg-terracotta/25 text-terracotta-dark flex items-center justify-center">
               <i data-lucide="utensils" class="w-5 h-5" aria-hidden="true"></i>
             </div>
             <p class="mt-5 text-base sm:text-lg leading-relaxed">
@@ -252,8 +365,8 @@
             </p>
           </article>
 
-          <article class="bg-cream rounded-[14px] p-6 sm:p-7 shadow-card">
-            <div class="w-11 h-11 rounded-[12px] bg-mustard/20 text-charcoal flex items-center justify-center">
+          <article class="lift bg-cream rounded-[14px] p-6 sm:p-7 shadow-card" data-reveal data-reveal-delay="2">
+            <div class="w-11 h-11 rounded-[12px] bg-mustard/60 text-charcoal flex items-center justify-center">
               <i data-lucide="alert-circle" class="w-5 h-5" aria-hidden="true"></i>
             </div>
             <p class="mt-5 text-base sm:text-lg leading-relaxed">
@@ -261,8 +374,8 @@
             </p>
           </article>
 
-          <article class="bg-cream rounded-[14px] p-6 sm:p-7 shadow-card">
-            <div class="w-11 h-11 rounded-[12px] bg-olive/15 text-olive flex items-center justify-center">
+          <article class="lift bg-cream rounded-[14px] p-6 sm:p-7 shadow-card" data-reveal data-reveal-delay="3">
+            <div class="w-11 h-11 rounded-[12px] bg-olive/40 text-charcoal flex items-center justify-center">
               <i data-lucide="shopping-cart" class="w-5 h-5" aria-hidden="true"></i>
             </div>
             <p class="mt-5 text-base sm:text-lg leading-relaxed">
@@ -280,19 +393,19 @@
     <!-- =============== PRODUCT REVEAL =============== -->
     <section id="muestra" class="py-14 sm:py-20">
       <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-        <div class="order-2 lg:order-1">
+        <div class="order-2 lg:order-1 gallery-item shadow-hero" data-reveal>
           <img
-            src="https://images.unsplash.com/photo-1576021182211-9ea8dced3690?w=900&q=80&auto=format&fit=crop"
-            alt="Tazones de comida para bebé con puré de zanahoria y palta sobre mesa de madera"
-            class="w-full h-[380px] sm:h-[480px] object-cover rounded-[14px] shadow-hero"
+            src="https://images.unsplash.com/photo-1566004100631-35d015d6a491?w=900&q=80&auto=format&fit=crop"
+            alt="Niña pequeña riendo mientras come fruta fresca y colorida"
+            class="w-full h-[380px] sm:h-[480px] object-cover"
             loading="lazy"
             width="900"
             height="600"
           />
         </div>
 
-        <div class="order-1 lg:order-2">
-          <span class="inline-block bg-olive/15 text-olive text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
+        <div class="order-1 lg:order-2" data-reveal>
+          <span class="inline-block bg-olive/40 text-charcoal text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
             Qué incluye
           </span>
           <h2 class="font-display text-3xl sm:text-4xl font-semibold mt-5 leading-tight">
@@ -316,23 +429,98 @@
       </div>
     </section>
 
+    <!-- =============== HAPPY KIDS GALLERY =============== -->
+    <section class="py-14 sm:py-20" aria-label="Galería de niños felices comiendo">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="text-center max-w-2xl mx-auto" data-reveal>
+          <span class="inline-block bg-blush text-charcoal text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
+            Mesas felices
+          </span>
+          <h2 class="font-display text-3xl sm:text-4xl font-semibold mt-5 leading-tight">
+            Bebés que disfrutan cada cucharada
+          </h2>
+          <p class="mt-3 text-soft leading-relaxed">
+            Pequeños grandes momentos en las mesas de familias reales. Comida casera, sabores nuevos y muchas sonrisas.
+          </p>
+        </div>
+
+        <div class="mt-10 sm:mt-14 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+          <figure class="gallery-item aspect-[4/5] shadow-card" data-reveal data-reveal-delay="1">
+            <img
+              src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=700&q=80&auto=format&fit=crop"
+              alt="Bebé sonriendo con la boca llena de fruta"
+              class="w-full h-full object-cover"
+              loading="lazy"
+              width="700"
+              height="875"
+            />
+          </figure>
+          <figure class="gallery-item aspect-[4/5] shadow-card mt-6 lg:mt-10" data-reveal data-reveal-delay="2">
+            <img
+              src="https://images.unsplash.com/photo-1587116908932-5d00acec4a11?w=700&q=80&auto=format&fit=crop"
+              alt="Niña pequeña riendo mientras come en su trona"
+              class="w-full h-full object-cover"
+              loading="lazy"
+              width="700"
+              height="875"
+            />
+          </figure>
+          <figure class="gallery-item aspect-[4/5] shadow-card" data-reveal data-reveal-delay="3">
+            <img
+              src="https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?w=700&q=80&auto=format&fit=crop"
+              alt="Bebé curioso mirando su plato de comida casera"
+              class="w-full h-full object-cover"
+              loading="lazy"
+              width="700"
+              height="875"
+            />
+          </figure>
+          <figure class="gallery-item aspect-[4/5] shadow-card mt-6 lg:mt-10" data-reveal data-reveal-delay="4">
+            <img
+              src="https://images.unsplash.com/photo-1623428187969-5da2dcea5ad5?w=700&q=80&auto=format&fit=crop"
+              alt="Toddler feliz sosteniendo una fresa fresca entre sus manos"
+              class="w-full h-full object-cover"
+              loading="lazy"
+              width="700"
+              height="875"
+            />
+          </figure>
+        </div>
+
+        <div class="mt-10 sm:mt-14 grid grid-cols-3 gap-4 sm:gap-8 max-w-3xl mx-auto text-center" data-reveal>
+          <div class="lift bg-cream/70 rounded-[18px] p-4 sm:p-5">
+            <p class="font-display text-3xl sm:text-4xl font-semibold text-terracotta">+5.000</p>
+            <p class="mt-1 text-xs sm:text-sm text-soft">Mamás activas</p>
+          </div>
+          <div class="lift bg-cream/70 rounded-[18px] p-4 sm:p-5">
+            <p class="font-display text-3xl sm:text-4xl font-semibold text-terracotta">120</p>
+            <p class="mt-1 text-xs sm:text-sm text-soft">Recetas nutritivas</p>
+          </div>
+          <div class="lift bg-cream/70 rounded-[18px] p-4 sm:p-5">
+            <p class="font-display text-3xl sm:text-4xl font-semibold text-terracotta">4.8<span class="text-xl">/5</span></p>
+            <p class="mt-1 text-xs sm:text-sm text-soft">Valoración media</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- =============== HOW IT WORKS =============== -->
     <section class="py-12 sm:py-16 bg-card/60">
       <div class="max-w-5xl mx-auto px-5 sm:px-8">
-        <h2 class="font-display text-3xl sm:text-4xl font-semibold text-center">Así de simple</h2>
+        <h2 class="font-display text-3xl sm:text-4xl font-semibold text-center" data-reveal>Así de simple</h2>
 
         <ol class="mt-10 sm:mt-14 grid md:grid-cols-3 gap-6 sm:gap-8">
-          <li class="bg-cream rounded-[14px] p-6 sm:p-7 shadow-card">
+          <li class="lift bg-cream rounded-[14px] p-6 sm:p-7 shadow-card" data-reveal data-reveal-delay="1">
             <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-terracotta text-cream font-display font-semibold text-lg" aria-hidden="true">1</span>
             <h3 class="font-display text-xl font-semibold mt-4">Eliges tu plan y pagas por WhatsApp</h3>
             <p class="mt-2 text-soft leading-relaxed text-[15px]">Te guiamos paso a paso, en minutos.</p>
           </li>
-          <li class="bg-cream rounded-[14px] p-6 sm:p-7 shadow-card">
+          <li class="lift bg-cream rounded-[14px] p-6 sm:p-7 shadow-card" data-reveal data-reveal-delay="2">
             <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-terracotta text-cream font-display font-semibold text-lg" aria-hidden="true">2</span>
             <h3 class="font-display text-xl font-semibold mt-4">Recibes tu acceso al instante</h3>
             <p class="mt-2 text-soft leading-relaxed text-[15px]">Descárgalo en el celular, tablet o computador.</p>
           </li>
-          <li class="bg-cream rounded-[14px] p-6 sm:p-7 shadow-card">
+          <li class="lift bg-cream rounded-[14px] p-6 sm:p-7 shadow-card" data-reveal data-reveal-delay="3">
             <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-terracotta text-cream font-display font-semibold text-lg" aria-hidden="true">3</span>
             <h3 class="font-display text-xl font-semibold mt-4">Cocinas tranquila</h3>
             <p class="mt-2 text-soft leading-relaxed text-[15px]">Abres la receta del día y listo.</p>
@@ -344,8 +532,8 @@
     <!-- =============== PRICING =============== -->
     <section id="planes" class="py-14 sm:py-20">
       <div class="max-w-6xl mx-auto px-5 sm:px-8">
-        <div class="text-center max-w-2xl mx-auto">
-          <span class="inline-block bg-mustard/20 text-charcoal text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
+        <div class="text-center max-w-2xl mx-auto" data-reveal>
+          <span class="inline-block bg-mustard/60 text-charcoal text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
             Planes pensados para ti
           </span>
           <h2 class="font-display text-3xl sm:text-4xl font-semibold mt-5">Elige el plan que mejor te acompaña</h2>
@@ -363,7 +551,7 @@
         <div class="mt-8 sm:mt-12 grid md:grid-cols-3 gap-5 sm:gap-6 items-stretch">
 
           <!-- Plan: Solo Ebook -->
-          <article class="plan-card flex flex-col bg-card rounded-[14px] p-6 sm:p-7 shadow-card" data-plan="solo">
+          <article class="plan-card lift flex flex-col bg-card rounded-[14px] p-6 sm:p-7 shadow-card" data-plan="solo" data-reveal data-reveal-delay="1">
             <h3 class="font-display text-xl font-semibold">Solo Ebook</h3>
             <p class="mt-1 text-soft text-sm">Ideal si solo quieres las recetas.</p>
             <div class="mt-5">
@@ -379,15 +567,15 @@
             <a
               href="#"
               data-wa="solo"
-              class="mt-7 inline-flex justify-center items-center gap-2 bg-cream hover:bg-white text-charcoal text-base font-semibold px-5 py-3.5 rounded-[14px] border border-charcoal/10 transition-colors"
+              class="btn-soft mt-7 inline-flex justify-center items-center gap-2 bg-cream hover:bg-white text-charcoal text-base font-semibold px-5 py-3.5 rounded-[14px] border border-charcoal/10 transition-colors"
             >
               Llevar el ebook
             </a>
           </article>
 
           <!-- Plan: COMBO (hero) -->
-          <article class="plan-card is-active relative flex flex-col bg-cream rounded-[14px] p-6 sm:p-8 shadow-hero border-2 border-terracotta" data-plan="combo">
-            <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-terracotta text-cream text-xs font-semibold tracking-wide uppercase px-3 py-1 rounded-full shadow-soft">
+          <article class="plan-card lift is-active relative flex flex-col bg-cream rounded-[14px] p-6 sm:p-8 shadow-hero border-2 border-terracotta" data-plan="combo" data-reveal data-reveal-delay="2">
+            <span class="pulse-badge absolute -top-3 left-1/2 bg-terracotta text-cream text-xs font-semibold tracking-wide uppercase px-3 py-1 rounded-full shadow-soft">
               Más elegido
             </span>
             <h3 class="font-display text-xl font-semibold">Combo</h3>
@@ -406,7 +594,7 @@
             <a
               href="#"
               data-wa="combo"
-              class="mt-7 inline-flex justify-center items-center gap-2 bg-terracotta hover:bg-terracotta-dark text-cream text-base font-semibold px-5 py-3.5 rounded-[14px] shadow-soft transition-colors"
+              class="mt-7 inline-flex justify-center items-center gap-2 btn-primary bg-terracotta hover:bg-terracotta-dark text-cream text-base font-semibold px-5 py-3.5 rounded-[14px] shadow-soft transition-colors"
             >
               Quiero el combo
               <span aria-hidden="true">→</span>
@@ -414,7 +602,7 @@
           </article>
 
           <!-- Plan: Anual Premium -->
-          <article class="plan-card flex flex-col bg-card rounded-[14px] p-6 sm:p-7 shadow-card" data-plan="anual">
+          <article class="plan-card lift flex flex-col bg-card rounded-[14px] p-6 sm:p-7 shadow-card" data-plan="anual" data-reveal data-reveal-delay="3">
             <h3 class="font-display text-xl font-semibold">Anual Premium</h3>
             <p class="mt-1 text-soft text-sm">Acompañamiento completo por 12 meses.</p>
             <div class="mt-5">
@@ -431,7 +619,7 @@
             <a
               href="#"
               data-wa="anual"
-              class="mt-7 inline-flex justify-center items-center gap-2 bg-olive hover:bg-olive/90 text-cream text-base font-semibold px-5 py-3.5 rounded-[14px] shadow-soft transition-colors"
+              class="btn-soft mt-7 inline-flex justify-center items-center gap-2 bg-olive hover:brightness-95 text-charcoal text-base font-semibold px-5 py-3.5 rounded-[14px] shadow-soft transition-colors"
             >
               Acompáñame un año
             </a>
@@ -449,12 +637,12 @@
     <!-- =============== TESTIMONIALS =============== -->
     <section class="py-12 sm:py-16 bg-card/60">
       <div class="max-w-6xl mx-auto px-5 sm:px-8">
-        <h2 class="font-display text-3xl sm:text-4xl font-semibold text-center">Lo que nos cuentan otras mamás</h2>
+        <h2 class="font-display text-3xl sm:text-4xl font-semibold text-center" data-reveal>Lo que nos cuentan otras mamás</h2>
 
         <div class="mt-10 sm:mt-12 grid md:grid-cols-3 gap-5 sm:gap-6">
 
           <!-- [EDITAR: testimonio real aquí] -->
-          <article class="bg-cream rounded-[14px] p-6 sm:p-7 shadow-card flex flex-col">
+          <article class="lift bg-cream rounded-[14px] p-6 sm:p-7 shadow-card flex flex-col" data-reveal>
             <div class="flex gap-1 text-mustard" aria-label="5 de 5 estrellas">
               <span aria-hidden="true">★★★★★</span>
             </div>
@@ -467,7 +655,7 @@
           </article>
 
           <!-- [EDITAR: testimonio real aquí] -->
-          <article class="bg-cream rounded-[14px] p-6 sm:p-7 shadow-card flex flex-col">
+          <article class="lift bg-cream rounded-[14px] p-6 sm:p-7 shadow-card flex flex-col" data-reveal>
             <div class="flex gap-1 text-mustard" aria-label="5 de 5 estrellas">
               <span aria-hidden="true">★★★★★</span>
             </div>
@@ -480,7 +668,7 @@
           </article>
 
           <!-- [EDITAR: testimonio real aquí] -->
-          <article class="bg-cream rounded-[14px] p-6 sm:p-7 shadow-card flex flex-col">
+          <article class="lift bg-cream rounded-[14px] p-6 sm:p-7 shadow-card flex flex-col" data-reveal>
             <div class="flex gap-1 text-mustard" aria-label="5 de 5 estrellas">
               <span aria-hidden="true">★★★★★</span>
             </div>
@@ -499,7 +687,7 @@
     <!-- =============== FAQ =============== -->
     <section class="py-14 sm:py-20">
       <div class="max-w-3xl mx-auto px-5 sm:px-8">
-        <h2 class="font-display text-3xl sm:text-4xl font-semibold text-center">Preguntas frecuentes</h2>
+        <h2 class="font-display text-3xl sm:text-4xl font-semibold text-center" data-reveal>Preguntas frecuentes</h2>
         <p class="mt-3 text-center text-soft">Si tienes otra duda, escríbenos por WhatsApp y te respondemos el mismo día.</p>
 
         <div class="mt-10 space-y-3" id="faq">
@@ -594,8 +782,8 @@
 
     <!-- =============== FINAL CTA =============== -->
     <section class="py-14 sm:py-20 bg-card/60">
-      <div class="max-w-3xl mx-auto px-5 sm:px-8 text-center">
-        <span class="inline-block bg-terracotta/10 text-terracotta text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
+      <div class="max-w-3xl mx-auto px-5 sm:px-8 text-center" data-reveal>
+        <span class="inline-block bg-terracotta/25 text-terracotta-dark text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
           Empieza hoy
         </span>
         <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold mt-5 leading-tight">
@@ -608,7 +796,7 @@
         <a
           href="#"
           data-wa="combo"
-          class="mt-8 inline-flex justify-center items-center gap-2 bg-terracotta hover:bg-terracotta-dark text-cream text-base font-semibold px-7 py-4 rounded-[14px] shadow-soft transition-colors"
+          class="mt-8 inline-flex justify-center items-center gap-2 btn-primary bg-terracotta hover:bg-terracotta-dark text-cream text-base font-semibold px-7 py-4 rounded-[14px] shadow-soft transition-colors"
         >
           Quiero el combo
           <span aria-hidden="true">→</span>
@@ -705,6 +893,25 @@
           }
         });
       });
+    }
+
+    // Scroll reveal animations
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revealEls = document.querySelectorAll('[data-reveal]');
+    if (prefersReduced) {
+      revealEls.forEach((el) => el.classList.add('is-visible'));
+    } else if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach((el) => io.observe(el));
+    } else {
+      revealEls.forEach((el) => el.classList.add('is-visible'));
     }
 
     // Plan toggle (mobile)
