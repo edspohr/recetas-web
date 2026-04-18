@@ -3,7 +3,7 @@
 
 *Documento interno — v2 · Abril 2026*
 
-> **Cambios v1 → v2.** Se añaden: mapa competitivo, plan de sucesión editorial, estrategia SEO + GEO, plan anual y trial 7 días en precios, unit economics con costos operativos reales y escenarios de CAC, cohortes por etapa del hijo, programa de afiliados, pagos por país, sección legal/compliance completa, y KPIs con dueños y cadencia.
+> **Cambios v1 → v2.** Se añaden: mapa competitivo, plan de sucesión editorial, estrategia SEO + GEO, plan anual y trial 7 días en precios, cohortes por etapa del hijo, programa de afiliados, pagos por país, sección legal/compliance completa, y KPIs con dueños y cadencia.
 
 ---
 
@@ -182,7 +182,7 @@ Compra única de un libro específico. Propiedad permanente del ebook. Sin acces
 - SEO (blog de recetas + guías largas)
 - GEO (citación por LLMs)
 - Prensa y medios — historia pitchable de Anmerys
-- Colaboraciones con nutricionistas, pediatras, influencers-mamás (ver 6.6 Afiliados)
+- Colaboraciones con nutricionistas, pediatras, influencers-mamás (ver 6.5 Afiliados)
 - Contenido viral (Reels, TikTok) con la voz y método de Anmerys
 
 **Mid-funnel (consideración)**
@@ -203,51 +203,7 @@ Compra única de un libro específico. Propiedad permanente del ebook. Sin acces
 - Re-activación opt-in tras inactividad (no automática sin consentimiento)
 - Win-back: secuencia de 4 emails a los 30, 60, 120 y 180 días de baja
 
-### 6.4 Unit economics con costos operativos reales
-
-**Costos fijos mensuales (a 500 suscriptoras activas):**
-
-| Concepto | CLP/mes |
-|----------|---------|
-| Compensación Anmerys (tiempo dedicado) | $1.500.000 |
-| Nutricionista revisor (contrato mensual) | $350.000 |
-| Community manager WhatsApp (20 h/sem) | $500.000 |
-| Fotografía/diagramación (prorrateo por libro) | $250.000 |
-| Hotmart Club + Mailerlite + hosting + herramientas | $80.000 |
-| Contabilidad SpA (externo) | $120.000 |
-| Reserva legal y contingencias | $100.000 |
-| **Total costos fijos** | **~$2.900.000/mes** |
-
-**Break-even operativo (sin reinversión):** ~850 suscriptoras mensuales activas (MRR CLP $4.24M después de fees), o mezcla equivalente con anuales.
-
-**Costos variables por suscriptor:** fees Hotmart (9–20% según plan), email (despreciable), soporte humano.
-
-**Escenarios CAC (Meta Ads):**
-
-| Escenario | CAC | Conversión email→sub | LTV | LTV/CAC | Nota |
-|-----------|-----|----------------------|-----|---------|------|
-| Optimista | $6.000 | 4% | $45.000 | 7.5x | Requiere creative excepcional y nicho bien filtrado |
-| Base | $12.000 | 3% | $35.000 | 2.9x | Realista 2026 LATAM, apenas sobre umbral |
-| Pesimista | $18.000 | 2% | $28.000 | 1.5x | Creative débil o nicho demasiado amplio |
-
-**Payback period meta:** < 3 meses en escenario base.
-
-**Indicadores a instrumentar desde día 1:**
-
-| Indicador | Meta base |
-|-----------|-----------|
-| ARPU mensual ponderado | CLP $5.200/mes (mezcla mensual + anual prorrateado) |
-| CAC blended | < CLP $12.000 |
-| Churn mensual (mensuales) | < 10% |
-| Churn anual (anuales) | < 25% |
-| Vida promedio del suscriptor mensual | ≥ 10 meses |
-| LTV ponderado | ≥ CLP $35.000 |
-| LTV / CAC | ≥ 3x |
-| Conversión trial → suscripción | 35–50% |
-| Conversión visitante → email | 8–12% |
-| Conversión email → suscripción | 2–4% |
-
-### 6.5 Retención y ciclo de vida por cohorte
+### 6.4 Retención y ciclo de vida por cohorte
 
 **Observación clave:** la persona primaria (mamá 6–24m) sale del problema a medida que su hijo crece. Hay un **piso de churn demográfico** que la velocidad editorial no resuelve por sí sola; debe resolverse con **roadmap por etapa** (ver 4.4) y comunicación proactiva del siguiente libro relevante para su cohorte.
 
@@ -272,7 +228,7 @@ Métricas por cohorte: churn mes-sobre-mes, LTV a 12m, NPS a 30d, NPS a 180d.
 
 **Política de cancelación:** al cancelar, acceso continúa hasta fin de período pagado. Opción opt-in para pausar 30 días sin perder historial. Ninguna re-activación automática sin consentimiento explícito (cumplimiento Ley 21.719).
 
-### 6.6 Programa de afiliados y embajadoras
+### 6.5 Programa de afiliados y embajadoras
 
 Canal estructural de adquisición a costo variable.
 
@@ -290,7 +246,7 @@ Canal estructural de adquisición a costo variable.
 - Canje por acceso anual + revenue share (10–15%).
 - Diferencial frente a afiliados: volumen de impresiones; menor tasa de conversión pero fuerte para brand awareness.
 
-### 6.7 Pagos y monetización por país
+### 6.6 Pagos y monetización por país
 
 Hotmart funciona en LATAM pero cobra FX y fees altos. Plan por país:
 
@@ -305,7 +261,7 @@ Hotmart funciona en LATAM pero cobra FX y fees altos. Plan por país:
 
 Precios locales ajustados por paridad de poder adquisitivo (PPP), no tipo de cambio directo — política revisable trimestralmente.
 
-### 6.8 Riesgos y mitigación
+### 6.7 Riesgos y mitigación
 
 | Riesgo | Mitigación |
 |--------|------------|
