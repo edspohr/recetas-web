@@ -2,39 +2,55 @@
 <html lang="es-CL">
 <!--
   ============================================================
-  BOCADITOS DEL CORAZÓN — Landing page (rediseño premium)
+  LA BIBLIOTECA DE ANMERYS — Landing page (v3)
   ============================================================
 
   PERSONALIZACIÓN
   ---------------
-  1) WhatsApp: busca WHATSAPP_NUMBER en el <script> final.
-  2) Precios: busca "PRECIOS" en la sección #planes.
-  3) Testimonios: busca "[EDITAR: testimonio real aquí]".
-  4) Imágenes del hero/galería: busca "POLAROID_IMG" y "GALLERY_IMG".
+  1) Hotmart: busca HOTMART_URLS al final del <body>.
+     Reemplaza los placeholders por tus URLs de checkout reales.
+  2) WhatsApp (SOPORTE, no venta): busca WHATSAPP_NUMBER.
+  3) Email capture (lead magnet): busca MAILERLITE_ACTION.
+     Pega el action de tu form de Mailerlite / Beehiiv / MailChimp.
+  4) Meta Pixel / GA4: busca TRACKING_PLACEHOLDERS.
+  5) Testimonios reales: busca "[EDITAR: testimonio real aquí]".
   ============================================================
 -->
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="120 recetas para bebés de 6 a 24 meses, diseñadas por nutricionistas pediátricos. Texturas por edad, planificador semanal y guía de alérgenos. Sin estrés." />
+  <meta name="description" content="La Biblioteca de Anmerys — una biblioteca viva de libros de alimentación infantil, creada con la disciplina de una ingeniera y la ternura de una madre. Suscríbete por CLP $4.990/mes y accede a todos los libros." />
   <meta name="theme-color" content="#FFF8F2" />
-  <meta property="og:title" content="Bocaditos del Corazón — 120 recetas para tu bebé" />
-  <meta property="og:description" content="Comida real para bebés de 6 a 24 meses. Respaldado por nutricionistas pediátricos." />
+  <meta property="og:title" content="La Biblioteca de Anmerys — Alimenta a tu hijo con bases sólidas" />
+  <meta property="og:description" content="Recetas para bebés y niños diseñadas con la disciplina de una ingeniera. Biblioteca por suscripción CLP $4.990/mes o libro individual $9.990." />
   <meta property="og:type" content="website" />
-  <title>Bocaditos del Corazón — 120 recetas para bebés de 6 a 24 meses</title>
+  <title>La Biblioteca de Anmerys — Alimenta a tu hijo con bases sólidas</title>
+
+  <!--
+    TRACKING_PLACEHOLDERS
+    ---------------------
+    Pega aquí tu Meta Pixel y Google Analytics 4 cuando los tengas.
+
+    <!-- Meta Pixel -->
+    <script>!function(f,b,e,v,n,t,s){...fbq('init','PIXEL_ID');fbq('track','PageView');</script>
+
+    <!-- GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXX');</script>
+  -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     rel="preload"
     as="style"
-    href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600;1,9..144,700&family=Inter:wght@400;500;600;700&display=swap"
     onload="this.onload=null;this.rel='stylesheet'"
   />
   <noscript>
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600;1,9..144,700&family=Inter:wght@400;500;600;700&display=swap"
     />
   </noscript>
 
@@ -48,13 +64,12 @@
             sage:     { DEFAULT: '#A8C9A0', dark: '#8FB587', light: '#D4E4C9' },
             butter:   { DEFAULT: '#FFDD9A', light: '#FFECC4' },
             blush:    '#FBD4D4',
-            lavender: '#E4D7F0',
-            mint:     '#C8EADB',
+            lavender: { DEFAULT: '#E4D7F0', dark: '#C9B7E5' },
+            mint:     { DEFAULT: '#C8EADB', dark: '#A8D5C0' },
             cream:    '#FFF8F2',
             card:     '#FDE4D8',
             ink:      '#3D3630',
             soft:     '#8B827B',
-            /* aliases */
             terracotta: { DEFAULT: '#F5A58F', dark: '#E8876E' },
             olive:    '#A8C9A0',
             mustard:  '#FFDD9A',
@@ -65,16 +80,13 @@
             body:    ['Inter', 'system-ui', 'sans-serif'],
             hand:    ['Caveat', 'cursive'],
           },
-          borderRadius: {
-            xl2: '14px',
-            '3xl': '24px',
-          },
+          borderRadius: { xl2: '14px', '3xl': '24px' },
           boxShadow: {
-            soft: '0 4px 20px -6px rgba(61, 54, 48, 0.08)',
-            card: '0 2px 12px -4px rgba(61, 54, 48, 0.06)',
-            hero: '0 28px 60px -28px rgba(61, 54, 48, 0.35)',
-            lift: '0 20px 50px -22px rgba(61, 54, 48, 0.28)',
-            glow: '0 0 0 1px rgba(245, 165, 143, 0.28), 0 36px 70px -28px rgba(245, 165, 143, 0.55)',
+            soft:  '0 4px 20px -6px rgba(61, 54, 48, 0.08)',
+            card:  '0 2px 12px -4px rgba(61, 54, 48, 0.06)',
+            hero:  '0 28px 60px -28px rgba(61, 54, 48, 0.35)',
+            lift:  '0 20px 50px -22px rgba(61, 54, 48, 0.28)',
+            glow:  '0 0 0 1px rgba(245, 165, 143, 0.28), 0 36px 70px -28px rgba(245, 165, 143, 0.55)',
             polaroid: '0 18px 40px -18px rgba(61, 54, 48, 0.35)',
           },
         },
@@ -94,73 +106,57 @@
     }
     h1, h2, h3, .font-display { font-family: 'Fraunces', Georgia, serif; letter-spacing: -0.018em; }
 
-    /* Decorative bg mesh */
-    .bg-mesh {
-      position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
-    }
-    .bg-mesh span {
-      position: absolute; display: block; border-radius: 50%; filter: blur(70px); opacity: 0.55;
-    }
-    .bg-mesh .b1 { width: 40rem; height: 40rem; top: -12rem; left: -12rem; background: #FBD4D4; }
-    .bg-mesh .b2 { width: 36rem; height: 36rem; top: 22rem; right: -14rem; background: #E4D7F0; }
-    .bg-mesh .b3 { width: 34rem; height: 34rem; top: 70rem; left: -8rem;  background: #C8EADB; }
-    .bg-mesh .b4 { width: 30rem; height: 30rem; top: 120rem; right: -10rem; background: #FFECC4; }
-    .bg-mesh .b5 { width: 34rem; height: 34rem; top: 180rem; left: 20%; background: #FBD4C3; }
+    /* =========  BACKGROUND MESH  ========= */
+    .bg-mesh { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+    .bg-mesh span { position: absolute; display: block; border-radius: 50%; filter: blur(80px); opacity: 0.55; }
+    .bg-mesh .b1 { width: 42rem; height: 42rem; top: -12rem; left: -14rem; background: #FBD4D4; }
+    .bg-mesh .b2 { width: 38rem; height: 38rem; top: 22rem; right: -14rem; background: #E4D7F0; }
+    .bg-mesh .b3 { width: 34rem; height: 34rem; top: 78rem; left: -8rem;  background: #C8EADB; }
+    .bg-mesh .b4 { width: 32rem; height: 32rem; top: 130rem; right: -12rem; background: #FFECC4; }
+    .bg-mesh .b5 { width: 36rem; height: 36rem; top: 200rem; left: 22%; background: #FBD4C3; }
 
-    /* Focus rings */
-    :where(a, button, [role="button"], summary):focus-visible {
-      outline: 3px solid #F5A58F;
-      outline-offset: 3px;
-      border-radius: 10px;
+    /* =========  FOCUS  ========= */
+    :where(a, button, [role="button"], summary, input):focus-visible {
+      outline: 3px solid #F5A58F; outline-offset: 3px; border-radius: 10px;
     }
 
-    /* Skip link */
     .skip-link { position: absolute; left: -9999px; top: auto; }
     .skip-link:focus { position: fixed; top: 1rem; left: 1rem; z-index: 60; background: #F5A58F; color: #FFF8F2; padding: 0.6rem 1rem; border-radius: 12px; font-weight: 600; }
 
-    /* Typography */
-    .display-xl { font-size: clamp(2.5rem, 5.4vw + 1rem, 5.25rem); line-height: 1.02; letter-spacing: -0.025em; }
+    /* =========  TYPO  ========= */
+    .display-xl { font-size: clamp(2.5rem, 5.2vw + 1rem, 5rem); line-height: 1.02; letter-spacing: -0.025em; }
     .display-lg { font-size: clamp(2rem, 3.2vw + 0.75rem, 3.25rem); line-height: 1.08; letter-spacing: -0.022em; }
     .eyebrow { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em; color: #8B827B; }
 
-    /* Accent word — yellow brushstroke behind */
     .accent-word {
-      font-style: italic;
-      color: #E8876E;
-      position: relative;
-      display: inline-block;
-      white-space: nowrap;
+      font-style: italic; color: #E8876E;
+      position: relative; display: inline-block; white-space: nowrap;
     }
     .accent-word::before {
-      content: "";
-      position: absolute;
-      left: -4%; right: -4%;
-      bottom: 0.05em;
-      height: 0.42em;
-      background: #FFDD9A;
-      border-radius: 2em;
-      transform: skewX(-6deg);
-      z-index: -1;
-      opacity: 0.75;
+      content: ""; position: absolute;
+      left: -4%; right: -4%; bottom: 0.05em; height: 0.42em;
+      background: #FFDD9A; border-radius: 2em;
+      transform: skewX(-6deg); z-index: -1; opacity: 0.75;
     }
 
-    /* Squiggle underline under phrases */
     .squiggle {
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10'><path d='M2 7 Q 15 1, 30 5 T 60 5 T 90 5 T 118 5' stroke='%23F5A58F' stroke-width='2.2' fill='none' stroke-linecap='round'/></svg>");
-      background-repeat: repeat-x;
-      background-position: 0 100%;
-      background-size: 120px 10px;
+      background-repeat: repeat-x; background-position: 0 100%; background-size: 120px 10px;
       padding-bottom: 0.4em;
     }
 
-    /* Buttons */
+    /* =========  BRAND WORDMARK  ========= */
+    .brand-mark { display: inline-flex; align-items: center; gap: 0.55rem; color: #E8876E; }
+    .brand-mark svg { flex-shrink: 0; }
+    .brand-mark-text { font-family: 'Fraunces', serif; letter-spacing: -0.02em; line-height: 1; }
+    .brand-mark-text .sm { display: block; font-size: 0.72em; font-weight: 500; font-style: italic; color: #8B827B; margin-top: 0.15em; }
+
+    /* =========  BUTTONS  ========= */
     .btn-primary {
       display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
       background: linear-gradient(135deg, #F5A58F 0%, #E8876E 100%);
-      color: #FFF8F2;
-      padding: 1rem 1.6rem;
-      border-radius: 999px;
-      font-weight: 600;
+      color: #FFF8F2; padding: 1rem 1.6rem;
+      border-radius: 999px; font-weight: 600;
       box-shadow: 0 14px 32px -14px rgba(232, 135, 110, 0.6);
       transition: transform 0.25s cubic-bezier(.2,.7,.2,1), box-shadow 0.25s ease, filter 0.25s ease;
     }
@@ -169,9 +165,7 @@
     .btn-secondary {
       display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
       background: #FFF8F2; color: #3D3630;
-      padding: 0.95rem 1.4rem;
-      border-radius: 999px;
-      font-weight: 600;
+      padding: 0.95rem 1.4rem; border-radius: 999px; font-weight: 600;
       border: 1px solid rgba(61, 54, 48, 0.12);
       transition: transform 0.25s cubic-bezier(.2,.7,.2,1), box-shadow 0.25s ease;
     }
@@ -179,13 +173,12 @@
     .btn-ghost {
       display: inline-flex; align-items: center; gap: 0.4rem;
       color: #3D3630; font-weight: 600;
-      border-bottom: 2px dashed #F5A58F;
-      padding-bottom: 2px;
+      border-bottom: 2px dashed #F5A58F; padding-bottom: 2px;
       transition: color 0.2s ease, border-color 0.2s ease;
     }
     .btn-ghost:hover { color: #E8876E; border-color: #E8876E; }
 
-    /* Header */
+    /* =========  HEADER  ========= */
     .site-header { transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
     .site-header.scrolled {
       background-color: rgba(255, 248, 242, 0.88);
@@ -194,7 +187,6 @@
       border-bottom: 1px solid rgba(61, 54, 48, 0.08);
     }
 
-    /* Avatar group in pill */
     .avatar-stack { display: inline-flex; }
     .avatar-stack img {
       width: 1.55rem; height: 1.55rem; border-radius: 50%;
@@ -202,85 +194,41 @@
     }
     .avatar-stack img + img { margin-left: -0.55rem; }
 
-    /* =========  HERO COLLAGE (polaroids)  ========= */
-    .hero-collage {
-      position: relative;
-      aspect-ratio: 1/1.05;
-      max-width: 100%;
-    }
+    /* =========  HERO POLAROID COLLAGE  ========= */
+    .hero-collage { position: relative; aspect-ratio: 1/1.05; max-width: 100%; }
     @media (min-width: 1024px) { .hero-collage { aspect-ratio: 1/1.12; } }
 
     .polaroid {
-      position: absolute;
-      background: #FFFFFF;
+      position: absolute; background: #FFFFFF;
       padding: 10px 10px 12px;
       box-shadow: 0 22px 50px -22px rgba(61, 54, 48, 0.4);
       border-radius: 6px;
-      transition: transform 0.6s cubic-bezier(.2,.7,.2,1), box-shadow 0.4s ease;
+      transition: transform 0.6s cubic-bezier(.2,.7,.2,1);
     }
-    .polaroid img {
-      display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 3px;
-    }
+    .polaroid img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 3px; }
     .polaroid-frame { position: relative; width: 100%; aspect-ratio: 4/5; overflow: hidden; border-radius: 3px; background: #FDE4D8; }
-    .polaroid .cap {
-      font-family: 'Caveat', cursive; font-weight: 600;
-      color: #3D3630; font-size: 1.15rem;
-      text-align: center; margin-top: 0.4rem;
-      line-height: 1.1;
-    }
-    .polaroid:hover {
-      transform: rotate(0deg) translateY(-6px) scale(1.03);
-      z-index: 10;
-    }
+    .polaroid .cap { font-family: 'Caveat', cursive; font-weight: 600; color: #3D3630; font-size: 1.15rem; text-align: center; margin-top: 0.4rem; line-height: 1.1; }
+    .polaroid:hover { transform: rotate(0deg) translateY(-6px) scale(1.03); z-index: 10; }
 
-    .p-main   { width: 56%; left: 4%;  top: 4%;  transform: rotate(-4deg); z-index: 2; }
-    .p-top    { width: 42%; right: 0;  top: 22%; transform: rotate(6deg);  z-index: 3; }
-    .p-bot    { width: 40%; left: 22%; bottom: 2%; transform: rotate(-7deg); z-index: 1; }
-    .p-bot img { aspect-ratio: 1/1; }
+    .p-main { width: 56%; left: 4%; top: 4%; transform: rotate(-4deg); z-index: 2; }
+    .p-top  { width: 42%; right: 0; top: 22%; transform: rotate(6deg); z-index: 3; }
+    .p-bot  { width: 40%; left: 22%; bottom: 2%; transform: rotate(-7deg); z-index: 1; }
     .p-bot .polaroid-frame { aspect-ratio: 1/1; }
 
-    /* Tape */
-    .tape {
-      position: absolute; top: -10px; left: 50%; transform: translateX(-50%) rotate(-4deg);
-      width: 70px; height: 20px; background: rgba(255, 221, 154, 0.7);
-      box-shadow: 0 2px 6px rgba(61, 54, 48, 0.08);
-    }
+    .tape { position: absolute; top: -10px; left: 50%; transform: translateX(-50%) rotate(-4deg); width: 70px; height: 20px; background: rgba(255, 221, 154, 0.7); box-shadow: 0 2px 6px rgba(61, 54, 48, 0.08); }
     .tape-2 { transform: translateX(-50%) rotate(6deg); background: rgba(200, 234, 219, 0.8); }
     .tape-3 { transform: translateX(-50%) rotate(-10deg); background: rgba(228, 215, 240, 0.8); }
 
-    /* Stickers */
     .sticker {
-      position: absolute;
-      background: #FFFFFF;
-      padding: 0.55rem 0.95rem;
-      border-radius: 999px;
+      position: absolute; background: #FFFFFF;
+      padding: 0.55rem 0.95rem; border-radius: 999px;
       box-shadow: 0 14px 30px -14px rgba(61, 54, 48, 0.28);
-      display: flex; align-items: center; gap: 0.45rem;
-      z-index: 6;
-      font-weight: 600;
+      display: flex; align-items: center; gap: 0.45rem; z-index: 6; font-weight: 600;
     }
-    .sticker-love {
-      bottom: 6%; left: -2%;
-      transform: rotate(-6deg);
-      font-family: 'Caveat', cursive; font-weight: 700;
-      font-size: 1.25rem; color: #3D3630;
-    }
-    .sticker-nutri {
-      top: 4%; left: -4%;
-      transform: rotate(2deg);
-      background: #A8C9A0; color: #3D3630;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em;
-      padding: 0.5rem 0.85rem;
-      border-radius: 14px;
-    }
+    .sticker-love { bottom: 6%; left: -2%; transform: rotate(-6deg); font-family: 'Caveat', cursive; font-weight: 700; font-size: 1.25rem; color: #3D3630; }
+    .sticker-nutri { top: 4%; left: -4%; transform: rotate(2deg); background: #A8C9A0; color: #3D3630; font-family: 'Inter', sans-serif; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.5rem 0.85rem; border-radius: 14px; }
 
-    /* Trust row */
-    .trust-pill {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      font-size: 0.88rem; color: #3D3630;
-      font-weight: 500;
-    }
+    .trust-pill { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; color: #3D3630; font-weight: 500; }
 
     /* =========  MARQUEE  ========= */
     @keyframes slideX { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -293,65 +241,177 @@
     .marquee-item {
       display: flex; align-items: center; gap: 0.6rem;
       font-family: 'Fraunces', serif; font-weight: 500; font-style: italic;
-      font-size: clamp(1.25rem, 2vw + 0.5rem, 2.25rem);
-      color: #3D3630;
-      white-space: nowrap;
+      font-size: clamp(1.1rem, 1.6vw + 0.5rem, 1.9rem);
+      color: #3D3630; white-space: nowrap;
     }
     .marquee-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #F5A58F; flex-shrink: 0; }
 
-    /* =========  BENTO  ========= */
-    .bento {
-      display: grid; gap: 1rem;
-      grid-template-columns: 1fr;
+    /* =========  MANIFIESTO  ========= */
+    .manifesto-portrait {
+      position: relative; border-radius: 28px; overflow: hidden;
+      box-shadow: 0 40px 80px -30px rgba(61, 54, 48, 0.45);
+      aspect-ratio: 4/5;
     }
-    @media (min-width: 768px) {
-      .bento {
-        gap: 1.25rem;
-        grid-template-columns: repeat(6, minmax(0, 1fr));
-        grid-auto-rows: minmax(130px, auto);
-      }
-      .b-big    { grid-column: span 4; grid-row: span 2; }
-      .b-photo  { grid-column: span 2; grid-row: span 2; }
-      .b-med    { grid-column: span 3; }
-      .b-small  { grid-column: span 2; }
-      .b-tall   { grid-column: span 2; grid-row: span 2; }
+    .manifesto-portrait::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(61, 54, 48, 0.45) 100%);
+      pointer-events: none;
     }
-    .bento-item {
-      padding: 1.6rem 1.75rem;
-      border-radius: 26px;
-      position: relative;
+    .portrait-caption {
+      position: absolute; left: 1.5rem; right: 1.5rem; bottom: 1.25rem;
+      font-family: 'Caveat', cursive; font-weight: 600;
+      color: #FFF8F2; font-size: 1.35rem; z-index: 2;
+    }
+    .portrait-signature {
+      position: absolute; top: 1rem; left: 1rem;
+      background: #FFF8F2; color: #3D3630;
+      padding: 0.45rem 0.85rem; border-radius: 999px;
+      font-family: 'Inter', sans-serif; font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600;
+      box-shadow: 0 10px 25px -10px rgba(61, 54, 48, 0.2);
+    }
+
+    /* Portrait placeholder — hasta que llegue la foto real */
+    .manifesto-portrait--placeholder {
+      background: linear-gradient(160deg, #FDE4D8 0%, #FBD4C3 45%, #E4D7F0 100%);
+    }
+    .manifesto-portrait--placeholder::after { display: none; }
+    .portrait-placeholder {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 2rem 1.8rem;
       overflow: hidden;
-      transition: transform 0.35s cubic-bezier(.2,.7,.2,1), box-shadow 0.3s ease;
     }
-    .bento-item:hover { transform: translateY(-4px); box-shadow: 0 24px 50px -24px rgba(61, 54, 48, 0.22); }
-    .bento-item .icon-pill {
-      width: 2.6rem; height: 2.6rem; border-radius: 14px;
-      display: inline-flex; align-items: center; justify-content: center;
-      background: rgba(255, 255, 255, 0.6);
-      color: #3D3630;
+    .pp-deco {
+      position: absolute; top: -0.16em; right: -0.06em;
+      font-family: 'Fraunces', serif; font-style: italic; font-weight: 600;
+      font-size: clamp(14rem, 32vw, 26rem);
+      line-height: 0.82;
+      color: rgba(255, 248, 242, 0.62);
+      pointer-events: none; user-select: none;
     }
-    .age-chip {
-      display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 0.7rem 0.85rem;
-      background: #FFF8F2;
-      border-radius: 16px;
-      font-family: 'Fraunces', serif; font-weight: 600; color: #3D3630;
-      box-shadow: 0 4px 14px -6px rgba(61, 54, 48, 0.15);
-      min-width: 72px;
+    .pp-blobs { position: absolute; inset: 0; pointer-events: none; }
+    .pp-blobs span { position: absolute; border-radius: 50%; filter: blur(40px); opacity: 0.55; }
+    .pp-blobs .pb1 { width: 12rem; height: 12rem; top: 12%; left: -3rem; background: #FBD4D4; }
+    .pp-blobs .pb2 { width: 10rem; height: 10rem; bottom: -2rem; right: -2rem; background: #C8EADB; }
+    .pp-tag {
+      display: inline-block;
+      font-family: 'Inter', sans-serif; font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      font-weight: 600; color: #3D3630;
+      background: rgba(255, 255, 255, 0.78);
+      -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+      padding: 0.4rem 0.8rem; border-radius: 999px;
+      align-self: flex-start;
     }
-    .age-chip .num { font-size: 1.15rem; line-height: 1; }
-    .age-chip .lbl { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: #8B827B; margin-top: 0.15rem; font-family: 'Inter', sans-serif; font-weight: 600; }
+    .pp-name {
+      margin-top: 0.9rem;
+      font-family: 'Fraunces', serif; font-style: italic; font-weight: 600;
+      font-size: clamp(2.5rem, 6vw + 0.8rem, 4.25rem);
+      line-height: 1; color: #3D3630; letter-spacing: -0.02em;
+    }
+    .pp-sub {
+      margin-top: 0.6rem;
+      font-size: 0.9rem; color: #3D3630; opacity: 0.85; max-width: 28ch;
+      line-height: 1.4;
+    }
+    .pp-signature {
+      margin-top: 1.1rem;
+      font-family: 'Caveat', cursive; font-weight: 700;
+      font-size: 1.4rem; color: #E8876E;
+    }
+    .pp-note {
+      position: absolute; top: 1rem; right: 1rem;
+      background: rgba(255, 248, 242, 0.88);
+      color: #8B827B;
+      padding: 0.4rem 0.8rem; border-radius: 999px;
+      font-size: 0.66rem;
+      text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600;
+      z-index: 3;
+    }
+    .pull-quote {
+      font-family: 'Fraunces', serif; font-style: italic; font-weight: 500;
+      font-size: clamp(1.35rem, 1.2vw + 1rem, 1.85rem);
+      line-height: 1.3; color: #3D3630;
+      border-left: 3px solid #F5A58F; padding-left: 1.25rem;
+    }
+    .cred-tag {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: #FFF8F2; color: #3D3630;
+      padding: 0.55rem 0.85rem; border-radius: 999px;
+      font-size: 0.82rem; font-weight: 500;
+      border: 1px solid rgba(61, 54, 48, 0.08);
+    }
+
+    /* =========  BOOK COVERS / LIBRARY  ========= */
+    .book-cover {
+      position: relative; aspect-ratio: 3/4.2;
+      border-radius: 6px 4px 4px 6px;
+      padding: 1.5rem 1.3rem 1.6rem;
+      display: flex; flex-direction: column; justify-content: space-between;
+      box-shadow: 0 24px 50px -22px rgba(61, 54, 48, 0.45);
+      overflow: hidden;
+      transform: perspective(1000px) rotateY(-8deg) translateZ(0);
+      transition: transform 0.55s cubic-bezier(.2,.7,.2,1);
+    }
+    .book-cover::before {
+      content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 8px;
+      background: linear-gradient(90deg, rgba(0,0,0,0.18), transparent 80%);
+    }
+    .book-cover::after {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(circle at 30% 0%, rgba(255,255,255,0.25) 0%, transparent 40%);
+      pointer-events: none;
+    }
+    .book-cover:hover { transform: perspective(1000px) rotateY(0deg) translateY(-6px); }
+    .book-cover--peach    { background: linear-gradient(145deg, #F5A58F 0%, #E8876E 100%); color: #FFF8F2; }
+    .book-cover--lavender { background: linear-gradient(145deg, #E4D7F0 0%, #C9B7E5 100%); color: #3D3630; }
+    .book-cover--mint     { background: linear-gradient(145deg, #C8EADB 0%, #A8D5C0 100%); color: #3D3630; }
+
+    .cover-brand { font-family: 'Inter', sans-serif; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.14em; opacity: 0.85; font-weight: 600; }
+    .cover-n     { font-family: 'Fraunces', serif; font-style: italic; font-size: 0.85rem; opacity: 0.9; margin-top: 0.3rem; }
+    .cover-title { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.75rem; line-height: 1.02; margin-top: 0.9rem; }
+    .cover-title em { font-style: italic; font-weight: 500; }
+    .cover-sub   { font-size: 0.82rem; opacity: 0.9; margin-top: 0.4rem; }
+    .cover-decor { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); font-family: 'Fraunces', serif; font-style: italic; opacity: 0.15; font-size: 4rem; line-height: 1; pointer-events: none; }
+    .cover-badge {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-family: 'Inter', sans-serif; font-size: 0.65rem;
+      text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;
+      padding: 0.4rem 0.75rem; border-radius: 999px;
+      background: rgba(255,255,255,0.85); color: #3D3630;
+      align-self: flex-start;
+    }
+    .cover-badge--available { background: #A8C9A0; color: #3D3630; }
+    .cover-badge--soon { background: rgba(255,255,255,0.75); }
+
+    /* =========  DEVICE MOCKUP  ========= */
+    .device {
+      position: relative; background: #3D3630;
+      border-radius: 28px; padding: 14px;
+      box-shadow: 0 50px 90px -30px rgba(61, 54, 48, 0.45);
+    }
+    .device-screen {
+      background: #FFF8F2; border-radius: 16px; overflow: hidden;
+      aspect-ratio: 3/4.2; display: flex; flex-direction: column;
+    }
+    .recipe-header { padding: 1.4rem 1.3rem 0.8rem; }
+    .recipe-title { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.35rem; line-height: 1.1; }
+    .recipe-badges { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.6rem; }
+    .r-badge { font-size: 0.62rem; padding: 0.3rem 0.6rem; border-radius: 999px; font-weight: 600; background: #FDE4D8; color: #3D3630; text-transform: uppercase; letter-spacing: 0.08em; }
+    .r-badge--age { background: #A8C9A0; }
+    .r-badge--tex { background: #E4D7F0; }
+    .r-badge--al  { background: #FFDD9A; }
+    .recipe-photo { width: 100%; height: 40%; object-fit: cover; }
+    .recipe-meta { display: flex; justify-content: space-between; gap: 0.8rem; padding: 0.8rem 1.3rem; font-size: 0.75rem; color: #8B827B; border-bottom: 1px solid rgba(61, 54, 48, 0.08); }
+    .recipe-meta strong { display: block; color: #3D3630; font-weight: 600; font-size: 0.88rem; }
+    .recipe-steps { padding: 1rem 1.3rem; display: flex; flex-direction: column; gap: 0.6rem; flex: 1; font-size: 0.78rem; color: #3D3630; }
+    .recipe-step { display: flex; gap: 0.6rem; align-items: flex-start; }
+    .recipe-step-num { font-family: 'Fraunces', serif; color: #E8876E; font-weight: 600; flex-shrink: 0; }
 
     /* =========  SCRAPBOOK GALLERY  ========= */
-    .scrap {
-      position: relative;
-      display: grid;
-      gap: 1.25rem;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    @media (min-width: 900px) {
-      .scrap { grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: 90px; gap: 1.5rem; }
-    }
+    .scrap { position: relative; display: grid; gap: 1.25rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (min-width: 900px) { .scrap { grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: 90px; gap: 1.5rem; } }
     .scrap-photo {
       position: relative; background: #FFFFFF; padding: 10px 10px 12px;
       border-radius: 6px; box-shadow: 0 18px 42px -20px rgba(61, 54, 48, 0.35);
@@ -361,7 +421,6 @@
     .scrap-photo img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 3px; }
     .scrap-photo .sp-frame { width: 100%; overflow: hidden; border-radius: 3px; }
     .scrap-photo .cap { font-family: 'Caveat', cursive; font-weight: 600; text-align: center; font-size: 1.05rem; color: #3D3630; margin-top: 0.3rem; }
-
     @media (min-width: 900px) {
       .sp-a { grid-column: 1/5;  grid-row: 1/5;  transform: rotate(-3deg); }
       .sp-b { grid-column: 5/9;  grid-row: 2/6;  transform: rotate(4deg); }
@@ -369,12 +428,7 @@
       .sp-d { grid-column: 2/6;  grid-row: 6/10; transform: rotate(6deg); }
       .sp-e { grid-column: 6/10; grid-row: 7/11; transform: rotate(-4deg); }
       .sp-f { grid-column: 9/13; grid-row: 6/10; transform: rotate(3deg); }
-      .sp-a .sp-frame { aspect-ratio: 4/5; }
-      .sp-b .sp-frame { aspect-ratio: 4/5; }
-      .sp-c .sp-frame { aspect-ratio: 4/5; }
-      .sp-d .sp-frame { aspect-ratio: 4/5; }
-      .sp-e .sp-frame { aspect-ratio: 4/5; }
-      .sp-f .sp-frame { aspect-ratio: 4/5; }
+      .scrap-photo .sp-frame { aspect-ratio: 4/5; }
     }
     @media (max-width: 899px) {
       .scrap-photo { transform: rotate(-2deg); }
@@ -385,46 +439,29 @@
     /* =========  TIMELINE  ========= */
     .timeline { position: relative; }
     .timeline-grid { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
-    @media (min-width: 768px) {
-      .timeline-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-    }
+    @media (min-width: 768px) { .timeline-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
     .t-step {
-      background: #FFF8F2;
-      border-radius: 24px;
-      padding: 1.75rem 1.5rem;
+      background: #FFF8F2; border-radius: 24px; padding: 1.75rem 1.5rem;
       box-shadow: 0 2px 14px -6px rgba(61, 54, 48, 0.08);
-      position: relative;
-      border: 1px solid rgba(61, 54, 48, 0.05);
+      position: relative; border: 1px solid rgba(61, 54, 48, 0.05);
     }
     .t-num {
       width: 3rem; height: 3rem; border-radius: 50%;
       display: inline-flex; align-items: center; justify-content: center;
-      background: linear-gradient(135deg, #F5A58F, #E8876E);
-      color: #FFF8F2;
+      background: linear-gradient(135deg, #F5A58F, #E8876E); color: #FFF8F2;
       font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.35rem;
       box-shadow: 0 12px 28px -10px rgba(245, 165, 143, 0.55);
       position: relative;
     }
-    .t-num::after {
-      content: ""; position: absolute; inset: -6px; border-radius: 50%;
-      border: 2px dashed rgba(245, 165, 143, 0.5);
-    }
+    .t-num::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 2px dashed rgba(245, 165, 143, 0.5); }
     .t-connector { display: none; }
-    @media (min-width: 768px) {
-      .t-connector {
-        display: block; position: absolute; top: 3.6rem; left: 0; right: 0;
-        height: 40px; pointer-events: none; z-index: 0;
-      }
-    }
+    @media (min-width: 768px) { .t-connector { display: block; position: absolute; top: 3.6rem; left: 0; right: 0; height: 40px; pointer-events: none; z-index: 0; } }
 
     /* =========  PRICING  ========= */
     .plan-card {
-      position: relative;
-      display: flex; flex-direction: column;
-      padding: 1.75rem;
-      border-radius: 26px;
-      background: #FFF8F2;
-      border: 1px solid rgba(61, 54, 48, 0.07);
+      position: relative; display: flex; flex-direction: column;
+      padding: 1.75rem; border-radius: 26px;
+      background: #FFF8F2; border: 1px solid rgba(61, 54, 48, 0.07);
       box-shadow: 0 4px 18px -8px rgba(61, 54, 48, 0.08);
       transition: transform 0.35s cubic-bezier(.2,.7,.2,1), box-shadow 0.35s ease;
     }
@@ -439,25 +476,33 @@
       .plan-featured:hover { transform: translateY(-16px); }
     }
     .plan-pill[aria-pressed="true"] { background: #F5A58F; color: #FFF8F2; }
-
-    /* Mobile plan toggle */
     @media (max-width: 767px) {
       .plan-card { display: none; }
       .plan-card.is-active { display: flex; }
     }
 
-    /* =========  TESTIMONIALS  ========= */
-    .quote-mark {
-      font-family: 'Fraunces', serif; font-style: italic; font-weight: 600;
-      font-size: 5rem; line-height: 0.5;
-      color: #F5A58F;
-      display: inline-block;
-      margin-bottom: -0.5rem;
+    /* Comparison table */
+    .compare-row { display: grid; grid-template-columns: 1.2fr 0.8fr 0.8fr; padding: 0.8rem 1rem; border-radius: 12px; font-size: 0.9rem; }
+    .compare-row:nth-child(odd) { background: rgba(253, 228, 216, 0.4); }
+    .compare-row .yes { color: #8FB587; font-weight: 600; }
+    .compare-row .no  { color: #8B827B; }
+
+    /* =========  LEAD MAGNET  ========= */
+    .lead-form { display: flex; flex-direction: column; gap: 0.6rem; }
+    @media (min-width: 640px) { .lead-form { flex-direction: row; } }
+    .lead-input {
+      flex: 1; padding: 0.95rem 1.15rem; border-radius: 999px;
+      border: 1px solid rgba(61, 54, 48, 0.12); background: #FFF8F2;
+      font-family: 'Inter', sans-serif; color: #3D3630;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
+    .lead-input::placeholder { color: #A8A19B; }
+    .lead-input:focus { outline: none; border-color: #F5A58F; box-shadow: 0 0 0 3px rgba(245, 165, 143, 0.22); }
+
+    /* =========  TESTIMONIALS  ========= */
+    .quote-mark { font-family: 'Fraunces', serif; font-style: italic; font-weight: 600; font-size: 5rem; line-height: 0.5; color: #F5A58F; display: inline-block; margin-bottom: -0.5rem; }
     .tcard {
-      background: #FFF8F2;
-      border-radius: 24px;
-      padding: 1.75rem;
+      background: #FFF8F2; border-radius: 24px; padding: 1.75rem;
       box-shadow: 0 4px 18px -8px rgba(61, 54, 48, 0.08);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
@@ -465,7 +510,7 @@
 
     /* =========  FAQ  ========= */
     .faq-panel { overflow: hidden; max-height: 0; transition: max-height 0.4s ease; }
-    .faq-item[open] .faq-panel { max-height: 500px; }
+    .faq-item[open] .faq-panel { max-height: 600px; }
     .faq-item[open] .faq-chevron { transform: rotate(180deg); }
     .faq-chevron { transition: transform 0.3s ease; }
     .faq-item summary::-webkit-details-marker { display: none; }
@@ -478,21 +523,27 @@
               mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/contain no-repeat;
     }
 
+    /* =========  FLOATING WHATSAPP  ========= */
+    .fab-whatsapp {
+      position: fixed; bottom: 1.25rem; right: 1.25rem; z-index: 50;
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      background: #25D366; color: #FFFFFF;
+      padding: 0.8rem 1.1rem 0.8rem 0.95rem;
+      border-radius: 999px; font-weight: 600; font-size: 0.9rem;
+      box-shadow: 0 16px 40px -14px rgba(37, 211, 102, 0.55);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .fab-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 20px 45px -14px rgba(37, 211, 102, 0.7); }
+    .fab-whatsapp svg { width: 1.2rem; height: 1.2rem; }
+    @media (max-width: 480px) { .fab-whatsapp .label { display: none; } .fab-whatsapp { padding: 0.9rem; } }
+
     /* =========  ANIMATIONS  ========= */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-    @keyframes wobbleRot {
-      0%, 100% { transform: rotate(-4deg) translateY(0); }
-      50%      { transform: rotate(-4deg) translateY(-6px); }
-    }
+    @keyframes wobbleRot { 0%, 100% { transform: rotate(-4deg) translateY(0); } 50% { transform: rotate(-4deg) translateY(-6px); } }
     @keyframes softPulse {
       0%, 100% { transform: translateX(-50%) scale(1); box-shadow: 0 8px 22px -10px rgba(245, 165, 143, 0.55); }
       50%      { transform: translateX(-50%) scale(1.05); box-shadow: 0 16px 34px -10px rgba(245, 165, 143, 0.75); }
-    }
-    @keyframes blobDrift {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      33%      { transform: translate(14px, -12px) scale(1.05); }
-      66%      { transform: translate(-10px, 10px) scale(0.97); }
     }
 
     [data-reveal] {
@@ -509,12 +560,7 @@
 
     .p-main.is-floating { animation: wobbleRot 7s ease-in-out infinite; }
     .pulse-badge { animation: softPulse 2.8s ease-in-out infinite; }
-    .float-slow { animation: floatY 6s ease-in-out infinite; }
 
-    /* Section divider SVG wrappers */
-    .wave-top, .wave-bot { display: block; width: 100%; height: 50px; line-height: 0; }
-
-    /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after {
@@ -539,22 +585,25 @@
   <!-- =============== HEADER =============== -->
   <header class="site-header fixed top-0 inset-x-0 z-40">
     <div class="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
-      <a href="#top" class="flex items-center gap-2 font-display text-peach-dark text-xl font-semibold tracking-tight" aria-label="Bocaditos del Corazón — inicio">
+      <a href="#top" class="brand-mark" aria-label="La Biblioteca de Anmerys — inicio">
         <svg class="w-7 h-7" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-          <path d="M16 27s-9-5.2-9-12.3A5.5 5.5 0 0 1 16 10.5a5.5 5.5 0 0 1 9 4.2C25 21.8 16 27 16 27z" fill="#F5A58F"/>
-          <circle cx="12" cy="14" r="1.3" fill="#FFF8F2"/>
-          <circle cx="20" cy="14" r="1.3" fill="#FFF8F2"/>
+          <!-- Open book icon -->
+          <path d="M4 8.5c3-1.5 6-1.5 9 0v16c-3-1.5-6-1.5-9 0V8.5z" fill="#F5A58F"/>
+          <path d="M28 8.5c-3-1.5-6-1.5-9 0v16c3-1.5 6-1.5 9 0V8.5z" fill="#F5A58F"/>
+          <path d="M13 8.5c1 0.5 2 0.5 3 0.5s2 0 3-0.5v16c-1 0.5-2 0.5-3 0.5s-2 0-3-0.5V8.5z" fill="#E8876E"/>
         </svg>
-        Bocaditos del Corazón
+        <span class="brand-mark-text text-lg sm:text-xl font-semibold">
+          La Biblioteca <em>de Anmerys</em>
+        </span>
       </a>
       <nav class="hidden md:flex items-center gap-7 text-sm text-soft font-medium">
-        <a href="#incluye" class="hover:text-ink transition-colors">Qué incluye</a>
-        <a href="#galeria" class="hover:text-ink transition-colors">Historias</a>
+        <a href="#autora" class="hover:text-ink transition-colors">La autora</a>
+        <a href="#biblioteca" class="hover:text-ink transition-colors">La biblioteca</a>
+        <a href="#adentro" class="hover:text-ink transition-colors">Mira adentro</a>
         <a href="#planes" class="hover:text-ink transition-colors">Planes</a>
-        <a href="#faq" class="hover:text-ink transition-colors">Preguntas</a>
       </nav>
       <a href="#planes" class="btn-primary text-sm sm:text-base py-2.5 px-4 sm:px-5">
-        Quiero el combo <span aria-hidden="true">→</span>
+        Suscribirme <span aria-hidden="true">→</span>
       </a>
     </div>
   </header>
@@ -562,7 +611,7 @@
   <main id="main">
 
     <!-- =============== HERO =============== -->
-    <section id="top" class="pt-28 sm:pt-32 pb-20 sm:pb-28 relative">
+    <section id="top" class="pt-28 sm:pt-32 pb-20 sm:pb-24 relative">
       <div class="max-w-6xl mx-auto px-5 sm:px-8">
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
 
@@ -577,18 +626,18 @@
             </span>
 
             <h1 class="display-xl font-display font-semibold mt-6">
-              ¿Y <span class="accent-word">hoy</span> qué<br class="hidden sm:block"/> le doy de comer?
+              Alimenta a tu hijo con bases tan <span class="accent-word">sólidas</span> como un edificio de 50 pisos.
             </h1>
 
             <p class="mt-6 text-base sm:text-lg text-soft leading-relaxed max-w-xl">
-              120 recetas diseñadas por nutricionistas pediátricos. Texturas por edad, ingredientes que ya tienes en casa, y un planificador semanal que te saca el <em>"¿qué cocino?"</em> de la cabeza.
+              Soy Anmerys. Durante 30 años calculé estructuras que sostienen edificios — incluido el más alto de Maracay. Hoy aplico esa misma disciplina a lo que más importa: alimentar a los niños de Latinoamérica con rigor, ternura y resultados.
             </p>
 
             <div class="mt-9 flex flex-col sm:flex-row gap-3 sm:gap-4 sm:items-center">
               <a href="#planes" class="btn-primary">
-                Quiero el combo <span aria-hidden="true">→</span>
+                Suscribirme a la biblioteca <span aria-hidden="true">→</span>
               </a>
-              <a href="#muestra" class="btn-ghost">Ver muestra gratis · 3 recetas</a>
+              <a href="#muestra" class="btn-ghost">Ver 3 recetas gratis</a>
             </div>
 
             <div class="mt-9 flex flex-wrap items-center gap-x-5 gap-y-2">
@@ -604,7 +653,7 @@
               <span class="text-soft" aria-hidden="true">·</span>
               <div class="trust-pill">
                 <svg class="w-4 h-4 text-sage-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7l-8 8-4-4"/><circle cx="12" cy="12" r="10"/></svg>
-                Pago único
+                Pago seguro por Hotmart
               </div>
             </div>
           </div>
@@ -612,7 +661,6 @@
           <!-- Polaroid collage -->
           <div class="lg:col-span-6" data-reveal data-reveal-delay="2">
             <div class="hero-collage">
-              <!-- POLAROID_IMG: reemplaza las URLs por tus propias fotos -->
               <figure class="polaroid p-main is-floating">
                 <span class="tape" aria-hidden="true"></span>
                 <div class="polaroid-frame">
@@ -641,14 +689,14 @@
                 <svg class="w-4 h-4 text-peach-dark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7-4.35-7-10a4.5 4.5 0 0 1 8-3 4.5 4.5 0 0 1 8 3c0 5.65-7 10-7 10h-2z"/></svg>
                 hecho con amor
               </span>
-              <span class="sticker sticker-nutri">Nutricionistas pediátricos</span>
+              <span class="sticker sticker-nutri">Calculado como un edificio</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- =============== MARQUEE (brand strip) =============== -->
+    <!-- =============== MARQUEE =============== -->
     <section class="py-6 sm:py-8 border-y border-ink/10 bg-cream/70 backdrop-blur-sm" aria-label="Promesas">
       <div class="marquee">
         <div class="marquee-track">
@@ -660,9 +708,8 @@
           <span class="marquee-dot" aria-hidden="true"></span>
           <span class="marquee-item">Ingredientes de supermercado</span>
           <span class="marquee-dot" aria-hidden="true"></span>
-          <span class="marquee-item">Acceso de por vida</span>
+          <span class="marquee-item">Biblioteca que crece cada mes</span>
           <span class="marquee-dot" aria-hidden="true"></span>
-          <!-- duplicate for infinite scroll -->
           <span class="marquee-item">Nutricionistas pediátricos</span>
           <span class="marquee-dot" aria-hidden="true"></span>
           <span class="marquee-item">BLW friendly</span>
@@ -671,8 +718,219 @@
           <span class="marquee-dot" aria-hidden="true"></span>
           <span class="marquee-item">Ingredientes de supermercado</span>
           <span class="marquee-dot" aria-hidden="true"></span>
-          <span class="marquee-item">Acceso de por vida</span>
+          <span class="marquee-item">Biblioteca que crece cada mes</span>
           <span class="marquee-dot" aria-hidden="true"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== MANIFIESTO: SOY ANMERYS =============== -->
+    <section id="autora" class="py-20 sm:py-28 relative">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+
+          <div class="lg:col-span-5 relative" data-reveal>
+            <!--
+              PORTRAIT_PLACEHOLDER
+              --------------------
+              Placeholder tipográfico hasta que esté lista la sesión fotográfica
+              editorial de Anmerys (mujer 60+, melena corta con canas, lentes).
+              Para usar la foto real reemplaza este bloque por:
+                <div class="manifesto-portrait">
+                  <img src="RUTA_FOTO" alt="Retrato de Anmerys" class="w-full h-full object-cover" />
+                  <span class="portrait-signature">Anmerys · Autora</span>
+                  <p class="portrait-caption">de ingeniera a emprendedora gastronómica</p>
+                </div>
+            -->
+            <div class="manifesto-portrait manifesto-portrait--placeholder" role="img" aria-label="Retrato de Anmerys — sesión fotográfica en producción">
+              <div class="pp-blobs" aria-hidden="true">
+                <span class="pb1"></span><span class="pb2"></span>
+              </div>
+              <span class="pp-deco" aria-hidden="true">A</span>
+              <span class="pp-note">Retrato editorial · próximamente</span>
+              <div class="portrait-placeholder">
+                <span class="pp-tag">La autora</span>
+                <h3 class="pp-name">Anmerys</h3>
+                <p class="pp-sub">Ingeniera civil · emprendedora gastronómica · autora de la biblioteca</p>
+                <p class="pp-signature">— desde Chile, con raíces en Venezuela</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7" data-reveal data-reveal-delay="2">
+            <p class="eyebrow">La autora</p>
+            <h2 class="display-lg font-display font-semibold mt-3">
+              Soy <span class="accent-word">Anmerys.</span><br/>
+              Venezolana, ingeniera, mamá.
+            </h2>
+
+            <div class="mt-7 space-y-5 text-ink/85 text-[17px] leading-relaxed max-w-xl">
+              <p>
+                Durante <strong>30 años</strong> firmé cálculos que sostienen edificios. En Maracay levanté el más alto de la ciudad. Migré a Chile, crié a dos hijas que hoy son profesionales exitosas en sus áreas. Y un día entendí que me quedaba una construcción más: la de la <em>primera infancia</em>.
+              </p>
+              <p>
+                Cada receta de esta biblioteca pasa por mi proceso de cálculo: porciones, texturas por edad, balance nutricional, riesgo alergénico. <strong>Nada sobrepuesto al azar.</strong> Todo con base.
+              </p>
+            </div>
+
+            <blockquote class="pull-quote mt-8 max-w-xl">
+              "Si una estructura mal calculada se cae,<br/>
+              un niño mal alimentado se enferma.<br/>
+              Por eso no improviso en la cocina."
+            </blockquote>
+
+            <div class="mt-8 flex flex-wrap gap-2.5">
+              <span class="cred-tag">
+                <i data-lucide="hard-hat" class="w-3.5 h-3.5 text-peach-dark" aria-hidden="true"></i>
+                30 años en construcción
+              </span>
+              <span class="cred-tag">
+                <i data-lucide="chef-hat" class="w-3.5 h-3.5 text-peach-dark" aria-hidden="true"></i>
+                Emprendedora gastronómica
+              </span>
+              <span class="cred-tag">
+                <i data-lucide="stethoscope" class="w-3.5 h-3.5 text-peach-dark" aria-hidden="true"></i>
+                Asesorada por nutricionistas pediátricos
+              </span>
+              <span class="cred-tag">
+                <i data-lucide="heart" class="w-3.5 h-3.5 text-peach-dark" aria-hidden="true"></i>
+                Madre de 2 profesionales
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== LA BIBLIOTECA (ROADMAP) =============== -->
+    <section id="biblioteca" class="py-20 sm:py-28 relative">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-end mb-12 sm:mb-16">
+          <div data-reveal>
+            <p class="eyebrow">La biblioteca</p>
+            <h2 class="display-lg font-display font-semibold mt-3">
+              Una biblioteca que <span class="accent-word">crece</span> contigo.
+            </h2>
+          </div>
+          <p class="text-soft text-lg leading-relaxed md:pb-3" data-reveal data-reveal-delay="1">
+            Cada libro aborda una etapa o un desafío distinto de la alimentación infantil. Suscríbete y los recibes todos — los que ya están, y cada nuevo título que se publique.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+          <!-- Libro 1 -->
+          <div class="flex flex-col items-center text-center" data-reveal data-reveal-delay="1">
+            <div class="book-cover book-cover--peach w-full max-w-[230px]">
+              <div>
+                <p class="cover-brand">La Biblioteca de Anmerys</p>
+                <p class="cover-n">Libro I</p>
+              </div>
+              <div>
+                <h3 class="cover-title">Bocaditos <em>del</em> Corazón</h3>
+                <p class="cover-sub">120 recetas · 6–24 meses</p>
+              </div>
+              <span class="cover-decor" aria-hidden="true">I</span>
+              <span class="cover-badge cover-badge--available">
+                <span class="w-1.5 h-1.5 rounded-full bg-ink/60" aria-hidden="true"></span>
+                Disponible
+              </span>
+            </div>
+            <h4 class="font-display text-xl font-semibold mt-6">Bocaditos del Corazón</h4>
+            <p class="mt-1 text-soft text-sm max-w-xs">Las primeras comidas reales de tu bebé, de los 6 a los 24 meses.</p>
+          </div>
+
+          <!-- Libro 2 -->
+          <div class="flex flex-col items-center text-center" data-reveal data-reveal-delay="2">
+            <div class="book-cover book-cover--lavender w-full max-w-[230px]">
+              <div>
+                <p class="cover-brand">La Biblioteca de Anmerys</p>
+                <p class="cover-n">Libro II</p>
+              </div>
+              <div>
+                <h3 class="cover-title">Alimentación <em>para niños</em> neurodivergentes</h3>
+                <p class="cover-sub">Selectividad, textura, rutinas</p>
+              </div>
+              <span class="cover-decor" aria-hidden="true">II</span>
+              <span class="cover-badge cover-badge--soon">Próximamente</span>
+            </div>
+            <h4 class="font-display text-xl font-semibold mt-6">Alimentación para niños neurodivergentes</h4>
+            <p class="mt-1 text-soft text-sm max-w-xs">Menús pensados para TEA, TDAH e hipersensibilidades sensoriales.</p>
+          </div>
+
+          <!-- Libro 3 -->
+          <div class="flex flex-col items-center text-center" data-reveal data-reveal-delay="3">
+            <div class="book-cover book-cover--mint w-full max-w-[230px]">
+              <div>
+                <p class="cover-brand">La Biblioteca de Anmerys</p>
+                <p class="cover-n">Libro III</p>
+              </div>
+              <div>
+                <h3 class="cover-title">Recetas <em>para</em> congelar</h3>
+                <p class="cover-sub">Batch cooking familiar</p>
+              </div>
+              <span class="cover-decor" aria-hidden="true">III</span>
+              <span class="cover-badge cover-badge--soon">Próximamente</span>
+            </div>
+            <h4 class="font-display text-xl font-semibold mt-6">Recetas para congelar</h4>
+            <p class="mt-1 text-soft text-sm max-w-xs">Prepara una vez, alimenta a tus hijos toda la semana.</p>
+          </div>
+        </div>
+
+        <p class="mt-14 text-center font-display text-xl sm:text-2xl italic text-soft" data-reveal>
+          Y seguimos sumando títulos. <a href="#planes" class="not-italic text-peach-dark font-semibold underline underline-offset-4 decoration-peach/50 hover:decoration-peach-dark">Suscríbete</a> y recíbelos todos.
+        </p>
+      </div>
+    </section>
+
+    <!-- =============== MIRA ADENTRO =============== -->
+    <section id="adentro" class="py-20 sm:py-28 relative bg-cream/70">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+
+          <div class="lg:col-span-7 order-2 lg:order-1" data-reveal data-reveal-delay="1">
+            <div class="device mx-auto max-w-[380px]">
+              <div class="device-screen">
+                <div class="recipe-header">
+                  <p class="eyebrow text-peach-dark">Libro I · Receta 47</p>
+                  <h3 class="recipe-title mt-2">Puré tibio de <em>zanahoria, lenteja y comino</em></h3>
+                  <div class="recipe-badges">
+                    <span class="r-badge r-badge--age">9–12 meses</span>
+                    <span class="r-badge r-badge--tex">puré con grumos</span>
+                    <span class="r-badge r-badge--al">sin alérgenos</span>
+                  </div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1576021182211-9ea8dced3690?w=800&q=80&auto=format&fit=crop" alt="Puré de zanahoria y lentejas" class="recipe-photo" loading="lazy"/>
+                <div class="recipe-meta">
+                  <div><strong>18 min</strong><span>Total</span></div>
+                  <div><strong>5 ingredientes</strong><span>Simples</span></div>
+                  <div><strong>3 porciones</strong><span>De bebé</span></div>
+                </div>
+                <div class="recipe-steps">
+                  <div class="recipe-step"><span class="recipe-step-num">1</span><span>Sofríe media cebolla a fuego bajo hasta traslucida, sin dorar.</span></div>
+                  <div class="recipe-step"><span class="recipe-step-num">2</span><span>Agrega 1 zanahoria en cubos y ½ taza de lentejas enjuagadas.</span></div>
+                  <div class="recipe-step"><span class="recipe-step-num">3</span><span>Cubre con caldo sin sal, pizca de comino, 15 min a fuego medio.</span></div>
+                  <div class="recipe-step"><span class="recipe-step-num">4</span><span>Tritura dejando algunos grumos para estimular la masticación.</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 order-1 lg:order-2" data-reveal>
+            <p class="eyebrow">Mira adentro</p>
+            <h2 class="display-lg font-display font-semibold mt-3">
+              Así es <span class="accent-word">cada</span> receta.
+            </h2>
+            <p class="mt-5 text-soft text-lg leading-relaxed">
+              Cada página está pensada para una mamá cansada al final del día: <strong>clara, visual y rápida</strong>. Sabes exactamente qué edad, qué textura, qué alérgenos y cuánto tarda.
+            </p>
+            <ul class="mt-7 space-y-3 text-[15px] text-ink/85 max-w-md">
+              <li class="check-bullet flex gap-3">Etiquetas por edad, textura y alérgenos</li>
+              <li class="check-bullet flex gap-3">Tiempo real de preparación y porciones</li>
+              <li class="check-bullet flex gap-3">Pasos numerados, sin lenguaje técnico</li>
+              <li class="check-bullet flex gap-3">Variaciones para adaptar a ingredientes locales</li>
+              <li class="check-bullet flex gap-3">Índice por ingrediente y por semana</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -696,7 +954,6 @@
               Cocinas lo mismo cada semana porque ya no sabes qué inventar.
             </p>
           </article>
-
           <article class="bg-butter-light/70 rounded-[26px] p-7 sm:p-8 shadow-card md:mt-12" data-reveal data-reveal-delay="2">
             <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center shadow-soft">
               <i data-lucide="alert-circle" class="w-5 h-5 text-peach-dark" aria-hidden="true"></i>
@@ -705,7 +962,6 @@
               Te da miedo introducir un alimento nuevo. ¿Y si es alérgico?
             </p>
           </article>
-
           <article class="bg-mint/60 rounded-[26px] p-7 sm:p-8 shadow-card md:mt-4" data-reveal data-reveal-delay="3">
             <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center shadow-soft">
               <i data-lucide="shopping-cart" class="w-5 h-5 text-peach-dark" aria-hidden="true"></i>
@@ -731,11 +987,10 @@
           <h2 class="display-lg font-display font-semibold mt-3">
             Historias reales de bebés que <span class="accent-word">disfrutan</span> comer.
           </h2>
-          <p class="mt-4 text-soft text-lg">Fotos que nos envían las familias que ya cocinan con <em>Bocaditos</em>.</p>
+          <p class="mt-4 text-soft text-lg">Fotos que nos envían las familias que ya cocinan con la biblioteca.</p>
         </div>
 
         <div class="mt-14 sm:mt-20 scrap" data-reveal>
-          <!-- GALLERY_IMG -->
           <figure class="scrap-photo sp-a">
             <div class="sp-frame"><img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=700&q=80&auto=format&fit=crop" alt="Bebé sonriente con bigote de puré" loading="lazy"/></div>
             <p class="cap">"la favorita de Emi"</p>
@@ -761,116 +1016,57 @@
             <p class="cap">mesa del domingo</p>
           </figure>
         </div>
-
-        <div class="mt-14 sm:mt-20 grid grid-cols-3 gap-4 sm:gap-8 max-w-3xl mx-auto" data-reveal>
-          <div class="text-center bg-cream/80 backdrop-blur rounded-[22px] p-5 sm:p-6 shadow-soft">
-            <p class="font-display text-3xl sm:text-4xl font-semibold text-peach-dark">+5.000</p>
-            <p class="mt-1 text-xs sm:text-sm text-soft font-medium">Mamás activas</p>
-          </div>
-          <div class="text-center bg-cream/80 backdrop-blur rounded-[22px] p-5 sm:p-6 shadow-soft">
-            <p class="font-display text-3xl sm:text-4xl font-semibold text-peach-dark">120</p>
-            <p class="mt-1 text-xs sm:text-sm text-soft font-medium">Recetas nutritivas</p>
-          </div>
-          <div class="text-center bg-cream/80 backdrop-blur rounded-[22px] p-5 sm:p-6 shadow-soft">
-            <p class="font-display text-3xl sm:text-4xl font-semibold text-peach-dark">4.8<span class="text-xl">/5</span></p>
-            <p class="mt-1 text-xs sm:text-sm text-soft font-medium">Valoración media</p>
-          </div>
-        </div>
       </div>
     </section>
 
-    <!-- =============== BENTO (product reveal) =============== -->
-    <section id="incluye" class="py-20 sm:py-28 relative">
-      <div class="max-w-6xl mx-auto px-5 sm:px-8">
-        <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-end mb-12 sm:mb-16">
-          <div data-reveal>
-            <p class="eyebrow">Qué incluye</p>
-            <h2 class="display-lg font-display font-semibold mt-3">
-              Todo lo que necesitas.<br/>
-              <span class="accent-word">Nada</span> de relleno.
-            </h2>
-          </div>
-          <p class="text-soft text-lg leading-relaxed md:pb-3" data-reveal data-reveal-delay="1">
-            Pensado para que lo sigas a tu ritmo, con ingredientes que ya tienes en casa. Acceso de por vida y actualizaciones gratis.
-          </p>
-        </div>
+    <!-- =============== LEAD MAGNET =============== -->
+    <section id="muestra" class="py-20 sm:py-28 relative">
+      <div class="max-w-4xl mx-auto px-5 sm:px-8">
+        <div class="relative rounded-[32px] overflow-hidden border border-ink/10 bg-cream/85 backdrop-blur shadow-hero" data-reveal>
+          <div class="absolute -top-20 -right-16 w-72 h-72 rounded-full bg-butter/50 blur-3xl"></div>
+          <div class="absolute -bottom-24 -left-16 w-72 h-72 rounded-full bg-mint/50 blur-3xl"></div>
 
-        <div class="bento">
-          <!-- Big card: 120 recetas por edad -->
-          <article class="bento-item b-big bg-peach-light/70" data-reveal data-reveal-delay="1">
-            <span class="icon-pill">
-              <i data-lucide="book-heart" class="w-5 h-5" aria-hidden="true"></i>
-            </span>
-            <h3 class="font-display text-2xl sm:text-3xl font-semibold mt-5 leading-tight">
-              120 recetas, organizadas por la edad de tu bebé
-            </h3>
-            <p class="mt-3 text-ink/75 leading-relaxed max-w-lg">
-              Cada receta indica texturas, porciones y alérgenos. Así no te vuelves loca adivinando si ya puede comerlo.
-            </p>
-            <div class="mt-6 flex flex-wrap gap-2.5">
-              <span class="age-chip"><span class="num">40</span><span class="lbl">6–8 meses</span></span>
-              <span class="age-chip"><span class="num">40</span><span class="lbl">9–12 meses</span></span>
-              <span class="age-chip"><span class="num">40</span><span class="lbl">12–24 meses</span></span>
+          <div class="relative px-6 py-12 sm:px-12 sm:py-16 grid md:grid-cols-2 gap-10 items-center">
+            <div>
+              <p class="eyebrow">Pruébala gratis</p>
+              <h2 class="display-lg font-display font-semibold mt-3">
+                3 recetas para <span class="accent-word">esta</span> semana.
+              </h2>
+              <p class="mt-4 text-soft leading-relaxed">
+                Déjame tu email y te envío 3 recetas favoritas del primer libro. Sin compromiso, sin spam. Si no te acomodan, te das de baja en un click.
+              </p>
             </div>
-          </article>
 
-          <!-- Photo card -->
-          <article class="bento-item b-photo p-0 overflow-hidden relative" data-reveal data-reveal-delay="2">
-            <img src="https://images.unsplash.com/photo-1576021182211-9ea8dced3690?w=800&q=80&auto=format&fit=crop" alt="Tazones de comida colorida para bebé" class="absolute inset-0 w-full h-full object-cover" loading="lazy"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-ink/55 via-ink/0 to-transparent"></div>
-            <p class="relative font-hand text-white text-2xl self-end mt-auto">menos ensayo-y-error,<br/>más sonrisas.</p>
-          </article>
-
-          <!-- Medium: texturas -->
-          <article class="bento-item b-med bg-mint/50" data-reveal data-reveal-delay="2">
-            <span class="icon-pill">
-              <i data-lucide="waves" class="w-5 h-5" aria-hidden="true"></i>
-            </span>
-            <h3 class="font-display text-xl font-semibold mt-4">Texturas progresivas</h3>
-            <p class="mt-2 text-ink/70 text-[15px] leading-relaxed">Papilla → puré con grumos → trozos. Siempre acorde a la etapa.</p>
-          </article>
-
-          <!-- Medium: alérgenos -->
-          <article class="bento-item b-med bg-butter-light/70" data-reveal data-reveal-delay="3">
-            <span class="icon-pill">
-              <i data-lucide="shield-check" class="w-5 h-5" aria-hidden="true"></i>
-            </span>
-            <h3 class="font-display text-xl font-semibold mt-4">Guía de alérgenos</h3>
-            <p class="mt-2 text-ink/70 text-[15px] leading-relaxed">Cómo y cuándo introducir huevo, gluten, lácteos, frutos secos. Con calma.</p>
-          </article>
-
-          <!-- Small: planner -->
-          <article class="bento-item b-small bg-lavender/60" data-reveal data-reveal-delay="3">
-            <span class="icon-pill">
-              <i data-lucide="calendar-days" class="w-5 h-5" aria-hidden="true"></i>
-            </span>
-            <h3 class="font-display text-lg font-semibold mt-3">Planificador semanal</h3>
-            <p class="mt-1 text-ink/70 text-sm leading-relaxed">Imprimible o digital.</p>
-          </article>
-
-          <!-- Small: shopping list -->
-          <article class="bento-item b-small bg-blush/50" data-reveal data-reveal-delay="4">
-            <span class="icon-pill">
-              <i data-lucide="list-checks" class="w-5 h-5" aria-hidden="true"></i>
-            </span>
-            <h3 class="font-display text-lg font-semibold mt-3">Lista de compras</h3>
-            <p class="mt-1 text-ink/70 text-sm leading-relaxed">Se genera sola desde tu semana.</p>
-          </article>
-
-          <!-- Small: search -->
-          <article class="bento-item b-small bg-sage-light/60" data-reveal data-reveal-delay="4">
-            <span class="icon-pill">
-              <i data-lucide="search" class="w-5 h-5" aria-hidden="true"></i>
-            </span>
-            <h3 class="font-display text-lg font-semibold mt-3">Busca por ingrediente</h3>
-            <p class="mt-1 text-ink/70 text-sm leading-relaxed">"Tengo palta y pollo..."</p>
-          </article>
+            <!--
+              MAILERLITE_ACTION
+              -----------------
+              Reemplaza action por la URL de tu form en Mailerlite / Beehiiv / MailChimp.
+              El JS al final del archivo muestra una confirmación al enviar.
+            -->
+            <form class="lead-form flex-col" id="leadForm" action="#mailerlite-action" method="POST" novalidate>
+              <div class="w-full">
+                <label for="leadName" class="sr-only">Nombre</label>
+                <input type="text" id="leadName" name="name" placeholder="Tu nombre" class="lead-input w-full" required />
+              </div>
+              <div class="w-full mt-2.5">
+                <label for="leadEmail" class="sr-only">Email</label>
+                <input type="email" id="leadEmail" name="email" placeholder="tu@email.com" class="lead-input w-full" required />
+              </div>
+              <button type="submit" class="btn-primary w-full mt-3">
+                Enviarme las 3 recetas <span aria-hidden="true">→</span>
+              </button>
+              <p id="leadSuccess" class="hidden mt-3 text-sage-dark text-sm font-medium" role="status">
+                ¡Listo! Revisa tu email en unos minutos.
+              </p>
+              <p class="mt-3 text-xs text-soft">Nunca compartimos tu email. Cancelas cuando quieras.</p>
+            </form>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- =============== TIMELINE (how it works) =============== -->
-    <section id="muestra" class="py-20 sm:py-28 relative bg-cream/70">
+    <!-- =============== TIMELINE =============== -->
+    <section class="py-20 sm:py-28 relative">
       <div class="max-w-5xl mx-auto px-5 sm:px-8">
         <div class="text-center max-w-2xl mx-auto" data-reveal>
           <p class="eyebrow">Así de simple</p>
@@ -887,18 +1083,18 @@
           <div class="timeline-grid relative">
             <article class="t-step" data-reveal data-reveal-delay="1">
               <span class="t-num">1</span>
-              <h3 class="font-display text-xl font-semibold mt-5">Eliges tu plan y pagas por WhatsApp</h3>
-              <p class="mt-2 text-soft text-[15px] leading-relaxed">Te guiamos paso a paso, en minutos. Sin formularios largos.</p>
+              <h3 class="font-display text-xl font-semibold mt-5">Eliges tu plan en Hotmart</h3>
+              <p class="mt-2 text-soft text-[15px] leading-relaxed">Pago seguro. Suscripción mensual o libro único.</p>
             </article>
             <article class="t-step" data-reveal data-reveal-delay="2">
               <span class="t-num">2</span>
-              <h3 class="font-display text-xl font-semibold mt-5">Recibes tu acceso al instante</h3>
-              <p class="mt-2 text-soft text-[15px] leading-relaxed">Celular, tablet o computador. Sin apps que descargar.</p>
+              <h3 class="font-display text-xl font-semibold mt-5">Recibes acceso al instante</h3>
+              <p class="mt-2 text-soft text-[15px] leading-relaxed">Email con tu usuario. Entras desde celular, tablet o computador.</p>
             </article>
             <article class="t-step" data-reveal data-reveal-delay="3">
               <span class="t-num">3</span>
               <h3 class="font-display text-xl font-semibold mt-5">Cocinas tranquila</h3>
-              <p class="mt-2 text-soft text-[15px] leading-relaxed">Abres la receta del día y listo. Cada domingo arma tu semana.</p>
+              <p class="mt-2 text-soft text-[15px] leading-relaxed">Cada domingo armas la semana. Cada mes llega un nuevo libro.</p>
             </article>
           </div>
         </div>
@@ -911,92 +1107,120 @@
         <div class="text-center max-w-2xl mx-auto" data-reveal>
           <p class="eyebrow">Planes</p>
           <h2 class="display-lg font-display font-semibold mt-3">
-            Elige cómo quieres que te <span class="accent-word">acompañemos</span>.
+            Elige cómo quieres <span class="accent-word">acompañarte</span>.
           </h2>
-          <p class="mt-4 text-soft text-lg">Pago único. Sin renovaciones automáticas. Cancelas cuando quieras.</p>
+          <p class="mt-4 text-soft text-lg">Suscripción mensual o compra individual. Tú decides.</p>
         </div>
 
         <!-- Mobile plan toggle -->
         <div class="mt-10 md:hidden flex items-center gap-2 bg-card p-1.5 rounded-full" role="tablist" aria-label="Ver planes">
-          <button type="button" class="plan-pill flex-1 text-sm font-medium px-3 py-2 rounded-full text-ink transition-colors" aria-pressed="false" data-plan="solo">Ebook</button>
-          <button type="button" class="plan-pill flex-1 text-sm font-medium px-3 py-2 rounded-full text-ink transition-colors" aria-pressed="true" data-plan="combo">Combo</button>
-          <button type="button" class="plan-pill flex-1 text-sm font-medium px-3 py-2 rounded-full text-ink transition-colors" aria-pressed="false" data-plan="anual">Anual</button>
+          <button type="button" class="plan-pill flex-1 text-sm font-medium px-3 py-2 rounded-full text-ink transition-colors" aria-pressed="true" data-plan="sub">Suscripción</button>
+          <button type="button" class="plan-pill flex-1 text-sm font-medium px-3 py-2 rounded-full text-ink transition-colors" aria-pressed="false" data-plan="book">Libro único</button>
         </div>
 
         <!-- PRECIOS -->
-        <div class="mt-10 sm:mt-16 grid md:grid-cols-3 gap-6 items-stretch">
+        <div class="mt-10 sm:mt-16 grid md:grid-cols-2 gap-6 max-w-4xl mx-auto items-stretch">
 
-          <!-- Plan: Solo Ebook -->
-          <article class="plan-card" data-plan="solo" data-reveal data-reveal-delay="1">
-            <div class="flex items-center justify-between">
-              <h3 class="font-display text-xl font-semibold">Solo Ebook</h3>
-              <span class="eyebrow" style="letter-spacing:.1em">Para empezar</span>
-            </div>
-            <p class="mt-1 text-soft text-sm">Ideal si solo quieres las recetas.</p>
-            <div class="mt-6">
-              <span class="font-display text-4xl font-semibold" data-price="9990">CLP $9.990</span>
-              <p class="text-soft text-sm mt-1">Pago único · acceso de por vida</p>
-            </div>
-            <ul class="mt-7 space-y-2.5 text-[15px] leading-snug text-ink/85">
-              <li class="check-bullet flex gap-3">Ebook con las 120 recetas</li>
-              <li class="check-bullet flex gap-3">Guía de alérgenos</li>
-              <li class="check-bullet flex gap-3">Actualizaciones gratuitas</li>
-              <li class="check-bullet flex gap-3">Formato PDF descargable</li>
-            </ul>
-            <a href="#" data-wa="solo" class="btn-secondary mt-auto pt-7 mt-7 w-full">Llevar el ebook</a>
-          </article>
-
-          <!-- Plan: Combo (featured) -->
-          <article class="plan-card plan-featured is-active" data-plan="combo" data-reveal data-reveal-delay="2">
+          <!-- Suscripción (featured) -->
+          <article class="plan-card plan-featured is-active" data-plan="sub" data-reveal data-reveal-delay="1">
             <span class="pulse-badge absolute -top-3.5 left-1/2 bg-peach-dark text-cream text-[0.68rem] font-semibold tracking-wider uppercase px-3.5 py-1.5 rounded-full">
-              Más elegido
+              Recomendado
             </span>
             <div class="flex items-center justify-between mt-2">
-              <h3 class="font-display text-xl font-semibold">Combo</h3>
-              <span class="eyebrow text-peach-dark" style="letter-spacing:.1em">Lo recomendado</span>
+              <h3 class="font-display text-2xl font-semibold">Suscripción mensual</h3>
+              <span class="eyebrow text-peach-dark" style="letter-spacing:.1em">Toda la biblioteca</span>
             </div>
-            <p class="mt-1 text-soft text-sm">Ebook + comunidad por 3 meses.</p>
+            <p class="mt-1 text-soft text-sm">Acceso a todos los libros actuales y futuros.</p>
+
             <div class="mt-6 flex items-baseline gap-2">
-              <span class="font-display text-5xl font-semibold text-peach-dark" data-price="14990">CLP $14.990</span>
+              <span class="font-display text-5xl font-semibold text-peach-dark" data-price="4990">$4.990</span>
+              <span class="text-soft font-medium">CLP / mes</span>
             </div>
-            <p class="text-soft text-sm mt-1">Pago único · sin renovación automática</p>
+            <p class="text-soft text-sm mt-1">Cancelas cuando quieras · al cancelar pierdes acceso</p>
+
             <ul class="mt-7 space-y-2.5 text-[15px] leading-snug text-ink/85">
-              <li class="check-bullet flex gap-3">Todo lo del plan Solo Ebook</li>
-              <li class="check-bullet flex gap-3">3 meses de suscripción Premium</li>
-              <li class="check-bullet flex gap-3">Biblioteca completa con videos cortos</li>
+              <li class="check-bullet flex gap-3"><span><strong>Todos los libros de la biblioteca</strong> (actuales y por venir)</span></li>
+              <li class="check-bullet flex gap-3">Nuevas recetas cada mes</li>
               <li class="check-bullet flex gap-3">Planificador semanal interactivo</li>
               <li class="check-bullet flex gap-3">Comunidad privada en WhatsApp</li>
+              <li class="check-bullet flex gap-3">Soporte directo con el equipo</li>
             </ul>
-            <a href="#" data-wa="combo" class="btn-primary mt-7 w-full">
-              Quiero el combo <span aria-hidden="true">→</span>
+
+            <a href="#" data-hotmart="sub" class="btn-primary mt-7 w-full">
+              Suscribirme por $4.990/mes <span aria-hidden="true">→</span>
             </a>
+            <p class="mt-3 text-center text-xs text-soft">Procesado por Hotmart · Tarjeta, débito o crédito</p>
           </article>
 
-          <!-- Plan: Anual Premium -->
-          <article class="plan-card" data-plan="anual" data-reveal data-reveal-delay="3">
+          <!-- Libro individual -->
+          <article class="plan-card" data-plan="book" data-reveal data-reveal-delay="2">
             <div class="flex items-center justify-between">
-              <h3 class="font-display text-xl font-semibold">Anual Premium</h3>
-              <span class="eyebrow" style="letter-spacing:.1em">Acompañada</span>
+              <h3 class="font-display text-2xl font-semibold">Libro individual</h3>
+              <span class="eyebrow" style="letter-spacing:.1em">Para siempre</span>
             </div>
-            <p class="mt-1 text-soft text-sm">Acompañamiento completo por 12 meses.</p>
-            <div class="mt-6">
-              <span class="font-display text-4xl font-semibold" data-price="39990">CLP $39.990</span>
-              <p class="text-soft text-sm mt-1">Pago único · 12 meses de acceso</p>
+            <p class="mt-1 text-soft text-sm">Solo <em>Bocaditos del Corazón</em>, sin suscripción.</p>
+
+            <div class="mt-6 flex items-baseline gap-2">
+              <span class="font-display text-5xl font-semibold" data-price="9990">$9.990</span>
+              <span class="text-soft font-medium">CLP</span>
             </div>
+            <p class="text-soft text-sm mt-1">Pago único · tuyo para siempre</p>
+
             <ul class="mt-7 space-y-2.5 text-[15px] leading-snug text-ink/85">
-              <li class="check-bullet flex gap-3">Todo lo del Combo</li>
-              <li class="check-bullet flex gap-3">12 meses de Premium</li>
-              <li class="check-bullet flex gap-3">Nuevas recetas cada mes</li>
-              <li class="check-bullet flex gap-3">Sesiones en vivo con nutricionistas</li>
-              <li class="check-bullet flex gap-3">Soporte prioritario por WhatsApp</li>
+              <li class="check-bullet flex gap-3">Ebook completo: 120 recetas (6–24m)</li>
+              <li class="check-bullet flex gap-3">Guía de alérgenos</li>
+              <li class="check-bullet flex gap-3">Actualizaciones del libro gratuitas</li>
+              <li class="check-bullet flex gap-3">Formato PDF descargable</li>
+              <li class="check-bullet flex gap-3 text-soft"><s>Libros futuros de la biblioteca</s></li>
             </ul>
-            <a href="#" data-wa="anual" class="btn-secondary mt-auto pt-7 mt-7 w-full" style="background:#A8C9A0; color:#3D3630; border-color:transparent;">Acompáñame un año</a>
+
+            <a href="#" data-hotmart="book" class="btn-secondary mt-auto pt-7 mt-7 w-full">
+              Comprar el libro
+            </a>
+            <p class="mt-3 text-center text-xs text-soft">Procesado por Hotmart · Pago único</p>
           </article>
+        </div>
+
+        <!-- Comparativa -->
+        <div class="mt-16 max-w-3xl mx-auto" data-reveal>
+          <h3 class="font-display text-xl font-semibold text-center mb-4">¿No sabes cuál elegir?</h3>
+          <div class="rounded-[22px] overflow-hidden border border-ink/10 bg-cream/70">
+            <div class="compare-row font-semibold" style="background: #FDE4D8;">
+              <div>Qué incluye</div>
+              <div class="text-center">Suscripción</div>
+              <div class="text-center">Libro único</div>
+            </div>
+            <div class="compare-row">
+              <div>Bocaditos del Corazón</div>
+              <div class="text-center yes">✓</div>
+              <div class="text-center yes">✓</div>
+            </div>
+            <div class="compare-row">
+              <div>Libros futuros (saga)</div>
+              <div class="text-center yes">✓</div>
+              <div class="text-center no">—</div>
+            </div>
+            <div class="compare-row">
+              <div>Comunidad y soporte</div>
+              <div class="text-center yes">✓</div>
+              <div class="text-center no">—</div>
+            </div>
+            <div class="compare-row">
+              <div>Actualizaciones constantes</div>
+              <div class="text-center yes">✓</div>
+              <div class="text-center yes">✓</div>
+            </div>
+            <div class="compare-row">
+              <div>Acceso al cancelar</div>
+              <div class="text-center no">se corta</div>
+              <div class="text-center yes">permanente</div>
+            </div>
+          </div>
         </div>
 
         <p class="mt-12 text-center text-sm sm:text-base text-soft flex items-center justify-center gap-2">
           <i data-lucide="shield-check" class="w-4 h-4 text-sage-dark" aria-hidden="true"></i>
-          <span>Garantía de 7 días. Si no te sirve, te devolvemos tu dinero. Sin preguntas.</span>
+          <span>Garantía de 7 días. Si no te sirve, te devolvemos tu dinero por Hotmart.</span>
         </p>
       </div>
     </section>
@@ -1046,7 +1270,7 @@
           <article class="tcard flex flex-col md:mt-4" data-reveal data-reveal-delay="3">
             <span class="quote-mark" aria-hidden="true">"</span>
             <blockquote class="font-display text-[1.1rem] leading-snug text-ink italic">
-              Las recetas son simples y usan lo que ya tengo en la cocina. Mi bebé de 10 meses ya prueba texturas nuevas sin problema.
+              Me suscribí pensando en un libro y se me abrió toda una biblioteca. Por $4.990 al mes es imbatible.
             </blockquote>
             <div class="flex gap-1 text-butter mt-5" aria-label="5 de 5 estrellas"><span aria-hidden="true">★★★★★</span></div>
             <footer class="mt-4 flex items-center gap-3">
@@ -1067,28 +1291,65 @@
         <div class="text-center" data-reveal>
           <p class="eyebrow">¿Dudas?</p>
           <h2 class="display-lg font-display font-semibold mt-3">Te respondemos todo.</h2>
-          <p class="mt-4 text-soft">Si tienes otra, escríbenos por WhatsApp y te contestamos el mismo día.</p>
+          <p class="mt-4 text-soft">Si queda algo fuera, escríbenos al WhatsApp de soporte y te respondemos el mismo día.</p>
         </div>
 
         <div class="mt-12 space-y-3" id="faq-root">
+
           <details class="faq-item bg-cream/80 backdrop-blur rounded-[22px] border border-ink/10 open:bg-cream">
             <summary class="list-none cursor-pointer flex items-center justify-between gap-4 px-6 py-5" aria-expanded="false" aria-controls="faq-1">
-              <span class="font-display text-lg font-medium">¿Y si a mi bebé no le gustan las recetas?</span>
+              <span class="font-display text-lg font-medium">¿Cómo funciona la suscripción?</span>
               <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 flex-shrink-0 text-soft" aria-hidden="true"></i>
             </summary>
             <div class="faq-panel" id="faq-1">
               <p class="px-6 pb-6 text-[15px] leading-relaxed text-soft">
-                Todos los bebés son distintos y es normal. Cada receta incluye variaciones de sabor y textura para que pruebes diferentes combinaciones. Además, tienes 7 días de garantía: si no les acomoda, te devolvemos tu dinero.
+                Pagas <strong>CLP $4.990 al mes</strong> a través de Hotmart (tarjeta, débito o crédito). Accedes a toda la biblioteca — los libros publicados y los que se vayan sumando cada mes. Puedes cancelar en cualquier momento desde tu panel de Hotmart o escribiéndonos por WhatsApp.
               </p>
             </div>
           </details>
 
           <details class="faq-item bg-cream/80 backdrop-blur rounded-[22px] border border-ink/10 open:bg-cream">
             <summary class="list-none cursor-pointer flex items-center justify-between gap-4 px-6 py-5" aria-expanded="false" aria-controls="faq-2">
-              <span class="font-display text-lg font-medium">¿Necesito ingredientes especiales o caros?</span>
+              <span class="font-display text-lg font-medium">Si cancelo, ¿pierdo los libros?</span>
               <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 flex-shrink-0 text-soft" aria-hidden="true"></i>
             </summary>
             <div class="faq-panel" id="faq-2">
+              <p class="px-6 pb-6 text-[15px] leading-relaxed text-soft">
+                Sí. La suscripción es por <strong>acceso a la biblioteca</strong>, no por propiedad. Si cancelas, pierdes el acceso al cerrar el mes. Si quieres quedarte con un libro para siempre, puedes comprarlo individualmente ($9.990 por título).
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item bg-cream/80 backdrop-blur rounded-[22px] border border-ink/10 open:bg-cream">
+            <summary class="list-none cursor-pointer flex items-center justify-between gap-4 px-6 py-5" aria-expanded="false" aria-controls="faq-3">
+              <span class="font-display text-lg font-medium">¿Cuándo salen los próximos libros?</span>
+              <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 flex-shrink-0 text-soft" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-panel" id="faq-3">
+              <p class="px-6 pb-6 text-[15px] leading-relaxed text-soft">
+                Estamos trabajando en <em>Alimentación para niños neurodivergentes</em> y <em>Recetas para congelar</em>. Cuando te suscribes, te avisamos por email en cuanto se publican. También sumamos recetas y guías nuevas mes a mes dentro de los libros existentes.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item bg-cream/80 backdrop-blur rounded-[22px] border border-ink/10 open:bg-cream">
+            <summary class="list-none cursor-pointer flex items-center justify-between gap-4 px-6 py-5" aria-expanded="false" aria-controls="faq-4">
+              <span class="font-display text-lg font-medium">¿Y si a mi bebé no le gustan las recetas?</span>
+              <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 flex-shrink-0 text-soft" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-panel" id="faq-4">
+              <p class="px-6 pb-6 text-[15px] leading-relaxed text-soft">
+                Todos los bebés son distintos y es normal. Cada receta incluye variaciones de sabor y textura para que pruebes combinaciones. Si aún así no te acomoda, tienes <strong>7 días de garantía</strong>: te devolvemos el dinero por Hotmart, sin preguntas.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item bg-cream/80 backdrop-blur rounded-[22px] border border-ink/10 open:bg-cream">
+            <summary class="list-none cursor-pointer flex items-center justify-between gap-4 px-6 py-5" aria-expanded="false" aria-controls="faq-5">
+              <span class="font-display text-lg font-medium">¿Necesito ingredientes especiales o caros?</span>
+              <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 flex-shrink-0 text-soft" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-panel" id="faq-5">
               <p class="px-6 pb-6 text-[15px] leading-relaxed text-soft">
                 No. Las recetas están pensadas con ingredientes que encuentras en cualquier supermercado o feria. La mayoría usa menos de 6 ingredientes y aprovecha cosas que ya tienes en casa.
               </p>
@@ -1096,64 +1357,29 @@
           </details>
 
           <details class="faq-item bg-cream/80 backdrop-blur rounded-[22px] border border-ink/10 open:bg-cream">
-            <summary class="list-none cursor-pointer flex items-center justify-between gap-4 px-6 py-5" aria-expanded="false" aria-controls="faq-3">
-              <span class="font-display text-lg font-medium">¿Sirve si mi bebé tiene alergias o intolerancias?</span>
-              <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 flex-shrink-0 text-soft" aria-hidden="true"></i>
-            </summary>
-            <div class="faq-panel" id="faq-3">
-              <p class="px-6 pb-6 text-[15px] leading-relaxed text-soft">
-                Sí. Cada receta indica los alérgenos comunes (gluten, lácteos, huevo, frutos secos) y sugiere reemplazos seguros. Incluimos además una guía de introducción de alérgenos paso a paso, respaldada por nutricionistas pediátricos.
-              </p>
-            </div>
-          </details>
-
-          <details class="faq-item bg-cream/80 backdrop-blur rounded-[22px] border border-ink/10 open:bg-cream">
-            <summary class="list-none cursor-pointer flex items-center justify-between gap-4 px-6 py-5" aria-expanded="false" aria-controls="faq-4">
-              <span class="font-display text-lg font-medium">¿Cómo recibo el ebook después de pagar?</span>
-              <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 flex-shrink-0 text-soft" aria-hidden="true"></i>
-            </summary>
-            <div class="faq-panel" id="faq-4">
-              <p class="px-6 pb-6 text-[15px] leading-relaxed text-soft">
-                Al instante. Apenas confirmamos tu pago por WhatsApp, recibes el acceso al ebook y al área de miembros (si elegiste Combo o Anual). Puedes descargarlo en tu celular, tablet o computador.
-              </p>
-            </div>
-          </details>
-
-          <details class="faq-item bg-cream/80 backdrop-blur rounded-[22px] border border-ink/10 open:bg-cream">
-            <summary class="list-none cursor-pointer flex items-center justify-between gap-4 px-6 py-5" aria-expanded="false" aria-controls="faq-5">
-              <span class="font-display text-lg font-medium">¿Puedo cancelar la suscripción cuando quiera?</span>
-              <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 flex-shrink-0 text-soft" aria-hidden="true"></i>
-            </summary>
-            <div class="faq-panel" id="faq-5">
-              <p class="px-6 pb-6 text-[15px] leading-relaxed text-soft">
-                Por supuesto. Si tomaste el Combo o el plan Anual, puedes cancelar cuando quieras desde tu cuenta o escribiéndonos por WhatsApp. No hay letra chica ni renovaciones automáticas.
-              </p>
-            </div>
-          </details>
-
-          <details class="faq-item bg-cream/80 backdrop-blur rounded-[22px] border border-ink/10 open:bg-cream">
             <summary class="list-none cursor-pointer flex items-center justify-between gap-4 px-6 py-5" aria-expanded="false" aria-controls="faq-6">
-              <span class="font-display text-lg font-medium">¿Las recetas son aptas para BLW?</span>
+              <span class="font-display text-lg font-medium">¿Sirve si mi bebé tiene alergias?</span>
               <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 flex-shrink-0 text-soft" aria-hidden="true"></i>
             </summary>
             <div class="faq-panel" id="faq-6">
               <p class="px-6 pb-6 text-[15px] leading-relaxed text-soft">
-                Muchas sí. A partir de los 9 meses incluimos recetas específicas de baby-led weaning con trozos seguros por edad. También tienes la versión en papilla de cada una, por si prefieres combinar métodos.
+                Sí. Cada receta indica los alérgenos comunes (gluten, lácteos, huevo, frutos secos) y sugiere reemplazos seguros. Incluimos una guía de introducción de alérgenos paso a paso, respaldada por nutricionistas pediátricos.
               </p>
             </div>
           </details>
 
           <details class="faq-item bg-cream/80 backdrop-blur rounded-[22px] border border-ink/10 open:bg-cream">
             <summary class="list-none cursor-pointer flex items-center justify-between gap-4 px-6 py-5" aria-expanded="false" aria-controls="faq-7">
-              <span class="font-display text-lg font-medium">¿Quién está detrás de Bocaditos del Corazón?</span>
+              <span class="font-display text-lg font-medium">¿Quién es Anmerys?</span>
               <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 flex-shrink-0 text-soft" aria-hidden="true"></i>
             </summary>
             <div class="faq-panel" id="faq-7">
               <p class="px-6 pb-6 text-[15px] leading-relaxed text-soft">
-                Somos un equipo pequeño de mamás, nutricionistas pediátricos y cocineros. Nos unimos porque nos cansamos de buscar recetas confiables en foros dispersos. Queríamos algo claro, seguro y hecho con cariño para familias reales.
+                Ingeniera civil venezolana radicada en Chile, con más de 30 años en la industria de la construcción — responsable de obras como el edificio más alto de Maracay. Madre de dos profesionales, emprendedora gastronómica, trabaja junto a nutricionistas pediátricos para desarrollar cada libro de la biblioteca.
               </p>
             </div>
           </details>
+
         </div>
       </div>
     </section>
@@ -1168,24 +1394,29 @@
 
           <div class="relative px-6 py-16 sm:px-12 sm:py-20 text-center">
             <span class="inline-block bg-white/70 backdrop-blur border border-white/60 text-ink text-xs font-semibold tracking-wider uppercase px-3 py-1.5 rounded-full">
-              Empieza hoy
+              Abre la biblioteca hoy
             </span>
             <h2 class="mt-6 display-lg font-display font-semibold leading-tight">
-              Dale comida real,<br/>
-              a <span class="accent-word">tu</span> ritmo.
+              Alimenta con <span class="accent-word">bases.</span><br/>
+              No con improvisación.
             </h2>
             <p class="mt-5 text-ink/80 text-lg max-w-xl mx-auto">
-              Ebook + 3 meses de comunidad y planificador semanal. <strong class="font-semibold" data-price="14990">CLP $14.990</strong>, pago único.
+              Suscríbete por <strong>CLP $4.990/mes</strong> y accede a toda la biblioteca — hoy y a medida que crece.
             </p>
-            <a href="#" data-wa="combo" class="btn-primary mt-8 text-base px-8 py-4">
-              Quiero el combo <span aria-hidden="true">→</span>
-            </a>
+            <div class="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+              <a href="#" data-hotmart="sub" class="btn-primary text-base px-8 py-4">
+                Suscribirme por $4.990/mes <span aria-hidden="true">→</span>
+              </a>
+              <a href="#" data-hotmart="book" class="btn-secondary text-base px-7 py-4">
+                Solo el primer libro · $9.990
+              </a>
+            </div>
             <p class="mt-6 text-sm text-ink/70 flex items-center justify-center gap-2">
               <i data-lucide="shield-check" class="w-4 h-4" aria-hidden="true"></i>
-              <span>Garantía de 7 días. Si no te sirve, te devolvemos tu dinero.</span>
+              <span>Garantía de 7 días. Pago seguro por Hotmart.</span>
             </p>
             <p class="mt-10 font-hand text-2xl text-ink/80">
-              Hecho en Chile, con cariño, para todas las mamás de LATAM.
+              Hecho en Chile, con cariño, para todas las familias de LATAM.
             </p>
           </div>
         </div>
@@ -1194,56 +1425,85 @@
   </main>
 
   <!-- =============== FOOTER =============== -->
-  <footer class="border-t border-ink/10 py-12 bg-cream/80 backdrop-blur">
-    <div class="max-w-6xl mx-auto px-5 sm:px-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+  <footer class="border-t border-ink/10 py-12 bg-cream/80 backdrop-blur mt-8">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 grid md:grid-cols-3 gap-8">
       <div>
-        <p class="flex items-center gap-2 font-display text-peach-dark text-lg font-semibold">
-          <svg class="w-6 h-6" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-            <path d="M16 27s-9-5.2-9-12.3A5.5 5.5 0 0 1 16 10.5a5.5 5.5 0 0 1 9 4.2C25 21.8 16 27 16 27z" fill="#F5A58F"/>
+        <a href="#top" class="brand-mark">
+          <svg class="w-7 h-7" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M4 8.5c3-1.5 6-1.5 9 0v16c-3-1.5-6-1.5-9 0V8.5z" fill="#F5A58F"/>
+            <path d="M28 8.5c-3-1.5-6-1.5-9 0v16c3-1.5 6-1.5 9 0V8.5z" fill="#F5A58F"/>
+            <path d="M13 8.5c1 0.5 2 0.5 3 0.5s2 0 3-0.5v16c-1 0.5-2 0.5-3 0.5s-2 0-3-0.5V8.5z" fill="#E8876E"/>
           </svg>
-          Bocaditos del Corazón
-        </p>
-        <p class="mt-3 text-sm text-soft">
-          Escríbenos: <a href="mailto:hola@bocaditosdelcorazon.cl" class="underline underline-offset-2 hover:text-ink">hola@bocaditosdelcorazon.cl</a>
-        </p>
-        <p class="mt-1 text-sm text-soft">
-          WhatsApp: <a href="#" data-wa="info" class="underline underline-offset-2 hover:text-ink">+56 9 1234 5678</a>
+          <span class="brand-mark-text text-lg font-semibold">La Biblioteca <em>de Anmerys</em></span>
+        </a>
+        <p class="mt-4 text-sm text-soft leading-relaxed max-w-xs">
+          Libros de alimentación infantil diseñados con la disciplina de una ingeniera y la ternura de una madre.
         </p>
       </div>
-      <nav class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-soft">
-        <a href="https://instagram.com/b2cflow" target="_blank" rel="noopener noreferrer" class="hover:text-ink">Instagram @b2cflow</a>
-        <a href="#" class="hover:text-ink">Términos</a>
-        <a href="#" class="hover:text-ink">Privacidad</a>
-      </nav>
+      <div>
+        <p class="eyebrow">Contacto</p>
+        <p class="mt-3 text-sm text-soft">
+          <a href="mailto:hola@bibliotecaanmerys.cl" class="underline underline-offset-2 hover:text-ink">hola@bibliotecaanmerys.cl</a>
+        </p>
+        <p class="mt-2 text-sm text-soft">
+          Soporte WhatsApp: <a href="#" data-wa="info" class="underline underline-offset-2 hover:text-ink">+56 9 1234 5678</a>
+        </p>
+      </div>
+      <div>
+        <p class="eyebrow">La marca</p>
+        <nav class="mt-3 flex flex-col gap-1.5 text-sm text-soft">
+          <a href="https://instagram.com/bibliotecaanmerys" target="_blank" rel="noopener noreferrer" class="hover:text-ink">Instagram</a>
+          <a href="#" class="hover:text-ink">Términos</a>
+          <a href="#" class="hover:text-ink">Privacidad</a>
+        </nav>
+      </div>
     </div>
-    <p class="max-w-6xl mx-auto px-5 sm:px-8 mt-6 text-xs text-soft">© 2026 B2C Flow SpA. Todos los derechos reservados.</p>
+    <p class="max-w-6xl mx-auto px-5 sm:px-8 mt-8 text-xs text-soft">© 2026 La Biblioteca de Anmerys · Todos los derechos reservados.</p>
   </footer>
+
+  <!-- Floating WhatsApp (support only) -->
+  <a href="#" data-wa="info" class="fab-whatsapp" aria-label="Soporte por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-1-2.2-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .2.2 2 3 4.7 4.1 2.7 1.1 2.7.7 3.2.7.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.2L2 22l4.9-1.5c1.5.8 3.2 1.3 5.1 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.7 0-3.3-.5-4.6-1.3l-.3-.2-3.3 1 1-3.2-.2-.3A8 8 0 1 1 20 12c0 4.4-3.6 8-8 8z"/>
+    </svg>
+    <span class="label">¿Dudas? Habla con soporte</span>
+  </a>
 
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>
-    // === WhatsApp links ===
+    /*
+      ============================================================
+      HOTMART_URLS — reemplaza por tus enlaces de checkout reales
+      ============================================================
+    */
+    const HOTMART_URLS = {
+      sub:  'https://pay.hotmart.com/XXXXXX?subscription=1', // suscripción mensual $4.990
+      book: 'https://pay.hotmart.com/YYYYYY',                // libro único $9.990
+    };
+
+    /* WhatsApp SOLO SOPORTE (no venta) */
     const WHATSAPP_NUMBER = '56912345678';
-    const PLAN_LABELS = {
-      solo:  'Solo Ebook (CLP $9.990)',
-      combo: 'Combo (CLP $14.990)',
-      anual: 'Anual Premium (CLP $39.990)',
-      info:  'ebook Bocaditos del Corazón',
-    };
-    const buildWaLink = (plan) => {
-      const label = PLAN_LABELS[plan] || PLAN_LABELS.info;
-      const text = `Hola, me interesa el ${label}`;
-      return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
-    };
-    document.querySelectorAll('a[data-wa]').forEach((el) => {
-      el.href = buildWaLink(el.getAttribute('data-wa'));
+
+    // Wire Hotmart links
+    document.querySelectorAll('a[data-hotmart]').forEach((el) => {
+      const key = el.getAttribute('data-hotmart');
+      el.href = HOTMART_URLS[key] || '#';
       el.target = '_blank';
       el.rel = 'noopener noreferrer';
     });
 
-    // === Lucide icons ===
+    // Wire WhatsApp support link
+    document.querySelectorAll('a[data-wa]').forEach((el) => {
+      const text = 'Hola, tengo una duda sobre La Biblioteca de Anmerys';
+      el.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+      el.target = '_blank';
+      el.rel = 'noopener noreferrer';
+    });
+
+    // Lucide icons
     if (window.lucide?.createIcons) window.lucide.createIcons();
 
-    // === Sticky header ===
+    // Sticky header
     const header = document.querySelector('.site-header');
     const onScroll = () => {
       if (window.scrollY > 8) header.classList.add('scrolled');
@@ -1252,7 +1512,7 @@
     document.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
-    // === FAQ accordion (one open + aria) ===
+    // FAQ accordion
     const faqRoot = document.getElementById('faq-root');
     if (faqRoot) {
       const items = faqRoot.querySelectorAll('.faq-item');
@@ -1265,7 +1525,7 @@
       });
     }
 
-    // === Scroll reveal ===
+    // Scroll reveal
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const revealEls = document.querySelectorAll('[data-reveal]');
     if (prefersReduced || !('IntersectionObserver' in window)) {
@@ -1282,7 +1542,7 @@
       revealEls.forEach((el) => io.observe(el));
     }
 
-    // === Plan toggle (mobile) ===
+    // Plan toggle (mobile)
     const pills = document.querySelectorAll('.plan-pill');
     const planCards = document.querySelectorAll('.plan-card');
     pills.forEach((pill) => {
@@ -1292,6 +1552,23 @@
         planCards.forEach((c) => c.classList.toggle('is-active', c.getAttribute('data-plan') === target));
       });
     });
+
+    // Lead form — handles submit with fake success state until Mailerlite is wired
+    const leadForm = document.getElementById('leadForm');
+    const leadSuccess = document.getElementById('leadSuccess');
+    if (leadForm) {
+      leadForm.addEventListener('submit', (e) => {
+        // Si aún no has configurado MAILERLITE_ACTION, prevenimos el envío y mostramos estado.
+        if (leadForm.getAttribute('action') === '#mailerlite-action') {
+          e.preventDefault();
+          const email = leadForm.querySelector('[name="email"]').value;
+          if (!email) return;
+          leadSuccess?.classList.remove('hidden');
+          leadForm.querySelector('button[type="submit"]').disabled = true;
+          // TODO: reemplaza action del form por el endpoint real; este bloque se puede eliminar.
+        }
+      });
+    }
   </script>
 </body>
 </html>
