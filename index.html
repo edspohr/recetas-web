@@ -19,22 +19,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="La Biblioteca de Anmerys — una biblioteca viva de libros de alimentación infantil, creada con la disciplina de una ingeniera y la ternura de una madre. Suscríbete por CLP $4.990/mes y accede a todos los libros." />
   <meta name="theme-color" content="#FFF8F2" />
-  <meta property="og:title" content="La Biblioteca de Anmerys — Alimenta a tu hijo con bases sólidas" />
-  <meta property="og:description" content="Recetas para bebés y niños diseñadas con la disciplina de una ingeniera. Biblioteca por suscripción CLP $4.990/mes o libro individual $9.990." />
+
+  <!-- ========= SEO CORE ========= -->
+  <title>La Biblioteca de Anmerys — Recetas de alimentación infantil para bebés y niños (Chile y LATAM)</title>
+  <meta name="description" content="La Biblioteca de Anmerys es una editorial digital de recetas y guías de alimentación infantil (6 meses a 12 años), creada por Anmerys, ingeniera civil venezolana, con revisión de nutricionistas pediátricos. Suscripción CLP $4.990/mes, plan anual $49.990, prueba 7 días por $990 o libro individual $9.990." />
+  <meta name="keywords" content="alimentación infantil, recetas para bebés, recetas 6 meses, BLW, baby led weaning, alimentación complementaria, recetas niños, Anmerys, biblioteca recetas, suscripción recetas Chile, alimentación niños neurodivergentes, batch cooking familiar" />
+  <meta name="author" content="Anmerys" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://bibliotecadeanmerys.cl/" />
+
+  <!-- ========= HREFLANG (expansión LATAM) ========= -->
+  <link rel="alternate" hreflang="es-CL" href="https://bibliotecadeanmerys.cl/" />
+  <link rel="alternate" hreflang="es-419" href="https://bibliotecadeanmerys.cl/" />
+  <link rel="alternate" hreflang="x-default" href="https://bibliotecadeanmerys.cl/" />
+
+  <!-- ========= OPEN GRAPH ========= -->
+  <meta property="og:site_name" content="La Biblioteca de Anmerys" />
+  <meta property="og:locale" content="es_CL" />
+  <meta property="og:locale:alternate" content="es_MX" />
+  <meta property="og:locale:alternate" content="es_CO" />
   <meta property="og:type" content="website" />
-  <title>La Biblioteca de Anmerys — Alimenta a tu hijo con bases sólidas</title>
+  <meta property="og:url" content="https://bibliotecadeanmerys.cl/" />
+  <meta property="og:title" content="La Biblioteca de Anmerys — Alimenta a tu hijo con bases sólidas" />
+  <meta property="og:description" content="Biblioteca viva de libros de alimentación infantil con revisión de nutricionistas pediátricos. Suscripción CLP $4.990/mes, plan anual, trial 7 días o libro individual." />
+  <meta property="og:image" content="https://bibliotecadeanmerys.cl/og-image.jpg" />
+  <meta property="og:image:alt" content="Portada de La Biblioteca de Anmerys: colección de libros de recetas para bebés y niños." />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- ========= TWITTER / X ========= -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="La Biblioteca de Anmerys — Recetas con rigor para bebés y niños" />
+  <meta name="twitter:description" content="Editorial digital de alimentación infantil creada por Anmerys, ingeniera civil. Suscripción CLP $4.990/mes." />
+  <meta name="twitter:image" content="https://bibliotecadeanmerys.cl/og-image.jpg" />
+  <meta name="twitter:image:alt" content="La Biblioteca de Anmerys." />
+
+  <!-- ========= FAVICON / MANIFEST (placeholders — reemplazar por archivos reales) ========= -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 
   <!--
     TRACKING_PLACEHOLDERS
     ---------------------
     Pega aquí tu Meta Pixel y Google Analytics 4 cuando los tengas.
 
-    <!-- Meta Pixel -->
+    [Meta Pixel]
     <script>!function(f,b,e,v,n,t,s){...fbq('init','PIXEL_ID');fbq('track','PageView');</script>
 
-    <!-- GA4 -->
+    [GA4]
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXX"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXX');</script>
   -->
@@ -343,6 +378,48 @@
       border: 1px solid rgba(61, 54, 48, 0.08);
     }
 
+    /* =========  MÉTODO EDITORIAL (7 PASOS) ========= */
+    .method-step {
+      position: relative;
+      background: #FFF8F2;
+      border: 1px solid rgba(61, 54, 48, 0.08);
+      border-radius: 20px;
+      padding: 1.75rem 1.5rem 1.5rem;
+      box-shadow: 0 2px 12px -4px rgba(61, 54, 48, 0.06);
+      transition: transform 0.3s cubic-bezier(.2,.7,.2,1), box-shadow 0.3s ease;
+    }
+    .method-step:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 32px -14px rgba(61, 54, 48, 0.18);
+    }
+    .method-step--wide { grid-column: span 1; }
+    @media (min-width: 1024px) {
+      .method-step--wide { grid-column: span 3; }
+    }
+    .method-num {
+      display: inline-block;
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #E8876E;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+    .method-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #3D3630;
+      margin: 0 0 0.5rem 0;
+      letter-spacing: -0.015em;
+    }
+    .method-desc {
+      color: #8B827B;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      margin: 0;
+    }
+
     /* =========  BOOK COVERS / LIBRARY  ========= */
     .book-cover {
       position: relative; aspect-ratio: 3/4.2;
@@ -476,10 +553,7 @@
       .plan-featured:hover { transform: translateY(-16px); }
     }
     .plan-pill[aria-pressed="true"] { background: #F5A58F; color: #FFF8F2; }
-    @media (max-width: 767px) {
-      .plan-card { display: none; }
-      .plan-card.is-active { display: flex; }
-    }
+    .annual-badge { left: 50%; transform: translateX(-50%); }
 
     /* Comparison table */
     .compare-row { display: grid; grid-template-columns: 1.2fr 0.8fr 0.8fr; padding: 0.8rem 1rem; border-radius: 12px; font-size: 0.9rem; }
@@ -571,6 +645,222 @@
       .marquee-track { animation: none !important; }
     }
   </style>
+
+  <!-- ============================================================
+       JSON-LD · Datos estructurados (SEO + GEO)
+       Un solo @graph con Organization, Person, WebSite, Book,
+       Product (suscripción), AboutPage y FAQPage.
+       Optimizado para Google rich results y para citación por
+       motores generativos (ChatGPT, Perplexity, Gemini, Claude).
+       ============================================================ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://bibliotecadeanmerys.cl/#organization",
+        "name": "La Biblioteca de Anmerys",
+        "alternateName": "Biblioteca de Anmerys",
+        "url": "https://bibliotecadeanmerys.cl/",
+        "logo": "https://bibliotecadeanmerys.cl/logo.png",
+        "description": "Editorial digital de libros y guías de alimentación infantil para bebés y niños de 6 meses a 12 años, fundada por Anmerys, ingeniera civil venezolana radicada en Chile. Cada receta es revisada por nutricionistas pediátricos.",
+        "foundingDate": "2025",
+        "founder": { "@id": "https://bibliotecadeanmerys.cl/#anmerys" },
+        "areaServed": ["CL", "MX", "CO", "PE", "AR", "VE", "EC", "UY"],
+        "knowsLanguage": "es",
+        "sameAs": [
+          "https://www.instagram.com/bibliotecaanmerys"
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://bibliotecadeanmerys.cl/#anmerys",
+        "name": "Anmerys",
+        "jobTitle": "Ingeniera civil, autora y directora editorial",
+        "description": "Ingeniera civil venezolana con más de 30 años de experiencia en construcción, incluyendo el cálculo estructural del edificio más alto de Maracay. Radicada en Chile, hoy aplica la disciplina de la ingeniería a la alimentación infantil como autora y directora editorial de La Biblioteca de Anmerys.",
+        "nationality": "VE",
+        "homeLocation": { "@type": "Place", "name": "Chile" },
+        "alumniOf": "Ingeniería Civil",
+        "knowsAbout": [
+          "Alimentación infantil",
+          "Nutrición pediátrica",
+          "Baby Led Weaning",
+          "Alimentación complementaria",
+          "Alimentación para niños neurodivergentes",
+          "Ingeniería civil estructural"
+        ],
+        "worksFor": { "@id": "https://bibliotecadeanmerys.cl/#organization" }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://bibliotecadeanmerys.cl/#website",
+        "url": "https://bibliotecadeanmerys.cl/",
+        "name": "La Biblioteca de Anmerys",
+        "inLanguage": "es-CL",
+        "publisher": { "@id": "https://bibliotecadeanmerys.cl/#organization" }
+      },
+      {
+        "@type": "AboutPage",
+        "@id": "https://bibliotecadeanmerys.cl/#aboutpage",
+        "url": "https://bibliotecadeanmerys.cl/#autora",
+        "name": "Sobre Anmerys",
+        "isPartOf": { "@id": "https://bibliotecadeanmerys.cl/#website" },
+        "about": { "@id": "https://bibliotecadeanmerys.cl/#anmerys" }
+      },
+      {
+        "@type": "Book",
+        "@id": "https://bibliotecadeanmerys.cl/#libro-bocaditos",
+        "name": "Bocaditos del Corazón",
+        "alternateName": "Bocaditos del Corazón — 120 recetas para bebés de 6 a 24 meses",
+        "bookFormat": "https://schema.org/EBook",
+        "inLanguage": "es",
+        "numberOfPages": "180",
+        "description": "Libro digital con 120 recetas de alimentación complementaria para bebés de 6 a 24 meses. Cada receta está calibrada por edad y textura, incluye revisión alergénica y fue validada por nutricionistas pediátricos.",
+        "author": { "@id": "https://bibliotecadeanmerys.cl/#anmerys" },
+        "publisher": { "@id": "https://bibliotecadeanmerys.cl/#organization" },
+        "datePublished": "2025",
+        "audience": {
+          "@type": "PeopleAudience",
+          "suggestedMinAge": 0.5,
+          "suggestedMaxAge": 2,
+          "audienceType": "Madres, padres y cuidadores de bebés de 6 a 24 meses"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "9990",
+          "priceCurrency": "CLP",
+          "availability": "https://schema.org/InStock",
+          "url": "https://bibliotecadeanmerys.cl/#planes"
+        }
+      },
+      {
+        "@type": "Product",
+        "@id": "https://bibliotecadeanmerys.cl/#suscripcion",
+        "name": "Suscripción a La Biblioteca de Anmerys",
+        "description": "Suscripción mensual con acceso completo a todos los libros y guías de alimentación infantil, nuevas recetas cada mes, comunidad privada y soporte directo. Incluye Bocaditos del Corazón y los libros que se vayan sumando a la biblioteca.",
+        "brand": { "@id": "https://bibliotecadeanmerys.cl/#organization" },
+        "category": "Educación / Alimentación infantil",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Prueba 7 días",
+            "price": "990",
+            "priceCurrency": "CLP",
+            "availability": "https://schema.org/InStock",
+            "url": "https://bibliotecadeanmerys.cl/#planes",
+            "description": "Acceso completo por 7 días para probar la biblioteca."
+          },
+          {
+            "@type": "Offer",
+            "name": "Suscripción mensual",
+            "price": "4990",
+            "priceCurrency": "CLP",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "4990",
+              "priceCurrency": "CLP",
+              "billingIncrement": 1,
+              "unitCode": "MON"
+            },
+            "availability": "https://schema.org/InStock",
+            "url": "https://bibliotecadeanmerys.cl/#planes"
+          },
+          {
+            "@type": "Offer",
+            "name": "Suscripción anual",
+            "price": "49990",
+            "priceCurrency": "CLP",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "49990",
+              "priceCurrency": "CLP",
+              "billingIncrement": 12,
+              "unitCode": "MON"
+            },
+            "availability": "https://schema.org/InStock",
+            "url": "https://bibliotecadeanmerys.cl/#planes",
+            "description": "Equivale a 10 meses — ahorras 2 meses."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://bibliotecadeanmerys.cl/#faq",
+        "inLanguage": "es-CL",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Cómo funciona la suscripción?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Pagas CLP $4.990 al mes a través de Hotmart (tarjeta, débito o crédito). Accedes a toda la biblioteca — los libros publicados y los que se vayan sumando cada mes. Puedes cancelar en cualquier momento desde tu panel de Hotmart o escribiéndonos por WhatsApp."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Si cancelo, ¿pierdo los libros?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. La suscripción es por acceso a la biblioteca, no por propiedad. Si cancelas, pierdes el acceso al cerrar el mes. Si quieres quedarte con un libro para siempre, puedes comprarlo individualmente por CLP $9.990 por título."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuándo salen los próximos libros?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Estamos trabajando en Alimentación para niños neurodivergentes y Recetas para congelar. Cuando te suscribes, te avisamos por email en cuanto se publican. También sumamos recetas y guías nuevas mes a mes dentro de los libros existentes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Y si a mi bebé no le gustan las recetas?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Todos los bebés son distintos y es normal. Cada receta incluye variaciones de sabor y textura para que pruebes combinaciones. Si aún así no te acomoda, tienes 7 días de garantía: te devolvemos el dinero por Hotmart, sin preguntas."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Necesito ingredientes especiales o caros?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Las recetas están pensadas con ingredientes que encuentras en cualquier supermercado o feria. La mayoría usa menos de 6 ingredientes y aprovecha cosas que ya tienes en casa."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Sirve si mi bebé tiene alergias?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. Cada receta indica los alérgenos comunes (gluten, lácteos, huevo, frutos secos) y sugiere reemplazos seguros. Incluimos una guía de introducción de alérgenos paso a paso, respaldada por nutricionistas pediátricos. Ante una alergia diagnosticada, siempre consulta con tu pediatra antes de introducir un alimento."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Quién es Anmerys?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ingeniera civil venezolana radicada en Chile, con más de 30 años en la industria de la construcción — responsable de obras como el edificio más alto de Maracay. Madre de dos profesionales, emprendedora gastronómica, trabaja junto a nutricionistas pediátricos para desarrollar cada libro de la biblioteca."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://bibliotecadeanmerys.cl/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body class="bg-cream text-ink font-body">
@@ -596,8 +886,9 @@
           La Biblioteca <em>de Anmerys</em>
         </span>
       </a>
-      <nav class="hidden md:flex items-center gap-7 text-sm text-soft font-medium">
+      <nav class="hidden md:flex items-center gap-6 lg:gap-7 text-sm text-soft font-medium" aria-label="Navegación principal">
         <a href="#autora" class="hover:text-ink transition-colors">La autora</a>
+        <a href="#metodo" class="hover:text-ink transition-colors">El método</a>
         <a href="#biblioteca" class="hover:text-ink transition-colors">La biblioteca</a>
         <a href="#adentro" class="hover:text-ink transition-colors">Mira adentro</a>
         <a href="#planes" class="hover:text-ink transition-colors">Planes</a>
@@ -617,10 +908,10 @@
 
           <div class="lg:col-span-6 relative" data-reveal>
             <span class="inline-flex items-center gap-3 bg-cream/80 backdrop-blur border border-ink/10 text-soft text-sm font-medium px-3 py-1.5 rounded-full shadow-soft">
-              <span class="avatar-stack">
-                <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=80&h=80&fit=crop&q=80" alt="" />
-                <img src="https://images.unsplash.com/photo-1587116908932-5d00acec4a11?w=80&h=80&fit=crop&q=80" alt="" />
-                <img src="https://images.unsplash.com/photo-1623428187969-5da2dcea5ad5?w=80&h=80&fit=crop&q=80" alt="" />
+              <span class="avatar-stack" role="img" aria-label="Fotografías de tres bebés suscritos a La Biblioteca de Anmerys">
+                <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=80&h=80&fit=crop&q=80" alt="" aria-hidden="true" />
+                <img src="https://images.unsplash.com/photo-1587116908932-5d00acec4a11?w=80&h=80&fit=crop&q=80" alt="" aria-hidden="true" />
+                <img src="https://images.unsplash.com/photo-1623428187969-5da2dcea5ad5?w=80&h=80&fit=crop&q=80" alt="" aria-hidden="true" />
               </span>
               +5.000 mamás nos acompañan
             </span>
@@ -799,6 +1090,61 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- =============== MÉTODO EDITORIAL (GEO · definición + 7 pasos) =============== -->
+    <section id="metodo" class="py-20 sm:py-28 relative bg-cream/50" itemscope itemtype="https://schema.org/Organization">
+      <meta itemprop="name" content="La Biblioteca de Anmerys" />
+      <meta itemprop="url" content="https://bibliotecadeanmerys.cl/" />
+      <div class="max-w-5xl mx-auto px-5 sm:px-8">
+        <div class="text-center max-w-3xl mx-auto" data-reveal>
+          <p class="eyebrow">El método</p>
+          <h2 class="display-lg font-display font-semibold mt-3">
+            Cada receta pasa por <span class="accent-word">siete filtros</span> antes de llegar a tu cocina.
+          </h2>
+          <p class="mt-5 text-soft text-lg leading-relaxed" itemprop="description">
+            <strong>La Biblioteca de Anmerys</strong> es una editorial digital de alimentación infantil para bebés y niños de 6 meses a 12 años, creada por Anmerys &mdash; ingeniera civil venezolana radicada en Chile &mdash; con revisión de nutricionistas pediátricos. No es un blog de recetas: es una biblioteca con estándares editoriales.
+          </p>
+        </div>
+
+        <ol class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 counter-reset-method">
+          <li class="method-step" data-reveal>
+            <span class="method-num" aria-hidden="true">01</span>
+            <h3 class="method-title">Diseño nutricional</h3>
+            <p class="method-desc">Balance de macronutrientes, densidad calórica y aporte de micronutrientes según etapa.</p>
+          </li>
+          <li class="method-step" data-reveal data-reveal-delay="1">
+            <span class="method-num" aria-hidden="true">02</span>
+            <h3 class="method-title">Calibración por edad y textura</h3>
+            <p class="method-desc">Mapeo contra el desarrollo orofacial típico: 6&ndash;8m, 9&ndash;12m, 12&ndash;24m, preescolar, escolar.</p>
+          </li>
+          <li class="method-step" data-reveal data-reveal-delay="2">
+            <span class="method-num" aria-hidden="true">03</span>
+            <h3 class="method-title">Revisión alergénica</h3>
+            <p class="method-desc">Identificación de los ocho alérgenos mayores, reemplazos seguros y protocolo de introducción.</p>
+          </li>
+          <li class="method-step" data-reveal>
+            <span class="method-num" aria-hidden="true">04</span>
+            <h3 class="method-title">Accesibilidad de ingredientes</h3>
+            <p class="method-desc">Sólo productos disponibles en supermercados y ferias chilenas y latinoamericanas. Tiempo de preparación acotado.</p>
+          </li>
+          <li class="method-step" data-reveal data-reveal-delay="1">
+            <span class="method-num" aria-hidden="true">05</span>
+            <h3 class="method-title">Prueba real en cocina</h3>
+            <p class="method-desc">Anmerys cocina cada receta antes de publicarla. Ajusta porciones, tiempos y pasos en el fogón.</p>
+          </li>
+          <li class="method-step" data-reveal data-reveal-delay="2">
+            <span class="method-num" aria-hidden="true">06</span>
+            <h3 class="method-title">Revisión con nutricionistas pediátricos</h3>
+            <p class="method-desc">Validación clínica externa antes de publicar. Lo que entra a la biblioteca está respaldado.</p>
+          </li>
+          <li class="method-step method-step--wide" data-reveal>
+            <span class="method-num" aria-hidden="true">07</span>
+            <h3 class="method-title">Producción visual y redacción</h3>
+            <p class="method-desc">Fotografía del plato, paso a paso legible, etiquetas por edad, textura y alérgeno para que leas con los ojos y cocines con las manos.</p>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -1109,25 +1455,35 @@
           <h2 class="display-lg font-display font-semibold mt-3">
             Elige cómo quieres <span class="accent-word">acompañarte</span>.
           </h2>
-          <p class="mt-4 text-soft text-lg">Suscripción mensual o compra individual. Tú decides.</p>
+          <p class="mt-4 text-soft text-lg">Pruébala una semana, suscríbete por mes o año, o llévate un libro para siempre. Tú decides.</p>
         </div>
 
-        <!-- Mobile plan toggle -->
-        <div class="mt-10 md:hidden flex items-center gap-2 bg-card p-1.5 rounded-full" role="tablist" aria-label="Ver planes">
-          <button type="button" class="plan-pill flex-1 text-sm font-medium px-3 py-2 rounded-full text-ink transition-colors" aria-pressed="true" data-plan="sub">Suscripción</button>
-          <button type="button" class="plan-pill flex-1 text-sm font-medium px-3 py-2 rounded-full text-ink transition-colors" aria-pressed="false" data-plan="book">Libro único</button>
+        <!-- Trial banner -->
+        <div class="mt-10 max-w-3xl mx-auto trial-banner" data-reveal data-reveal-delay="1">
+          <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 bg-butter/40 border border-butter-DEFAULT/60 rounded-[22px] px-5 sm:px-7 py-5">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-butter flex items-center justify-center">
+              <i data-lucide="sparkles" class="w-5 h-5 text-peach-dark" aria-hidden="true"></i>
+            </div>
+            <div class="flex-1 text-center sm:text-left">
+              <p class="font-display text-lg font-semibold text-ink">¿Primera vez? <span class="accent-word">Prueba 7 días por $990.</span></p>
+              <p class="text-soft text-sm mt-0.5">Acceso completo durante una semana. Si te convence, continúa con plan mensual o anual.</p>
+            </div>
+            <a href="#" data-hotmart="trial" class="btn-secondary text-sm flex-shrink-0 whitespace-nowrap">
+              Empezar trial $990
+            </a>
+          </div>
         </div>
 
         <!-- PRECIOS -->
-        <div class="mt-10 sm:mt-16 grid md:grid-cols-2 gap-6 max-w-4xl mx-auto items-stretch">
+        <div class="mt-10 sm:mt-14 grid md:grid-cols-3 gap-6 max-w-5xl mx-auto items-stretch">
 
-          <!-- Suscripción (featured) -->
-          <article class="plan-card plan-featured is-active" data-plan="sub" data-reveal data-reveal-delay="1">
+          <!-- Suscripción mensual (featured center) -->
+          <article class="plan-card plan-featured is-active md:order-2" data-plan="sub" data-reveal data-reveal-delay="1">
             <span class="pulse-badge absolute -top-3.5 left-1/2 bg-peach-dark text-cream text-[0.68rem] font-semibold tracking-wider uppercase px-3.5 py-1.5 rounded-full">
-              Recomendado
+              Más elegido
             </span>
             <div class="flex items-center justify-between mt-2">
-              <h3 class="font-display text-2xl font-semibold">Suscripción mensual</h3>
+              <h3 class="font-display text-2xl font-semibold">Mensual</h3>
               <span class="eyebrow text-peach-dark" style="letter-spacing:.1em">Toda la biblioteca</span>
             </div>
             <p class="mt-1 text-soft text-sm">Acceso a todos los libros actuales y futuros.</p>
@@ -1152,8 +1508,38 @@
             <p class="mt-3 text-center text-xs text-soft">Procesado por Hotmart · Tarjeta, débito o crédito</p>
           </article>
 
+          <!-- Suscripción anual -->
+          <article class="plan-card md:order-1" data-plan="annual" data-reveal data-reveal-delay="2">
+            <span class="annual-badge absolute -top-3.5 left-1/2 bg-sage-dark text-cream text-[0.68rem] font-semibold tracking-wider uppercase px-3.5 py-1.5 rounded-full" style="transform: translateX(-50%);">
+              Ahorras 2 meses
+            </span>
+            <div class="flex items-center justify-between mt-2">
+              <h3 class="font-display text-2xl font-semibold">Anual</h3>
+              <span class="eyebrow" style="letter-spacing:.1em">Mejor valor</span>
+            </div>
+            <p class="mt-1 text-soft text-sm">12 meses por el precio de 10. Misma biblioteca.</p>
+
+            <div class="mt-6 flex items-baseline gap-2">
+              <span class="font-display text-5xl font-semibold" data-price="49990">$49.990</span>
+              <span class="text-soft font-medium">CLP / año</span>
+            </div>
+            <p class="text-soft text-sm mt-1">Equivale a <strong>$4.166 por mes</strong> · pago único anual</p>
+
+            <ul class="mt-7 space-y-2.5 text-[15px] leading-snug text-ink/85">
+              <li class="check-bullet flex gap-3">Todo lo del plan mensual</li>
+              <li class="check-bullet flex gap-3"><strong>Ahorras CLP $9.890</strong> al año</li>
+              <li class="check-bullet flex gap-3">Acceso garantizado 12 meses</li>
+              <li class="check-bullet flex gap-3">Renovación automática (cancelable)</li>
+            </ul>
+
+            <a href="#" data-hotmart="annual" class="btn-secondary mt-7 w-full">
+              Suscribirme anual <span aria-hidden="true">→</span>
+            </a>
+            <p class="mt-3 text-center text-xs text-soft">Procesado por Hotmart · Pago anual único</p>
+          </article>
+
           <!-- Libro individual -->
-          <article class="plan-card" data-plan="book" data-reveal data-reveal-delay="2">
+          <article class="plan-card md:order-3" data-plan="book" data-reveal data-reveal-delay="3">
             <div class="flex items-center justify-between">
               <h3 class="font-display text-2xl font-semibold">Libro individual</h3>
               <span class="eyebrow" style="letter-spacing:.1em">Para siempre</span>
@@ -1174,7 +1560,7 @@
               <li class="check-bullet flex gap-3 text-soft"><s>Libros futuros de la biblioteca</s></li>
             </ul>
 
-            <a href="#" data-hotmart="book" class="btn-secondary mt-auto pt-7 mt-7 w-full">
+            <a href="#" data-hotmart="book" class="btn-secondary mt-7 w-full">
               Comprar el libro
             </a>
             <p class="mt-3 text-center text-xs text-soft">Procesado por Hotmart · Pago único</p>
@@ -1242,7 +1628,7 @@
             </blockquote>
             <div class="flex gap-1 text-butter mt-5" aria-label="5 de 5 estrellas"><span aria-hidden="true">★★★★★</span></div>
             <footer class="mt-4 flex items-center gap-3">
-              <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=120&h=120&fit=crop&q=80" alt="" class="w-10 h-10 rounded-full object-cover"/>
+              <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=120&h=120&fit=crop&q=80" alt="Foto de Carolina, suscriptora de La Biblioteca de Anmerys, mamá de Emi." class="w-10 h-10 rounded-full object-cover" loading="lazy"/>
               <div>
                 <p class="font-semibold text-ink text-sm">Carolina</p>
                 <p class="text-soft text-xs">Valparaíso · mamá de Emi, 9m</p>
@@ -1258,7 +1644,7 @@
             </blockquote>
             <div class="flex gap-1 text-butter mt-5" aria-label="5 de 5 estrellas"><span aria-hidden="true">★★★★★</span></div>
             <footer class="mt-4 flex items-center gap-3">
-              <img src="https://images.unsplash.com/photo-1587116908932-5d00acec4a11?w=120&h=120&fit=crop&q=80" alt="" class="w-10 h-10 rounded-full object-cover"/>
+              <img src="https://images.unsplash.com/photo-1587116908932-5d00acec4a11?w=120&h=120&fit=crop&q=80" alt="Foto de Javiera, suscriptora de La Biblioteca de Anmerys, mamá de Sofi." class="w-10 h-10 rounded-full object-cover" loading="lazy"/>
               <div>
                 <p class="font-semibold text-ink text-sm">Javiera</p>
                 <p class="text-soft text-xs">Santiago · mamá de Sofi, 14m</p>
@@ -1274,7 +1660,7 @@
             </blockquote>
             <div class="flex gap-1 text-butter mt-5" aria-label="5 de 5 estrellas"><span aria-hidden="true">★★★★★</span></div>
             <footer class="mt-4 flex items-center gap-3">
-              <img src="https://images.unsplash.com/photo-1623428187969-5da2dcea5ad5?w=120&h=120&fit=crop&q=80" alt="" class="w-10 h-10 rounded-full object-cover"/>
+              <img src="https://images.unsplash.com/photo-1623428187969-5da2dcea5ad5?w=120&h=120&fit=crop&q=80" alt="Foto de Daniela, suscriptora de La Biblioteca de Anmerys, mamá de Lucas." class="w-10 h-10 rounded-full object-cover" loading="lazy"/>
               <div>
                 <p class="font-semibold text-ink text-sm">Daniela</p>
                 <p class="text-soft text-xs">Concepción · mamá de Lucas, 10m</p>
@@ -1451,14 +1837,26 @@
       </div>
       <div>
         <p class="eyebrow">La marca</p>
-        <nav class="mt-3 flex flex-col gap-1.5 text-sm text-soft">
+        <nav class="mt-3 flex flex-col gap-1.5 text-sm text-soft" aria-label="Enlaces legales">
           <a href="https://instagram.com/bibliotecaanmerys" target="_blank" rel="noopener noreferrer" class="hover:text-ink">Instagram</a>
-          <a href="#" class="hover:text-ink">Términos</a>
-          <a href="#" class="hover:text-ink">Privacidad</a>
+          <a href="/terminos" class="hover:text-ink">Términos y condiciones</a>
+          <a href="/privacidad" class="hover:text-ink">Política de privacidad</a>
+          <a href="/cookies" class="hover:text-ink">Política de cookies</a>
         </nav>
       </div>
     </div>
-    <p class="max-w-6xl mx-auto px-5 sm:px-8 mt-8 text-xs text-soft">© 2026 La Biblioteca de Anmerys · Todos los derechos reservados.</p>
+
+    <!-- Disclaimer médico y legal (crítico para alimentación infantil) -->
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 mt-10 pt-8 border-t border-ink/10">
+      <p class="text-xs text-soft leading-relaxed">
+        <strong class="text-ink/80">Aviso importante.</strong> La Biblioteca de Anmerys entrega recomendaciones educativas sobre alimentación infantil elaboradas con la asesoría de nutricionistas pediátricos. <strong>No reemplaza la consulta con el pediatra o nutricionista tratante de tu hijo.</strong> Ante alergias alimentarias diagnosticadas, enfermedades crónicas, condiciones metabólicas o cualquier duda sobre la introducción de un alimento, consulta siempre con un profesional de la salud antes de aplicar una receta o protocolo. La introducción de alérgenos mayores debe realizarse con supervisión profesional.
+      </p>
+      <p class="mt-3 text-xs text-soft leading-relaxed">
+        Los precios están expresados en pesos chilenos (CLP) e incluyen IVA cuando corresponde. Procesado por Hotmart. Garantía de reembolso 7 días. Responsable del tratamiento de datos conforme a la Ley 21.719 sobre protección de datos personales — ver <a href="/privacidad" class="underline underline-offset-2 hover:text-ink">Política de privacidad</a>.
+      </p>
+    </div>
+
+    <p class="max-w-6xl mx-auto px-5 sm:px-8 mt-6 text-xs text-soft">© 2026 La Biblioteca de Anmerys · Todos los derechos reservados.</p>
   </footer>
 
   <!-- Floating WhatsApp (support only) -->
@@ -1477,8 +1875,10 @@
       ============================================================
     */
     const HOTMART_URLS = {
-      sub:  'https://pay.hotmart.com/XXXXXX?subscription=1', // suscripción mensual $4.990
-      book: 'https://pay.hotmart.com/YYYYYY',                // libro único $9.990
+      trial:  'https://pay.hotmart.com/TTTTTT', // trial 7 días $990
+      sub:    'https://pay.hotmart.com/XXXXXX?subscription=1', // suscripción mensual $4.990
+      annual: 'https://pay.hotmart.com/AAAAAA?subscription=1', // suscripción anual $49.990
+      book:   'https://pay.hotmart.com/YYYYYY', // libro único $9.990
     };
 
     /* WhatsApp SOLO SOPORTE (no venta) */

@@ -1,0 +1,23 @@
+# robots.txt — La Biblioteca de Anmerys
+# https://bibliotecadeanmerys.cl/
+
+User-agent: *
+Allow: /
+
+# Bloquear parámetros de tracking comunes para evitar duplicados
+Disallow: /*?utm_
+Disallow: /*?fbclid=
+Disallow: /*?gclid=
+
+# AI crawlers: permitimos indexación y citación.
+# Si alguna vez queremos bloquear alguno, descomentar el bloque.
+# User-agent: GPTBot
+# Disallow: /
+# User-agent: ClaudeBot
+# Disallow: /
+# User-agent: PerplexityBot
+# Disallow: /
+# User-agent: Google-Extended
+# Disallow: /
+
+Sitemap: https://bibliotecadeanmerys.cl/sitemap.xml
