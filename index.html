@@ -243,11 +243,12 @@
     .polaroid img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 3px; }
     .polaroid-frame { position: relative; width: 100%; aspect-ratio: 4/5; overflow: hidden; border-radius: 3px; background: #FDE4D8; }
     .polaroid .cap { font-family: 'Caveat', cursive; font-weight: 600; color: #3D3630; font-size: 1.15rem; text-align: center; margin-top: 0.4rem; line-height: 1.1; }
-    .polaroid:hover { transform: rotate(0deg) translateY(-6px) scale(1.03); z-index: 10; }
+    .polaroid { --parallax-y: 0px; }
+    .polaroid:hover { transform: rotate(0deg) translateY(calc(var(--parallax-y) - 6px)) scale(1.03); z-index: 10; }
 
-    .p-main { width: 56%; left: 4%; top: 4%; transform: rotate(-4deg); z-index: 2; }
-    .p-top  { width: 42%; right: 0; top: 22%; transform: rotate(6deg); z-index: 3; }
-    .p-bot  { width: 40%; left: 22%; bottom: 2%; transform: rotate(-7deg); z-index: 1; }
+    .p-main { width: 56%; left: 4%; top: 4%; transform: rotate(-4deg) translateY(var(--parallax-y)); z-index: 2; }
+    .p-top  { width: 42%; right: 0; top: 22%; transform: rotate(6deg) translateY(calc(var(--parallax-y) * .5)); z-index: 3; }
+    .p-bot  { width: 40%; left: 22%; bottom: 2%; transform: rotate(-7deg) translateY(calc(var(--parallax-y) * .7)); z-index: 1; }
     .p-bot .polaroid-frame { aspect-ratio: 1/1; }
 
     .tape { position: absolute; top: -10px; left: 50%; transform: translateX(-50%) rotate(-4deg); width: 70px; height: 20px; background: rgba(255, 221, 154, 0.7); box-shadow: 0 2px 6px rgba(61, 54, 48, 0.08); }
@@ -494,22 +495,23 @@
       border-radius: 6px; box-shadow: 0 18px 42px -20px rgba(61, 54, 48, 0.35);
       transition: transform 0.5s cubic-bezier(.2,.7,.2,1);
     }
+    .scrap-photo { --r: 0deg; transform: rotate(var(--r)); }
     .scrap-photo:hover { transform: rotate(0deg) translateY(-6px) scale(1.02); z-index: 5; }
     .scrap-photo img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 3px; }
     .scrap-photo .sp-frame { width: 100%; overflow: hidden; border-radius: 3px; }
     .scrap-photo .cap { font-family: 'Caveat', cursive; font-weight: 600; text-align: center; font-size: 1.05rem; color: #3D3630; margin-top: 0.3rem; }
     @media (min-width: 900px) {
-      .sp-a { grid-column: 1/5;  grid-row: 1/5;  transform: rotate(-3deg); }
-      .sp-b { grid-column: 5/9;  grid-row: 2/6;  transform: rotate(4deg); }
-      .sp-c { grid-column: 9/13; grid-row: 1/5;  transform: rotate(-5deg); }
-      .sp-d { grid-column: 2/6;  grid-row: 6/10; transform: rotate(6deg); }
-      .sp-e { grid-column: 6/10; grid-row: 7/11; transform: rotate(-4deg); }
-      .sp-f { grid-column: 9/13; grid-row: 6/10; transform: rotate(3deg); }
+      .sp-a { grid-column: 1/5;  grid-row: 1/5;  --r: -3deg; }
+      .sp-b { grid-column: 5/9;  grid-row: 2/6;  --r:  4deg; }
+      .sp-c { grid-column: 9/13; grid-row: 1/5;  --r: -5deg; }
+      .sp-d { grid-column: 2/6;  grid-row: 6/10; --r:  6deg; }
+      .sp-e { grid-column: 6/10; grid-row: 7/11; --r: -4deg; }
+      .sp-f { grid-column: 9/13; grid-row: 6/10; --r:  3deg; }
       .scrap-photo .sp-frame { aspect-ratio: 4/5; }
     }
     @media (max-width: 899px) {
-      .scrap-photo { transform: rotate(-2deg); }
-      .scrap-photo:nth-child(even) { transform: rotate(3deg); }
+      .scrap-photo { --r: -2deg; }
+      .scrap-photo:nth-child(even) { --r: 3deg; }
       .scrap-photo .sp-frame { aspect-ratio: 4/5; }
     }
 
@@ -614,18 +616,33 @@
     /* =========  ANIMATIONS  ========= */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-    @keyframes wobbleRot { 0%, 100% { transform: rotate(-4deg) translateY(0); } 50% { transform: rotate(-4deg) translateY(-6px); } }
+    @keyframes wobbleRot {
+      0%, 100% { transform: rotate(-4deg) translateY(var(--parallax-y, 0px)); }
+      50%       { transform: rotate(-4deg) translateY(calc(var(--parallax-y, 0px) - 6px)); }
+    }
     @keyframes softPulse {
       0%, 100% { transform: translateX(-50%) scale(1); box-shadow: 0 8px 22px -10px rgba(245, 165, 143, 0.55); }
       50%      { transform: translateX(-50%) scale(1.05); box-shadow: 0 16px 34px -10px rgba(245, 165, 143, 0.75); }
     }
 
+    /* Scroll progress bar */
+    #scroll-progress {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #F5A58F, #E8876E);
+      transform: scaleX(0); transform-origin: left;
+      will-change: transform; pointer-events: none;
+    }
+
+    /* Reveal system — multi-direction */
     [data-reveal] {
       opacity: 0; transform: translateY(26px);
       transition: opacity 0.75s cubic-bezier(.2,.7,.2,1), transform 0.75s cubic-bezier(.2,.7,.2,1);
       will-change: opacity, transform;
     }
-    [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+    [data-reveal="fade-left"]  { transform: translateX(-30px); }
+    [data-reveal="fade-right"] { transform: translateX(30px); }
+    [data-reveal="scale-up"]   { transform: scale(0.88); }
+    [data-reveal].is-visible   { opacity: 1; transform: none; }
     [data-reveal-delay="1"].is-visible { transition-delay: 0.08s; }
     [data-reveal-delay="2"].is-visible { transition-delay: 0.16s; }
     [data-reveal-delay="3"].is-visible { transition-delay: 0.24s; }
@@ -634,6 +651,10 @@
 
     .p-main.is-floating { animation: wobbleRot 7s ease-in-out infinite; }
     .pulse-badge { animation: softPulse 2.8s ease-in-out infinite; }
+
+    /* 3D tilt transition for plan cards & book covers */
+    .plan-card { transition: transform 0.15s ease-out, box-shadow 0.35s cubic-bezier(.2,.7,.2,1); }
+    .book-cover { transition: transform 0.15s ease-out; }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -874,6 +895,7 @@
 
   <!-- =============== HEADER =============== -->
   <header class="site-header fixed top-0 inset-x-0 z-40">
+    <div id="scroll-progress" aria-hidden="true"></div>
     <div class="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
       <a href="#top" class="brand-mark" aria-label="La Biblioteca de Amneris — inicio">
         <svg class="w-7 h-7" viewBox="0 0 32 32" fill="none" aria-hidden="true">
@@ -1292,7 +1314,7 @@
         </div>
 
         <div class="mt-14 sm:mt-20 grid md:grid-cols-3 gap-6 sm:gap-8">
-          <article class="bg-blush/50 rounded-[26px] p-7 sm:p-8 shadow-card md:mt-0" data-reveal data-reveal-delay="1">
+          <article class="bg-blush/50 rounded-[26px] p-7 sm:p-8 shadow-card md:mt-0" data-reveal="fade-left" data-reveal-delay="1">
             <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center shadow-soft">
               <i data-lucide="utensils" class="w-5 h-5 text-peach-dark" aria-hidden="true"></i>
             </div>
@@ -1308,7 +1330,7 @@
               Te da miedo introducir un alimento nuevo. ¿Y si es alérgico?
             </p>
           </article>
-          <article class="bg-mint/60 rounded-[26px] p-7 sm:p-8 shadow-card md:mt-4" data-reveal data-reveal-delay="3">
+          <article class="bg-mint/60 rounded-[26px] p-7 sm:p-8 shadow-card md:mt-4" data-reveal="fade-right" data-reveal-delay="3">
             <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center shadow-soft">
               <i data-lucide="shopping-cart" class="w-5 h-5 text-peach-dark" aria-hidden="true"></i>
             </div>
@@ -1336,7 +1358,7 @@
           <p class="mt-4 text-soft text-lg">Fotos que nos envían las familias que ya cocinan con la biblioteca.</p>
         </div>
 
-        <div class="mt-14 sm:mt-20 scrap" data-reveal>
+        <div class="mt-14 sm:mt-20 scrap" data-reveal="scale-up">
           <figure class="scrap-photo sp-a">
             <div class="sp-frame"><img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=700&q=80&auto=format&fit=crop" alt="Bebé sonriente con bigote de puré" loading="lazy"/></div>
             <p class="cap">"la favorita de Emi"</p>
@@ -1940,6 +1962,61 @@
         });
       }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
       revealEls.forEach((el) => io.observe(el));
+    }
+
+    // Scroll progress bar
+    const progressBar = document.getElementById('scroll-progress');
+    if (progressBar && !prefersReduced) {
+      let pgTick = false;
+      const updateProgress = () => {
+        const docH = document.documentElement.scrollHeight - window.innerHeight;
+        progressBar.style.transform = `scaleX(${docH > 0 ? window.scrollY / docH : 0})`;
+        pgTick = false;
+      };
+      window.addEventListener('scroll', () => {
+        if (!pgTick) { requestAnimationFrame(updateProgress); pgTick = true; }
+      }, { passive: true });
+    }
+
+    // Parallax — bg-mesh blobs & hero polaroids
+    if (!prefersReduced) {
+      const blobs = document.querySelectorAll('.bg-mesh span');
+      const polaroids = document.querySelectorAll('.polaroid');
+      const blobSpeeds = [0.04, 0.07, 0.05, 0.06, 0.03];
+      let pxTick = false;
+      const updateParallax = () => {
+        const sy = window.scrollY;
+        blobs.forEach((b, i) => {
+          b.style.transform = `translateY(${sy * (blobSpeeds[i] || 0.04)}px)`;
+        });
+        polaroids.forEach((p) => {
+          const rect = p.parentElement.getBoundingClientRect();
+          const offset = (window.innerHeight * 0.5 - rect.top) * 0.04;
+          p.style.setProperty('--parallax-y', `${offset}px`);
+        });
+        pxTick = false;
+      };
+      window.addEventListener('scroll', () => {
+        if (!pxTick) { requestAnimationFrame(updateParallax); pxTick = true; }
+      }, { passive: true });
+    }
+
+    // 3D tilt — plan cards & book covers
+    if (!prefersReduced) {
+      document.querySelectorAll('.plan-card, .book-cover').forEach((el) => {
+        const isBook = el.classList.contains('book-cover');
+        el.addEventListener('mousemove', (e) => {
+          const r = el.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width  - 0.5;
+          const y = (e.clientY - r.top)  / r.height - 0.5;
+          const rx = (-y * 12).toFixed(2);
+          const ry = ( x * (isBook ? 16 : 10)).toFixed(2);
+          el.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.02,1.02,1.02)`;
+        });
+        el.addEventListener('mouseleave', () => {
+          el.style.transform = isBook ? 'perspective(1000px) rotateY(-8deg) translateZ(0)' : '';
+        });
+      });
     }
 
     // Plan toggle (mobile)
