@@ -656,6 +656,78 @@
     .plan-card { transition: transform 0.15s ease-out, box-shadow 0.35s cubic-bezier(.2,.7,.2,1); }
     .book-cover { transition: transform 0.15s ease-out; }
 
+    /* ========= CHECKOUT MODAL ========= */
+    .checkout-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(61, 54, 48, 0.48);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center; padding: 1rem;
+      opacity: 0; transition: opacity 0.28s ease;
+    }
+    .checkout-overlay.is-open { opacity: 1; }
+    .checkout-overlay[hidden] { display: none !important; }
+    .checkout-card {
+      position: relative; background: #FFF8F2; border-radius: 28px;
+      padding: 1.9rem 1.9rem 1.6rem; width: 100%; max-width: 420px;
+      box-shadow: 0 32px 72px -20px rgba(61, 54, 48, 0.38);
+      transform: scale(0.93) translateY(16px);
+      transition: transform 0.38s cubic-bezier(.2,.7,.2,1);
+    }
+    .checkout-overlay.is-open .checkout-card { transform: scale(1) translateY(0); }
+    .checkout-close {
+      position: absolute; top: 1rem; right: 1rem;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(61,54,48,0.07); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s ease;
+    }
+    .checkout-close:hover { background: rgba(61,54,48,0.14); }
+    .checkout-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+      color: #8B827B; background: rgba(61,54,48,0.06);
+      border-radius: 999px; padding: 0.28rem 0.8rem; margin-bottom: 1.3rem;
+    }
+    .checkout-product {
+      display: flex; align-items: center; justify-content: space-between; gap: 0.9rem;
+      background: linear-gradient(135deg, #FDE4D8 0%, #FBD4C3 100%);
+      border-radius: 18px; padding: 1rem 1.1rem; margin-bottom: 1.4rem;
+    }
+    .checkout-book { display: flex; align-items: center; gap: 0.75rem; }
+    .checkout-book-icon {
+      width: 40px; height: 54px; border-radius: 4px 3px 3px 4px; flex-shrink: 0;
+      background: linear-gradient(145deg, #F5A58F 0%, #E8876E 100%);
+      box-shadow: 0 6px 18px -6px rgba(232,135,110,0.55);
+      position: relative; overflow: hidden;
+    }
+    .checkout-book-icon::before { content:''; position:absolute; left:0; top:0; bottom:0; width:5px; background:rgba(0,0,0,0.14); }
+    .checkout-book-icon::after  { content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 20%, rgba(255,255,255,0.22), transparent 60%); }
+    .checkout-book-label { font-size: 0.67rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: #8B827B; }
+    .checkout-book-title { font-family: 'Fraunces', Georgia, serif; font-size: 0.95rem; font-weight: 600; color: #3D3630; line-height: 1.25; }
+    .checkout-book-sub   { font-size: 0.72rem; color: #8B827B; margin-top: 0.1rem; }
+    .checkout-price { text-align: right; flex-shrink: 0; }
+    .checkout-price-amount   { font-family: 'Fraunces', Georgia, serif; font-size: 1.3rem; font-weight: 600; color: #3D3630; display: block; }
+    .checkout-price-currency { font-size: 0.68rem; color: #8B827B; display: block; margin-top: 0.15rem; white-space: nowrap; }
+    .checkout-label { display: block; font-size: 0.82rem; font-weight: 600; color: #3D3630; margin-bottom: 0.5rem; }
+    .checkout-input {
+      width: 100%; padding: 0.9rem 1.1rem; border-radius: 14px;
+      border: 1.5px solid rgba(61,54,48,0.13); background: #FFFFFF;
+      font-family: 'Inter', sans-serif; font-size: 0.95rem; color: #3D3630;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .checkout-input::placeholder { color: #A8A19B; }
+    .checkout-input:focus { outline: none; border-color: #F5A58F; box-shadow: 0 0 0 3px rgba(245,165,143,0.2); }
+    .checkout-hint { font-size: 0.73rem; color: #A8A19B; text-align: center; margin: 0.5rem 0 1rem; }
+    .checkout-loading { display: flex; flex-direction: column; align-items: center; gap: 0.9rem; padding: 1.2rem 0 0.4rem; }
+    .checkout-loading-text { font-size: 0.88rem; color: #8B827B; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .checkout-spinner {
+      width: 38px; height: 38px; border-radius: 50%;
+      border: 3px solid rgba(245,165,143,0.22); border-top-color: #F5A58F;
+      animation: spin 0.75s linear infinite;
+    }
+    .checkout-footer { margin-top: 1rem; text-align: center; font-size: 0.73rem; color: #A8A19B; }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after {
@@ -2046,6 +2118,110 @@
         }
       });
     }
+  </script>
+
+  <!-- ======= SIMULACIÓN CHECKOUT HOTMART ======= -->
+  <div id="checkoutModal" class="checkout-overlay" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle" hidden>
+    <div class="checkout-card">
+
+      <button class="checkout-close" id="checkoutClose" aria-label="Cerrar">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M1 1l12 12M13 1L1 13" stroke="#8B827B" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <!-- Badge -->
+      <p class="checkout-badge">
+        <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+          <path d="M5.5 1L1 3.5v3C1 9 3 10.5 5.5 11 8 10.5 10 9 10 6.5v-3L5.5 1z" fill="#F5A58F"/>
+        </svg>
+        Hotmart · Pago seguro simulado
+      </p>
+
+      <!-- Producto -->
+      <div class="checkout-product">
+        <div class="checkout-book">
+          <div class="checkout-book-icon" aria-hidden="true"></div>
+          <div>
+            <p class="checkout-book-label">Libro digital</p>
+            <p class="checkout-book-title" id="checkoutTitle">Bocaditos del Corazón</p>
+            <p class="checkout-book-sub">120 recetas · 6 a 24 meses</p>
+          </div>
+        </div>
+        <div class="checkout-price">
+          <span class="checkout-price-amount">$9.990</span>
+          <span class="checkout-price-currency">CLP · Pago único</span>
+        </div>
+      </div>
+
+      <!-- Formulario -->
+      <form id="checkoutForm" novalidate>
+        <label for="checkoutEmail" class="checkout-label">Tu correo electrónico</label>
+        <input
+          type="email" id="checkoutEmail" name="email"
+          placeholder="tu@email.com"
+          class="checkout-input" autocomplete="email" required
+        />
+        <p class="checkout-hint">El libro llegará a este correo tras confirmar el pago</p>
+
+        <button type="submit" class="btn-primary" style="width:100%;">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+            <rect x="1.5" y="6.5" width="12" height="7.5" rx="1.8" stroke="rgba(255,248,242,0.85)" stroke-width="1.4" fill="none"/>
+            <path d="M4.5 6.5V4.5a3 3 0 0 1 6 0v2" stroke="rgba(255,248,242,0.85)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+          </svg>
+          Completar compra
+        </button>
+      </form>
+
+      <!-- Estado de carga (oculto hasta submit) -->
+      <div id="checkoutLoading" class="checkout-loading" style="display:none;" aria-live="polite">
+        <div class="checkout-spinner" aria-hidden="true"></div>
+        <p class="checkout-loading-text">Procesando tu compra…</p>
+      </div>
+
+      <p class="checkout-footer">🔒 Datos encriptados · Cancelable en cualquier momento</p>
+    </div>
+  </div>
+
+  <script>
+    // Checkout modal
+    (function () {
+      const modal   = document.getElementById('checkoutModal');
+      const closeBtn = document.getElementById('checkoutClose');
+      const form    = document.getElementById('checkoutForm');
+      const loading = document.getElementById('checkoutLoading');
+      const emailInput = document.getElementById('checkoutEmail');
+
+      const openModal = () => {
+        modal.hidden = false;
+        requestAnimationFrame(() => modal.classList.add('is-open'));
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => emailInput.focus(), 360);
+      };
+      const closeModal = () => {
+        modal.classList.remove('is-open');
+        setTimeout(() => { modal.hidden = true; document.body.style.overflow = ''; }, 280);
+      };
+
+      document.querySelectorAll('[data-hotmart="book"]').forEach((btn) =>
+        btn.addEventListener('click', (e) => { e.preventDefault(); openModal(); })
+      );
+
+      closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = emailInput.value.trim();
+        if (!email || !email.includes('@')) { emailInput.focus(); return; }
+        form.style.display = 'none';
+        loading.style.display = 'flex';
+        setTimeout(() => {
+          window.location.href = 'gracias.html?email=' + encodeURIComponent(email);
+        }, 2200);
+      });
+    })();
   </script>
 </body>
 </html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#FFF8F2" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>¡Gracias por tu compra! — La Biblioteca de Amneris</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            peach:  { DEFAULT: '#F5A58F', dark: '#E8876E', light: '#FBD4C3' },
+            cream:  '#FFF8F2',
+            card:   '#FDE4D8',
+            ink:    '#3D3630',
+            soft:   '#8B827B',
+            mint:   { DEFAULT: '#C8EADB', dark: '#A8D5C0' },
+          },
+          fontFamily: {
+            display: ['Fraunces', 'Georgia', 'serif'],
+            body:    ['Inter', 'system-ui', 'sans-serif'],
+            hand:    ['Caveat', 'cursive'],
+          },
+        }
+      }
+    };
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #FFF8F2; color: #3D3630; font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; }
+
+    .bg-mesh { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+    .bg-mesh span { position: absolute; display: block; border-radius: 50%; filter: blur(80px); opacity: 0.45; }
+    .b1 { width: 38rem; height: 38rem; top: -10rem; left: -12rem; background: #FBD4D4; }
+    .b2 { width: 32rem; height: 32rem; bottom: -8rem; right: -10rem; background: #C8EADB; }
+    .b3 { width: 28rem; height: 28rem; top: 30%; left: 50%; transform: translateX(-30%); background: #FFECC4; }
+
+    /* Book mini */
+    .book-mini {
+      width: 90px; height: 120px;
+      border-radius: 6px 4px 4px 6px;
+      background: linear-gradient(145deg, #F5A58F 0%, #E8876E 100%);
+      box-shadow: 0 20px 48px -16px rgba(232,135,110,0.55);
+      position: relative; overflow: hidden; flex-shrink: 0;
+    }
+    .book-mini::before { content:''; position:absolute; left:0; top:0; bottom:0; width:8px; background:rgba(0,0,0,0.13); }
+    .book-mini::after  { content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 20%, rgba(255,255,255,0.22), transparent 60%); }
+
+    /* Envelope animation */
+    @keyframes envFloat {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50%       { transform: translateY(-10px) rotate(-2deg); }
+    }
+    @keyframes envelopeOpen {
+      0%   { transform: rotateX(0deg); }
+      100% { transform: rotateX(-35deg); transform-origin: top; }
+    }
+    .env-wrap { perspective: 600px; }
+    .envelope { animation: envFloat 4s ease-in-out infinite; }
+
+    /* Check circle */
+    @keyframes scaleIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .check-circle { animation: scaleIn 0.55s cubic-bezier(.2,.9,.3,1.2) 0.3s both; }
+
+    /* Fade up reveal */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-up-1 { animation: fadeUp 0.7s cubic-bezier(.2,.7,.2,1) 0.1s both; }
+    .fade-up-2 { animation: fadeUp 0.7s cubic-bezier(.2,.7,.2,1) 0.25s both; }
+    .fade-up-3 { animation: fadeUp 0.7s cubic-bezier(.2,.7,.2,1) 0.40s both; }
+    .fade-up-4 { animation: fadeUp 0.7s cubic-bezier(.2,.7,.2,1) 0.55s both; }
+
+    /* Steps */
+    .step-num {
+      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, #F5A58F, #E8876E);
+      color: #FFF8F2; font-weight: 700; font-size: 0.82rem;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 12px -4px rgba(232,135,110,0.45);
+    }
+
+    .btn-home {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: linear-gradient(135deg, #F5A58F 0%, #E8876E 100%);
+      color: #FFF8F2; padding: 1rem 1.8rem; border-radius: 999px;
+      font-weight: 600; font-size: 1rem;
+      box-shadow: 0 14px 32px -14px rgba(232,135,110,0.6);
+      transition: transform 0.25s cubic-bezier(.2,.7,.2,1), box-shadow 0.25s ease;
+      text-decoration: none;
+    }
+    .btn-home:hover { transform: translateY(-2px); box-shadow: 0 20px 40px -14px rgba(232,135,110,0.65); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background blobs -->
+  <div class="bg-mesh" aria-hidden="true">
+    <span class="b1"></span>
+    <span class="b2"></span>
+    <span class="b3"></span>
+  </div>
+
+  <!-- Header mínimo -->
+  <header style="position:sticky;top:0;z-index:40;background:rgba(255,248,242,0.85);backdrop-filter:blur(14px);border-bottom:1px solid rgba(61,54,48,0.07);">
+    <div style="max-width:960px;margin:0 auto;padding:0 1.5rem;height:60px;display:flex;align-items:center;">
+      <a href="index.html" style="display:flex;align-items:center;gap:0.6rem;text-decoration:none;" aria-label="Volver al inicio">
+        <svg class="w-6 h-6" width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M4 8.5c3-1.5 6-1.5 9 0v16c-3-1.5-6-1.5-9 0V8.5z" fill="#F5A58F"/>
+          <path d="M28 8.5c-3-1.5-6-1.5-9 0v16c3-1.5 6-1.5 9 0V8.5z" fill="#F5A58F"/>
+          <path d="M13 8.5c1 0.5 2 0.5 3 0.5s2 0 3-0.5v16c-1 0.5-2 0.5-3 0.5s-2 0-3-0.5V8.5z" fill="#E8876E"/>
+        </svg>
+        <span style="font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:1rem;color:#3D3630;">La Biblioteca de Amneris</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Contenido principal -->
+  <main style="max-width:600px;margin:0 auto;padding:3rem 1.5rem 4rem;text-align:center;">
+
+    <!-- Check animado -->
+    <div class="check-circle" style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#C8EADB,#A8D5C0);display:flex;align-items:center;justify-content:center;margin:0 auto 2rem;box-shadow:0 8px 24px -8px rgba(168,213,192,0.6);" aria-hidden="true">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <path d="M7 16.5l6.5 6.5 11.5-13" stroke="#3D8A68" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- Título -->
+    <h1 class="fade-up-1" style="font-family:'Fraunces',Georgia,serif;font-size:clamp(2rem,5vw,2.8rem);font-weight:600;color:#3D3630;line-height:1.15;margin-bottom:1rem;">
+      ¡Tu compra fue exitosa!
+    </h1>
+
+    <p class="fade-up-2" style="font-size:1.05rem;color:#8B827B;line-height:1.65;margin-bottom:2rem;">
+      Gracias por confiar en <strong style="color:#3D3630;">La Biblioteca de Amneris</strong>.<br/>
+      Tu libro ya está en camino.
+    </p>
+
+    <!-- Producto adquirido -->
+    <div class="fade-up-2" style="display:flex;align-items:center;gap:1.1rem;background:linear-gradient(135deg,#FDE4D8,#FBD4C3);border-radius:20px;padding:1.1rem 1.4rem;margin-bottom:2.5rem;text-align:left;">
+      <div class="book-mini" aria-hidden="true"></div>
+      <div>
+        <p style="font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#8B827B;margin-bottom:0.2rem;">Libro digital adquirido</p>
+        <p style="font-family:'Fraunces',Georgia,serif;font-size:1.1rem;font-weight:600;color:#3D3630;line-height:1.2;">Bocaditos del Corazón</p>
+        <p style="font-size:0.78rem;color:#8B827B;margin-top:0.2rem;">120 recetas · 6 a 24 meses · PDF descargable</p>
+      </div>
+    </div>
+
+    <!-- Sobre la entrega -->
+    <div class="fade-up-3" style="background:#FFFFFF;border:1px solid rgba(61,54,48,0.09);border-radius:22px;padding:1.6rem 1.5rem;margin-bottom:2rem;text-align:left;">
+
+      <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.3rem;">
+        <!-- Envelope SVG -->
+        <div class="envelope" aria-hidden="true" style="font-size:1.9rem;line-height:1;">📬</div>
+        <div>
+          <p style="font-weight:700;color:#3D3630;font-size:0.95rem;">El libro llega por correo electrónico</p>
+          <p style="font-size:0.8rem;color:#8B827B;margin-top:0.15rem;" id="emailMsg">Revisa tu bandeja de entrada en los próximos minutos.</p>
+        </div>
+      </div>
+
+      <ol style="list-style:none;display:flex;flex-direction:column;gap:0.85rem;">
+        <li style="display:flex;align-items:flex-start;gap:0.8rem;">
+          <div class="step-num" aria-hidden="true">1</div>
+          <p style="font-size:0.88rem;color:#3D3630;line-height:1.5;padding-top:0.35rem;">
+            <strong>Hotmart enviará un email</strong> con el enlace de descarga de tu libro.
+          </p>
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:0.8rem;">
+          <div class="step-num" aria-hidden="true">2</div>
+          <p style="font-size:0.88rem;color:#3D3630;line-height:1.5;padding-top:0.35rem;">
+            <strong>Revisa tu carpeta de spam</strong> si no lo encuentras en unos minutos.
+          </p>
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:0.8rem;">
+          <div class="step-num" aria-hidden="true">3</div>
+          <p style="font-size:0.88rem;color:#3D3630;line-height:1.5;padding-top:0.35rem;">
+            Si no llega en 30 minutos,
+            <a href="https://wa.me/56900000000" style="color:#E8876E;font-weight:600;text-decoration:none;">escríbenos por WhatsApp</a>
+            y te ayudamos enseguida.
+          </p>
+        </li>
+      </ol>
+    </div>
+
+    <!-- Nota de Amneris -->
+    <div class="fade-up-4" style="background:linear-gradient(135deg,#FDE4D8 0%,#FBD4C3 100%);border-radius:20px;padding:1.4rem 1.5rem;margin-bottom:2.5rem;">
+      <p style="font-family:'Caveat',cursive;font-size:1.22rem;color:#3D3630;line-height:1.55;">
+        "Espero que cada receta se convierta en un recuerdo feliz en tu mesa. Con mucho cariño,<br/>
+        <strong>Amneris 🍊</strong>"
+      </p>
+    </div>
+
+    <!-- CTA volver -->
+    <div class="fade-up-4">
+      <a href="index.html" class="btn-home">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M10 12L6 8l4-4" stroke="rgba(255,248,242,0.9)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Volver al inicio
+      </a>
+      <p style="margin-top:1rem;font-size:0.78rem;color:#A8A19B;">
+        ¿Quieres también la suscripción?
+        <a href="index.html#planes" style="color:#E8876E;font-weight:600;text-decoration:none;">Ver planes</a>
+      </p>
+    </div>
+
+  </main>
+
+  <script>
+    // Si viene con ?email=..., personalizar el mensaje
+    const params = new URLSearchParams(window.location.search);
+    const email = params.get('email');
+    if (email) {
+      const el = document.getElementById('emailMsg');
+      if (el) el.textContent = 'Te lo enviamos a ' + email + '. Revisa tu bandeja de entrada en unos minutos.';
+    }
+  </script>
+</body>
+</html>
